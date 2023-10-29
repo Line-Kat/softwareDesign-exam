@@ -5,10 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingApp {
-	public class Customer {
+	public class HandleCustomer {
 		//Properties
-
-		//how to not set set fields as optional to add
 
 		//implement customerId when we have the database
 		//int customerId { get; set; }
@@ -19,11 +17,11 @@ namespace PizzaOrderingApp {
 
 		//Constructor
 		//empty constructor for use in main
-		public Customer() {
+		public HandleCustomer() {
 		}
 
 		//constructor with parameters to store customer in database
-		public Customer(string customerName, string address, int phoneNr) {
+		public HandleCustomer(string customerName, string address, int phoneNr) {
 			this.customerName = customerName;
 			this.address = address;
 			this.phoneNr = phoneNr;
@@ -31,7 +29,7 @@ namespace PizzaOrderingApp {
 
 		//Methods
 
-		//how to not make the input optional?
+		//how to solve that user that the user must add a name, address and pohone number (private field? if in the method AddCustomer?
 		public void AddCustomer() {
 			Console.WriteLine("Enter your name: ");
 			string? inputName = Console.ReadLine();
@@ -42,8 +40,8 @@ namespace PizzaOrderingApp {
 			Console.WriteLine("Enter your phone number: ");
 			int inputPhoneNr = Convert.ToInt32(Console.ReadLine());
 
-			Customer customer = new Customer(inputName, inputAddress, inputPhoneNr);
-			Console.WriteLine(customer.ToString());
+			HandleCustomer customer = new HandleCustomer(inputName, inputAddress, inputPhoneNr);
+			Console.WriteLine($"Your information: {customer.ToString()}");
 		}
 
 		public override string? ToString() {
