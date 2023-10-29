@@ -52,7 +52,7 @@ namespace PizzaOrderingApp {
 			Customer? customer = db.Customer.SingleOrDefault(customer => customer.Id == id);
 
 			Console.WriteLine("Type the number of the alternative you need to edit\n1 name\n2 address\n3 phone number");
-			int userInput = int.Parse(Console.ReadLine());
+			int userInput = Int32.Parse(Console.ReadLine());
 			
 			//use switch?
 			if (userInput == 1) { 
@@ -89,5 +89,4 @@ namespace PizzaOrderingApp {
 			}
 		}
 	}
-	
 }
