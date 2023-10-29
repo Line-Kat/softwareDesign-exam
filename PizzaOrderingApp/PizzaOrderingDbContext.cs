@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PizzaOrderingApp.Enteties;
+using PizzaOrderingApp.Entities;
 
 namespace PizzaOrderingApp {
 	public class PizzaOrderingDbContext : DbContext {

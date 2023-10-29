@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PizzaOrderingApp;
 
-namespace PizzaOrderingApp.Enteties {
+namespace PizzaOrderingApp.Entities {
 	//1:* relationship to order
 	public class Customer {
 		//Properties
@@ -15,6 +16,5 @@ namespace PizzaOrderingApp.Enteties {
 		public int PhoneNr { get; set; }
 
 		public ICollection<Order>? Order { get; set; }
-
 	}
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaOrderingApp.Enteties {
+namespace PizzaOrderingApp.Entities {
 	public class Order {
 		public int Id { get; set; }
 
