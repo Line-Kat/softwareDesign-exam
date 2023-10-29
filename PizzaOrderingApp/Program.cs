@@ -1,8 +1,9 @@
-﻿namespace PizzaOrderingApp {
-	internal class Program {
+﻿namespace PizzaOrderingApp
+{
+    internal class Program {
 		static void Main(string[] args) {
 			Console.WriteLine("Welcome to Pizza Factory");
-			Customer customer = new();
+			HandleCustomer customer = new();
 			customer.AddCustomer();
 		}
 	}
