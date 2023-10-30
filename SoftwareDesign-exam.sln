@@ -5,6 +5,11 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaOrderingApp", "PizzaOrderingApp\PizzaOrderingApp.csproj", "{7B453D90-C0E8-4F88-BAB8-AC21850210D1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinResources", "BinResources", "{CAD7A6ED-C7CB-4698-BBEB-9A251C6690B2}"
+	ProjectSection(SolutionItems) = preProject
+		PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db = PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

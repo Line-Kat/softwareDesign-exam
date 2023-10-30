@@ -1,13 +1,14 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 
 namespace PizzaOrderingApp {
-	internal class Program {
+    internal class Program {
+      
 		static void Main(string[] args) {
 
 			Console.WriteLine("Welcome to Pizza Factory");
-			Customer customer = new();
+			HandleCustomer customer = new();
 			customer.AddCustomer();
 
 			//Test (will be removed).
