@@ -5,8 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingApp {
-	internal class Order {
+	public class Menu {
 
-		// add cart + queue + customer
+		// will be changed later.
+		public List<Pizza> PizzaMenu {  get; set; }
+
+		public Menu() {
+			PizzaMenu = new List<Pizza>();
+		}
+
 	}
 }
