@@ -16,6 +16,6 @@ namespace PizzaOrderingApp.Entities {
 
 		//does this class have a default empty constructor?
 
-		public ICollection<Order>? Order { get; set; }
+		//public ICollection<Order>? Order { get; set; }
 	}
 }
