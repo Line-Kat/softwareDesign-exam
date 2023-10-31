@@ -14,6 +14,8 @@ namespace PizzaOrderingApp.Entities {
 		public string Address { get; set; } = string.Empty;
 		public int PhoneNr { get; set; }
 
+		//does this class have a default empty constructor?
+
 		public ICollection<Order>? Order { get; set; }
 	}
 }

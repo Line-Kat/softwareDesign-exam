@@ -46,7 +46,7 @@ namespace PizzaOrderingApp {
 			} 
 		}
 
-		//edit customers name
+		//edit customers information
 		public void editCustomer(int id) {
 			using PizzaOrderingDbContext db = new();
 			Customer? customer = db.Customer.SingleOrDefault(customer => customer.Id == id);
