@@ -11,6 +11,7 @@ namespace PizzaOrderingApp.Entities {
 		//Foreign key
 		public int CustomerId { get; set; }
 
+		//Order has a customer
 		public Customer? Customer { get; set; }
 	}
 }

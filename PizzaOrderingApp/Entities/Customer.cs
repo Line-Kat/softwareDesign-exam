@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,7 @@ namespace PizzaOrderingApp.Entities {
 		public string Address { get; set; } = string.Empty;
 		public int PhoneNr { get; set; }
 
-		//does this class have a default empty constructor?
-
-		//public ICollection<Order>? Order { get; set; }
+		//Customer has a list of orders
+		public ICollection<Order>? Order { get; set; }
 	}
 }
