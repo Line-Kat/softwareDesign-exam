@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Menu
 {
-	internal class MenuCategories
+	public class MenuCategory
 	{
-		public int CathegoryId { get; set; }
-		public string CathegoryName { get; set; }
+		[Key]
+		public int CategoryID { get; set; }
 
+		[Required]
+		[StringLength(255)]
+		public string CategoryName { get; set; }
 
-		public List<MenuCategory> GetMenuCategories()
-		{
-			using (var db = new PizzaOrderingDbContext())
-			{
-				return db.MenuCategories.ToList();
-			}
-		}
+		public List<MenuItem> MenuItems { get; set; }
 
 	}
-
-
-
-
 }
