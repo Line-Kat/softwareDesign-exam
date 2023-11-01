@@ -1,27 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using PizzaOrderingApp.Menu.IMenuCategoryHandler;
 
 namespace PizzaOrderingApp.Menu
 {
-	public class ItemMenuHandler<T> : IMenuCategoryHandler where T : MenuItem
-	{
 
+	public class IMenuCategoryHandler
+	{
 		private readonly PizzaOrderingDbContext dbContext;
 
-		public ItemMenuHandler(PizzaOrderingDbContext dbContext)
+		public IMenuCategoryHandler(PizzaOrderingDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
 
 		public void AddProduct(MenuItem product)
 		{
-
-			if (product is T menuItem)
+			if (product is MenuItem menuItem)
 			{
 				dbContext.MenuItems.Add(menuItem);
 				dbContext.SaveChanges();
@@ -30,9 +27,10 @@ namespace PizzaOrderingApp.Menu
 			{
 				throw new ArgumentException("Product must be the correct type");
 			}
-
-			dbContext.MenuItems.Add(product);
-			dbContext.SaveChanges();
 		}
 	}
 }
+
+
+
+
