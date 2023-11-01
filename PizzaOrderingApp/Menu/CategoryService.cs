@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,32 +7,25 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Menu
 {
-
-	public class MenuItemHandler
+	  public class CategoryService
 	{
+		private readonly MenuCategoryManager categoryManager;
 		private readonly PizzaOrderingDbContext dbContext;
 
-		public MenuItemHandler(PizzaOrderingDbContext dbContext)
+		public CategoryService(MenuCategoryManager categoryManager)
 		{
+			this.categoryManager = categoryManager;
 			this.dbContext = dbContext;
 		}
 
-		public void AddProduct(MenuItem product)
+		public void CreateCategory(string categoryName)
 		{
-			if (product is MenuItem menuItem)
-			{
-				dbContext.MenuItems.Add(menuItem);
-				dbContext.SaveChanges();
-			}
-			else
-			{
-				throw new ArgumentException("Product must be the correct type");
-			}
+			categoryManager.CreateMenuCategory(categoryName);
 		}
 
-		// Legg til en metode for å legge til en pizza i en kategori
-		public void AddPizzaToCategory(string categoryName, string pizzaName, decimal price, string description)
+		public void AddPizzaToCategory(string categoryName, string pizzaName)
 		{
+			// Finn kategorien basert på kategorinavnet
 			var category = dbContext.MenuCategories.FirstOrDefault(c => c.CategoryName == categoryName);
 
 			if (category == null)
@@ -40,20 +34,21 @@ namespace PizzaOrderingApp.Menu
 				return;
 			}
 
+			// Opprett en ny pizza og legg den til i kategorien
 			var pizza = new MenuItem
 			{
 				ItemName = pizzaName,
-				Price = price,
-				Description = description,
 				Category = category
 			};
 
-			AddProduct(pizza); 
+			dbContext.MenuItems.Add(pizza);
+			dbContext.SaveChanges();
+
 			Console.WriteLine($"Pizza '{pizzaName}' er lagt til i kategorien '{categoryName}'.");
 		}
+
 	}
+
+
+
 }
-
-
-
-

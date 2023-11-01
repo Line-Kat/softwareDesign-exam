@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Menu
 {
-	internal class MenuCategoryManager
+	public class MenuCategoryManager
 	{
 
 		private readonly PizzaOrderingDbContext dbContext;

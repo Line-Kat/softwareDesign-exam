@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PizzaOrderingApp.Menu;
-
+/*
 namespace PizzaOrderingApp.Menu
 {
 	public class PizzaMenuItems
@@ -39,4 +39,4 @@ namespace PizzaOrderingApp.Menu
 		}
 	}
 
-}
+} */
