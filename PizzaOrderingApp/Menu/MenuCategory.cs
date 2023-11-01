@@ -16,7 +16,7 @@ namespace PizzaOrderingApp.Menu
 		[StringLength(255)]
 		public string CategoryName { get; set; }
 
-		public List<MenuItem> MenuItems { get; set; }
+	//	public List<MenuItem> MenuItems { get; set; }
 
 	}
 }

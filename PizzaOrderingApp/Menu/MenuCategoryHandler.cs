@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Menu
 {
-	public class MenuCategoryManager
+	public class MenuCategoryHandler
 	{
 
 		private readonly PizzaOrderingDbContext dbContext;
 
-		public MenuCategoryManager(PizzaOrderingDbContext dbContext)
+		public MenuCategoryHandler(PizzaOrderingDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
@@ -34,6 +34,18 @@ namespace PizzaOrderingApp.Menu
 			dbContext.SaveChanges();
 
 			Console.WriteLine($"Kategorien '{categoryName}' er opprettet.");
+		}
+
+		public void AddPizzaToCategoryDb()
+		{
+			using (var dbContext = new PizzaOrderingDbContext())
+			{
+				var menuCategoryHandler = new MenuCategoryHandler(dbContext);
+
+				// Oppretter kategorien "Pizza" (hvis den ikke eksisterer)
+				menuCategoryHandler.CreateMenuCategory("Pizza");
+			}
+
 		}
 	}
 }
