@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Menu
 {
-	internal class MenuCategoryHandler
+	public interface IMenuCategoryHandler
 	{
+		
+			void AddProduct(MenuItem product);
+		
+
 	}
+
+	
 }
