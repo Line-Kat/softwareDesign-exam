@@ -9,6 +9,10 @@ using PizzaOrderingApp.Entities;
 namespace PizzaOrderingApp {
 	public class PizzaOrderingDbContext : DbContext {
 		public DbSet<Customer> Customer => Set<Customer>();
+		//public DbSet<MenuCategory> MenuCategories { get; set; }
+		//eller
+		//  public DbSet<MenuCategory> MenuCategories => Set<MenuCategory>();
+
 		public DbSet<Order> Order => Set<Order>();
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
