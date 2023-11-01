@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinResources", "BinResource
 		PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db = PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9F6C479-BC2A-4A3F-A356-F0567B24B854}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
