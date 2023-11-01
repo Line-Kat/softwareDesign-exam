@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace PizzaOrderingApp.Menu
 {
 
-	public class IMenuCategoryHandler
+	public class MenuItemHandler
 	{
 		private readonly PizzaOrderingDbContext dbContext;
 
-		public IMenuCategoryHandler(PizzaOrderingDbContext dbContext)
+		public MenuItemHandler(PizzaOrderingDbContext dbContext)
 		{
 			this.dbContext = dbContext;
 		}
