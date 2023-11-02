@@ -9,12 +9,11 @@ namespace PizzaOrderingApp.Entities {
 	//1:* relationship to order
 	public class Customer {
 		//Properties
-		//now the user can have only one addess
-		public int Id { get; set; }
-		public string Name { get; set; } = string.Empty; //is it OK for string variables here to be empty?
-		public string Address { get; set; } = string.Empty;
+		public int CustomerId { get; set; }
+		public string CustomerName { get; set; } = string.Empty; //is it OK for string variables here to be empty?
 		public int PhoneNr { get; set; }
 
+		
 		//Customer has a list of orders
 		public ICollection<Order>? Order { get; set; }
 	}
