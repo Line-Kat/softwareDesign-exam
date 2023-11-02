@@ -28,7 +28,7 @@ namespace PizzaOrderingApp {
 		}
 
 		//previous data in the database dissappears when restarting the program. Why? 
-		public void AddCustomer() {
+		public Customer AddCustomer() {
 
 			string inputName = AskForUserInput("name");
 			int inputPhoneNr = Convert.ToInt32(AskForUserInput(""));
@@ -49,6 +49,8 @@ namespace PizzaOrderingApp {
 			int latestId = customer.CustomerId;
 
 			confirmAddCustomer(customer);
+
+			return customer;
 		}
 
 		internal void confirmAddCustomer(Customer customer) {
