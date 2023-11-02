@@ -34,6 +34,7 @@ namespace PizzaOrderingApp {
 
 		//previous data in the database dissappears when restarting the program. Why? 
 		public void AddCustomer() {
+
 			string inputName = AskForUserInput("name");
 			string inputAddress = AskForUserInput("address");
 			int inputPhoneNr = Convert.ToInt32(AskForUserInput(""));
