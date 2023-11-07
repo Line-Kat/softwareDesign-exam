@@ -14,7 +14,7 @@ namespace PizzaOrderingApp.Entities
 		public decimal Price { get; set; }
 		public virtual string Description { get; set; }
 
-		//Abstrakt metode så alle menyene bruker for å printe ut
+		//Abstrakt metode så alle menyene bruker for å printe ut deres meny
 		public abstract void PrintMenu();
 
 	}
