@@ -92,7 +92,7 @@ namespace PizzaOrderingApp {
 
 		//edit customers information
 		//method must handle the user not typing a value
-		public void editCustomer(int id) {
+		public Customer editCustomer(int id) {
 			using PizzaOrderingDbContext db = new();
 			Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
 
@@ -106,6 +106,7 @@ namespace PizzaOrderingApp {
 							db.Update(customer);
 							db.SaveChanges();
 						}
+				
 					}
 					break;
 				case 2: {
@@ -120,6 +121,7 @@ namespace PizzaOrderingApp {
 				}
 					break;
 			}
+			return customer;
 		}
 	}
 }
