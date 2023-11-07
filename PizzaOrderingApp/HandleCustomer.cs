@@ -123,5 +123,17 @@ namespace PizzaOrderingApp {
 			}
 			return customer;
 		}
+
+		public void deleteCustomer(int id) {
+			using PizzaOrderingDbContext db = new();
+
+			Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
+
+			if(customer != null) {
+				db.Customer.Remove(customer);
+				db.SaveChanges();
+			}
+
+		}
 	}
 }
