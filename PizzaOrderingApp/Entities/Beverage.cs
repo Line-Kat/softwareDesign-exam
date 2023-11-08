@@ -17,7 +17,24 @@ namespace PizzaOrderingApp.Entities
 		{
 			Console.WriteLine("Here is the beverage menu:");
 
-			//Legger til kode for å printe drikke menyen her etterpå
+			using (var db = new PizzaOrderingDbContext())
+			{
+				var beverages = db.Beverage.ToList();
+
+				if (beverages.Any())
+				{
+					foreach (var beverage in beverages)
+					{
+						Console.WriteLine($"Nr. {beverage.Id}");
+						Console.WriteLine($"Name: {beverage.Name}, {beverage.Price}kr");
+						Console.WriteLine($"Description: {beverage.Description}");
+					}
+				}
+				else
+				{
+					Console.WriteLine("There is nothing in this menu, sorry!");
+				}
+			}
 
 		}
 	}
