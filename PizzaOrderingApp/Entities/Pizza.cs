@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaOrderingApp.Entities {
-	public class Pizza : Menu {
+namespace PizzaOrderingApp.Entities
+{
+    public class Pizza : Menu {
 		
 
 		//relasjon til koblingstabellen
