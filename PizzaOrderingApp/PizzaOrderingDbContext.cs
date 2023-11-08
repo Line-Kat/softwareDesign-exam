@@ -9,9 +9,9 @@ using PizzaOrderingApp.Entities;
 namespace PizzaOrderingApp {
 	public class PizzaOrderingDbContext : DbContext {
 		public DbSet<Customer> Customer => Set<Customer>();
-		public DbSet<Pizza_Order> Pizza_Order => Set<Pizza_Order>();
 		public DbSet<Pizza> Pizza => Set<Pizza>();	
 		public DbSet<Beverage> Beverage => Set<Beverage>();	
+		public DbSet<Pizza_Order> Pizza_Order => Set<Pizza_Order>();
 		public DbSet<Order> Order => Set<Order>();
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
