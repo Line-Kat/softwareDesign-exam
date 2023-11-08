@@ -9,7 +9,7 @@ namespace PizzaOrderingApp {
 			Login login = new Login();
 			customer = login.userLogin(); //customer holder på den innloggede brukeren
 
-			Console.WriteLine($"Welcome {customer.CustomerName}");
+			Console.WriteLine($"Welcome {customer.CustomerName}"); 
 		}
 	}
 }

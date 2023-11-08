@@ -11,6 +11,21 @@ namespace PizzaOrderingApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Beverage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beverage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customer",
                 columns: table => new
                 {
@@ -28,15 +43,15 @@ namespace PizzaOrderingApp.Migrations
                 name: "Pizza",
                 columns: table => new
                 {
-                    PizzaId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PizzaName = table.Column<string>(type: "TEXT", nullable: true),
-                    Price = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pizza", x => x.PizzaId);
+                    table.PrimaryKey("PK_Pizza", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,11 +80,17 @@ namespace PizzaOrderingApp.Migrations
                     PizzaOrderId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     OrderId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PizzaId = table.Column<int>(type: "INTEGER", nullable: false)
+                    PizzaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    BeverageId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pizza_Order", x => x.PizzaOrderId);
+                    table.ForeignKey(
+                        name: "FK_Pizza_Order_Beverage_BeverageId",
+                        column: x => x.BeverageId,
+                        principalTable: "Beverage",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pizza_Order_Order_OrderId",
                         column: x => x.OrderId,
@@ -80,7 +101,7 @@ namespace PizzaOrderingApp.Migrations
                         name: "FK_Pizza_Order_Pizza_PizzaId",
                         column: x => x.PizzaId,
                         principalTable: "Pizza",
-                        principalColumn: "PizzaId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -88,6 +109,11 @@ namespace PizzaOrderingApp.Migrations
                 name: "IX_Order_CustomerId",
                 table: "Order",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pizza_Order_BeverageId",
+                table: "Pizza_Order",
+                column: "BeverageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pizza_Order_OrderId",
@@ -105,6 +131,9 @@ namespace PizzaOrderingApp.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Pizza_Order");
+
+            migrationBuilder.DropTable(
+                name: "Beverage");
 
             migrationBuilder.DropTable(
                 name: "Order");
