@@ -5,6 +5,7 @@ namespace PizzaOrderingApp {
 		static void Main(string[] args) {
 			Console.WriteLine("Welcome to Pizza Factory");
 
+			/*
 			HandleCustomer handleCustomer = new();
 			handleCustomer.deleteCustomer(3);
 
@@ -14,6 +15,9 @@ namespace PizzaOrderingApp {
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
 
+			*/
+			PizzaQueue pizzaQueue1 = new PizzaQueue();
+			Console.WriteLine(pizzaQueue1.CheckQueue());
 		}
 	}
 }
