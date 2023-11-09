@@ -3,6 +3,8 @@ using PizzaOrderingApp.Entities;
 namespace PizzaOrderingApp {
 	internal class Program {
 		static void Main(string[] args) {
+			
+
 			bool runProgram = true;
 
 			while (runProgram) {
@@ -22,7 +24,11 @@ namespace PizzaOrderingApp {
 					Console.WriteLine("Choose an option:\n1 Order pizza\n2 Delete your user\n3 Log out");
 					string userInput = Console.ReadLine();
 					if (userInput.Equals("1")) {
-						//metodekall til bestilling av pizza
+						HandleOrder order = new();
+						PizzaQueue queue = new PizzaQueue();
+						DateTime dateTime = queue.CheckQueue();
+						order.printOrder(customer, dateTime);
+						order.addOrder(customer);
 						keepRunning = false;
 					}
 
