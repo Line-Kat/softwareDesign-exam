@@ -7,6 +7,9 @@ namespace PizzaOrderingApp {
 			AddMenuItems addMenuItems = new AddMenuItems();
 			addMenuItems.AddItems();
 
+			PizzaMenu menu = new PizzaMenu();
+			menu.PrintMenu();
+
 		/*	Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();

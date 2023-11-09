@@ -27,9 +27,8 @@ namespace PizzaOrderingApp.Entities
 					{
 						foreach (var pizza in pizzas)
 						{
-							Console.WriteLine($"Nr. {pizza.PizzaId}");
-							Console.WriteLine($"Name: {pizza.PizzaName}, {pizza.Price}kr");
-							Console.WriteLine($"Description: {pizza.Description}");
+							Console.WriteLine($"Nr. {pizza.PizzaId}. {pizza.PizzaName} {pizza.Price}kr");
+							Console.WriteLine($"Description: {pizza.Description} \n");
 						}
 
 					}

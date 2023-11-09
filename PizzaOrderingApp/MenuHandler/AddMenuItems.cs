@@ -28,7 +28,7 @@ namespace PizzaOrderingApp.MenuHandler
 					db.SaveChanges();
 				}
 
-				Console.WriteLine("Pizzas added to the database successfully.");
+				Console.WriteLine("(Pizzas added to the database successfully.)");
 			}
 			catch (Exception ex)
 			{
