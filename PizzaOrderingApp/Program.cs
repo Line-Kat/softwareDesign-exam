@@ -1,4 +1,4 @@
-﻿using PizzaOrderingApp.Entities;
+using PizzaOrderingApp.Entities;
 
 namespace PizzaOrderingApp {
 	internal class Program {
