@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System;
 namespace PizzaOrderingApp.Entities
 {
 	public class PizzaMenu : Menu
 	{
-
 		//relasjon til koblingstabellen
 		public ICollection<Pizza_Order>? Pizza_Order { get; set; }
 
@@ -31,8 +30,8 @@ namespace PizzaOrderingApp.Entities
 							Console.WriteLine($"Nr. {pizza.PizzaId}");
 							Console.WriteLine($"Name: {pizza.PizzaName}, {pizza.Price}kr");
 							Console.WriteLine($"Description: {pizza.Description}");
-
 						}
+
 					}
 					else
 					{
@@ -41,17 +40,10 @@ namespace PizzaOrderingApp.Entities
 				}
 				catch (Exception ex)
 				{
-
 					Console.WriteLine("Error, could not fetch the pizza menu");
 					Console.WriteLine(ex.Message); //printer ut error meldingen
 				}
-
-
 			}
-
-
 		}
-
-		
 	}
 }
