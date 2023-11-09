@@ -31,16 +31,16 @@ namespace PizzaOrderingApp.MenuHandler
 
 						if (existingPizza == null)
 						{
-							// Pizza doesn't exist, so add it to the database
+							// Pizzaen finnes ikkje i pizza tabellen i db, den blir lagt til
 							db.Pizza.Add(pizza);
 						}
 						else
 						{
-							// Pizza already exists, you can update it or skip it based on your requirement
+							// Pizzaen finnes allerede i db
 							Console.WriteLine($"Pizza '{pizza.PizzaName}' already exists in the database.");
 						}
 					}
-
+					db.Pizza.RemoveRange(db.Pizza);
 					db.SaveChanges();
 				}
 
