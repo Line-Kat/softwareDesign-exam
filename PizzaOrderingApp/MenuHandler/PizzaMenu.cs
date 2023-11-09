@@ -14,7 +14,7 @@ namespace PizzaOrderingApp.Entities
 
 		public override void PrintMenu()
 		{
-			Console.WriteLine("Here is the pizza menu:");
+			Console.WriteLine("Here is the pizza menu:\n");
 
 			//fetche listen med pizza fra db
 			using (var db = new PizzaOrderingDbContext())

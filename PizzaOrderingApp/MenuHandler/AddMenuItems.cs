@@ -40,7 +40,7 @@ namespace PizzaOrderingApp.MenuHandler
 							Console.WriteLine($"Pizza '{pizza.PizzaName}' already exists in the database.");
 						}
 					}
-					db.Pizza.RemoveRange(db.Pizza);
+					
 					db.SaveChanges();
 				}
 
