@@ -5,15 +5,13 @@ namespace PizzaOrderingApp {
 	public class HandleOrder {
 
 		public void printOrder(Customer customer, DateTime dateTime) {
-			//kundenavn
-			//henter bestillingen fra cart klassen (mat/drikke, totalsum
-			//tidspunkt fra PizzaQueue
+			//henter bestillingen fra cart klassen (mat/drikke, totalsum)
 			string name = customer.CustomerName;
 
-			Console.WriteLine($"Thankyou for ordering from Pizza Factory! Here is your receipt:\n" +
+			Console.WriteLine($"Thank you for ordering from Pizza Factory! Here is your receipt:\n" +
 				$"Name: {customer.CustomerName}\n" +
-				$"Your order is ready for pick up at {dateTime}");
-
+				$"Your order is ready for pick up at {dateTime}\n" +
+				"Welcome back another time!");
 		}
 
 		public Order addOrder(Customer customer) {
