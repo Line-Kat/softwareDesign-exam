@@ -1,9 +1,13 @@
 using PizzaOrderingApp.Entities;
+using PizzaOrderingApp.MenuHandler;
 
 namespace PizzaOrderingApp {
 	internal class Program {
 		static void Main(string[] args) {
-			Console.WriteLine("Welcome to Pizza Factory");
+			AddMenuItems addMenuItems = new AddMenuItems();
+			addMenuItems.AddItems();
+
+		/*	Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();
 
@@ -25,9 +29,9 @@ namespace PizzaOrderingApp {
 
 				if (userInput.Equals("2")) {
 					handleCustomer.deleteCustomer(customer.CustomerId);
-					keepRunning = false;
+					keepRunning = false; 
 				}
-			}
+			} */
 		}
 	}
 }
