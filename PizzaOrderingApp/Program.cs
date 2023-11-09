@@ -4,6 +4,17 @@ namespace PizzaOrderingApp {
 	internal class Program {
 		static void Main(string[] args) {
 
+			/*
+			 * Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
+				AddMenuItems addMenuItems = new AddMenuItems();
+				addMenuItems.AddItems();
+			
+			* Metode for å printe ut pizzamenyen
+				PizzaMenu menu = new PizzaMenu();
+				menu.PrintMenu();
+			 
+			 */
+
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();
