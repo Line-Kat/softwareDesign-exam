@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp {
 	public class Login {
+
+		public void startMeny () {
+
+
+		}
+
 		public Customer userLogin() {
 			HandleCustomer handleCustomer = new();
 			Customer? customer = new();
