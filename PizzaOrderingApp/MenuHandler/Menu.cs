@@ -8,6 +8,7 @@ namespace PizzaOrderingApp.MenuHandler
 {
     public abstract class Menu
     {
+        //fjerne?
 
         public int Id { get; set; }
         public string Name { get; set; }
