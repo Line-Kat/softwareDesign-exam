@@ -94,7 +94,9 @@ namespace PizzaOrderingApp {
 		//method must handle the user not typing a value
 		public Customer editCustomer(int id) {
 			using PizzaOrderingDbContext db = new();
-			Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
+			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
+
+			Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
 
 			switch (EditCustomerMenu()) {
 				case 1: {
