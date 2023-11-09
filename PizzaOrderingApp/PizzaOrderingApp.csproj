@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <None Update="Resources\PizzaOrdering.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
