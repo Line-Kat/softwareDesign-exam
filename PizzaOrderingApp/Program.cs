@@ -7,6 +7,15 @@ namespace PizzaOrderingApp
 		static void Main(string[] args)
 		{
 
+			/*
+			 legge til pizzaer og printe menyen
+			AddMenuItems addMenuItems = new AddMenuItems();
+			addMenuItems.AddItems();
+
+			PizzaMenu menu = new PizzaMenu();
+			menu.PrintMenu();
+			 */
+
 
 			bool runProgram = true;
 
