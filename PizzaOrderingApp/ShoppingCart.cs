@@ -4,20 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using PizzaOrderingApp.Entities;
 namespace PizzaOrderingApp
 {
-	public class ShoppingCart
-	{
-        //database variabel
-        private PizzaOrderingDbContext dbContext;
+    public class ShoppingCart {
+
 
         //Lager en liste for å holde på elementer
         public List<CartItem> pizzaItems = new List<CartItem>();
-
-
-        //kontruktør for databasen
-        public ShoppingCart()
-        {
-            dbContext = new PizzaOrderingDbContext();
-        }
 
 
         public void CartInteraction()
@@ -72,47 +63,45 @@ namespace PizzaOrderingApp
         //burde kanskje lage en loop istedenfor å kalle på alle metodene?
         public void AddPizzaToCart()
         {
-            int selectedPizza;
-            while (true)
+            try
             {
 
-                Console.Write("Write the Id of the pizza you would like to add to your shoppingcart: ");
-                string userInput = Console.ReadLine();
+                using (var db = new PizzaOrderingDbContext())
 
-                if (int.TryParse(userInput, out selectedPizza))
                 {
-                    Pizza pizzaAddToCart = dbContext.Pizza.FirstOrDefault(item => item.PizzaId == selectedPizza);
+                    Console.WriteLine("Enter the id of the pizza you would like to add to cart");
+                    int pizzaId = Convert.ToInt32(Console.ReadLine());
 
-                    if (pizzaAddToCart != null)
+                    Console.WriteLine("Enter the quantity of how many pizzas you would like");
+                    int quantity = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Enter the size of pizza S/L");
+                    string size = Console.ReadLine();
+
+                    var selectedPizza = db.Pizza.Find(pizzaId);
+
+                    if (selectedPizza != null)
                     {
-                        Console.WriteLine("Enter the quantity of the pizza: ");
-                        if (int.TryParse(Console.ReadLine(), out int quantity))
-                        {
-                            Console.WriteLine("Enter the size of pizza you would like: ");
-                            /*if(int.TryParse(Console.ReadLine() size))*/
-                            {
+                        CartItem? cartItem = new CartItem(selectedPizza, quantity);
+                        pizzaItems.Add(cartItem);
 
-                                CartItem cartItem = new CartItem { Pizza = pizzaAddToCart, Quantity = quantity };
-                                pizzaItems.Add(cartItem);
-                                Console.WriteLine("The pizza was added to your shoppingcart");
-                                CartMenu();
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("error, please try again");
-                            AddPizzaToCart();
-                        }
+                        Console.WriteLine($"Pizza: {selectedPizza} with quantity: {quantity} is added to your cart");
                     }
                     else
                     {
-                        Console.WriteLine("Error, please try again");
-                        AddPizzaToCart();
+                        Console.WriteLine("Invalid input or spelling mistake, please try again");
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error, the pizza could not be added to cart");
+                Console.WriteLine(ex.Message);
+            }
         }
 
+
+    
         //Kilde: forelesning EFCoreExample, writeEduaction metoden
         public void ViewCart()
         {
@@ -121,7 +110,7 @@ namespace PizzaOrderingApp
             foreach (var cartItem in pizzaItems)
             {
 
-                Console.WriteLine($"Pizza id: {cartItem.Pizza.PizzaId}");
+                Console.WriteLine($"Pizza id: {cartItem.PizzaId}");
                 Console.WriteLine($"Quantity: {cartItem.Quantity}");
                 //Console.WriteLine($"Size: {pizzaItem.Size}");
 
@@ -131,20 +120,24 @@ namespace PizzaOrderingApp
 
         public void RemovePizzaFromCart()
         {
-            int selectedPizzaId;
-            Console.WriteLine("Write the Id of the pizza you would like to remove from your shoppingcart: ");
-            string removePizzaInput = Console.ReadLine();
+            try { 
+                Console.WriteLine("Write the Id of the pizza you would like to remove from your shoppingcart: ");
+                int selectedPizzaId = Convert.ToInt32(Console.ReadLine());
 
-            if (int.TryParse(removePizzaInput, out selectedPizzaId))
-            {
-
-                CartItem pizzaToRemove = pizzaItems.FirstOrDefault(item => item.PizzaId == selectedPizzaId);
+                CartItem? pizzaToRemove = null;
+                foreach(var item in pizzaItems)
+                {
+                    if(item.PizzaId == selectedPizzaId)
+                    {
+                        pizzaToRemove = item;
+                        break;
+                    }
+                }
 
                 if (pizzaToRemove != null)
                 {
                     pizzaItems.Remove(pizzaToRemove);
                     Console.WriteLine($"Pizza with id: {selectedPizzaId} is removed from shoppingcart");
-                    CartMenu();
                 }
                 else
                 {
@@ -152,11 +145,16 @@ namespace PizzaOrderingApp
                     RemovePizzaFromCart();
                 }
             }
-            else
+            catch(Exception ex)
             {
-                Console.WriteLine("Error, please try again");
-                RemovePizzaFromCart();
+                Console.WriteLine("Error, could not remove pizza");
+                Console.WriteLine(ex.Message);
             }
+            CartMenu();
+                
+            }
+
+
             /*
             public void EditCart()
             {
@@ -166,7 +164,7 @@ namespace PizzaOrderingApp
         }
 
     }
-}
+
 
 	
 
