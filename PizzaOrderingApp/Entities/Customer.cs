@@ -10,7 +10,7 @@ namespace PizzaOrderingApp.Entities {
 	public class Customer {
 		//Properties
 		public int CustomerId { get; set; }
-		public string CustomerName { get; set; } = string.Empty; //is it OK for string variables here to be empty?
+		public string CustomerName { get; set; } = string.Empty; 
 		public int PhoneNr { get; set; }
 
 		

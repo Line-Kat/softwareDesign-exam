@@ -22,6 +22,20 @@ namespace PizzaOrderingApp {
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
 
+			
+			bool keepRunning = true;
+			while (keepRunning) {
+				Console.WriteLine("Choose an option:\n1 Order pizza\n2 Log out\n3 Delete your user");
+				string userInput = Console.ReadLine();
+				if (userInput.Equals("1")) {
+					HandleOrder order = new();
+					PizzaQueue queue = new PizzaQueue();
+					DateTime dateTime = queue.CheckQueue();
+					order.printOrder(customer, dateTime);
+					order.addOrder(customer);
+					keepRunning = false;
+						
+				}
 			bool runProgram = true;
 
 				
@@ -42,16 +56,16 @@ namespace PizzaOrderingApp {
 						runProgram = false;
 					}
 
-					if (userInput.Equals("2")) { 
-						Console.WriteLine("Thank you for visiting us. Welcome back!");	
-						keepRunning= false;
-						runProgram = false;
-					}
+				if (userInput.Equals("2")) { 
+					Console.WriteLine("Thank you for visiting us. Welcome back!");	
+					keepRunning= false;
+						
+				}
 
-					if (userInput.Equals("3")) {
-						handleCustomer.deleteCustomer(customer.CustomerId);
-						keepRunning = false;
-					}
+				if (userInput.Equals("3")) {
+					handleCustomer.deleteCustomer(customer.CustomerId);
+					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
+					keepRunning = false;
 				}
 			}
 		}

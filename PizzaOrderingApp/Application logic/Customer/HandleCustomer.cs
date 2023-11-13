@@ -27,7 +27,6 @@ namespace PizzaOrderingApp {
 			return userInput;
 		}
 
-		//previous data in the database dissappears when restarting the program. Why? 
 		public Customer AddCustomer() {
 
 			string inputName = AskForUserInput("name");
@@ -44,9 +43,6 @@ namespace PizzaOrderingApp {
 
 			db.Customer.Add(customer);
 			db.SaveChanges();
-
-			//to keep the id of the customer last added to the database. Do we need this?
-			int latestId = customer.CustomerId;
 
 			confirmAddCustomer(customer);
 
@@ -108,7 +104,6 @@ namespace PizzaOrderingApp {
 							db.Update(customer);
 							db.SaveChanges();
 						}
-				
 					}
 					break;
 				case 2: {
@@ -129,9 +124,10 @@ namespace PizzaOrderingApp {
 		public void deleteCustomer(int id) {
 			using PizzaOrderingDbContext db = new();
 
-			Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
+			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
+			Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
 
-			if(customer != null) {
+			if (customer != null) {
 				db.Customer.Remove(customer);
 				db.SaveChanges();
 			}
