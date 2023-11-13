@@ -21,7 +21,8 @@ namespace PizzaOrderingApp.MenuHandler
 					List<Pizza> pizzas = new List<Pizza>
 				{
 					new Pizza { PizzaName = "Margarita", Price = 129, Description = "Tomato sauce and cheese" },
-					new Pizza { PizzaName = "Pepperoni", Price = 149, Description = "Tomato sauce, cheese and pepperoni" }
+					new Pizza { PizzaName = "Pepperoni", Price = 149, Description = "Tomato sauce, cheese and pepperoni" },
+					new Pizza { PizzaName = "Vegan deluxe", Price = 149, Description = "Tomato sauce, vegan cheese, peppers and olives"}
 				};
 
 					foreach (var pizza in pizzas)
