@@ -155,12 +155,43 @@ namespace PizzaOrderingApp
             }
 
 
-            /*
+           
             public void EditCart()
             {
+            try
+            {
+                Console.WriteLine("Write the id of the pizza you would like to edit in your cart");
+                int selectedPizzaIdToEdit = Convert.ToInt32(Console.ReadLine());
 
+                CartItem? pizzaToEdit = null;
+
+                foreach (var item in pizzaItems)
+                {
+                    if(item.PizzaId == selectedPizzaIdToEdit)
+                    {
+                        pizzaToEdit = item;
+                        break;
+                    }
+                }
+
+                if(pizzaToEdit != null)
+                {
+                    Console.WriteLine($"The pizza with id {selectedPizzaIdToEdit} was found in your cart");
+                    Console.WriteLine("What would you like to edit?");
+                    Console.WriteLine("1. size");
+                    Console.WriteLine("2. Quantity");
+                    Console.WriteLine("3. Both");
+
+                    int editCartChoice = Convert.ToInt32(Console.ReadLine());
+
+                    switch (editCartChoice)
+                    {
+
+                    }
+                }
+            
             }
-            */
+            
         }
 
     }
