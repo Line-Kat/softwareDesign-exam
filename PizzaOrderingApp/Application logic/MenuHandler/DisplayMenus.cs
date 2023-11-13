@@ -8,11 +8,11 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 	public class DisplayMenus : Menu
 	{
 		
-		private readonly PizzaMenu? _pizzaMenu;
+		public readonly PizzaMenu? _pizzaMenu;
 
 		//konstruktør, vill gjøre det lettere å teste
-		public DisplayMenus(PizzaMenu pizzaMenu) 
-		{ 
+		public DisplayMenus(PizzaMenu pizzaMenu)
+		{
 			_pizzaMenu = pizzaMenu;
 		}
 
@@ -38,7 +38,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			}
 		}
 
-			private int GetMenuChoice()
+			public int GetMenuChoice()
 			{
 				int choice;
 				while (!int.TryParse (Console.ReadLine(), out choice)) //prøver å gjøre input t int
