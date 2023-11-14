@@ -21,7 +21,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 		{
 			PizzaMenu pizzaMenu = new PizzaMenu();
 
-			Console.WriteLine("Select a menu:");
+			Console.WriteLine($"\n{Divider}\nSelect a menu:\n{Divider}");
 			Console.WriteLine("1. Pizza");
 
 			int userChoice = GetMenuChoice();
@@ -33,6 +33,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 					break;
 				default:
 					Console.WriteLine("Invalid choice. Please try again.");
+					PrintMenu();
 					break;
 
 			}
