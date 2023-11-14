@@ -14,7 +14,8 @@ namespace PizzaOrderingApp
 				addMenuItems.AddItems();
 
 			// Displaye menyene
-			DisplayMenus displayMenus = new DisplayMenus(); 
+			PizzaMenu pizzaMenu = new PizzaMenu();	
+			DisplayMenus displayMenus = new DisplayMenus(pizzaMenu); 
 			displayMenus.PrintMenu();
 
 
