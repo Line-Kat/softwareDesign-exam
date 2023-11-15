@@ -52,6 +52,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			while (response == "y" && toppingsCount < MaxToppings)
 			{
 				Console.WriteLine("\nEnter the number of the topping you want to add:");
+
 				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
 					toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
 				{

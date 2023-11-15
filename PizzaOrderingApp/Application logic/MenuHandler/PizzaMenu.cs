@@ -45,12 +45,12 @@ namespace PizzaOrderingApp.Entities
 							}
 							else
 							{
-								Console.WriteLine("Invalid pizza number. Please try again.");
+								Console.WriteLine("Invalid pizza number, please try again.");
 							}
 						}
 						else
 						{
-							Console.WriteLine("Invalid input. Please enter a number.");
+							Console.WriteLine("Please enter a number.");
 						}
 					}
 					else
