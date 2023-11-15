@@ -10,7 +10,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 {
 	public class PizzaToppingSelectionHandler
 	{
-		private readonly Dictionary<string, int> _toppingPrices = new Dictionary<string, int>();
+
 		private readonly List<string> _availableToppings = new List<string>();
 		private const int MaxToppings = 3;
 
@@ -23,29 +23,20 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 		{
 			using (var db = new PizzaOrderingDbContext())
 			{
-				// Hente Descrition fra Pizza tabellen
 				var pizzaDescriptions = db.Pizza.Select(p => p.Description).ToList();
-
 				var allToppings = pizzaDescriptions
 					.SelectMany(description => description.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
 					.Distinct()
 					.Select(topping => topping.Trim())
 					.ToList();
 
-
-				foreach (var topping in allToppings)
-				{
-					// 10kr pr lagt t topping
-					_toppingPrices[topping] = 10; 
-				}
+				_availableToppings.AddRange(allToppings);
 			}
-
-			_availableToppings.AddRange(_toppingPrices.Keys);
 		}
 
-		public IPizza HandleToppingSelection(IPizza pizza)
+		public IPizza HandleToppingSelection (IPizza pizza)
 		{
-			Console.WriteLine("\nDo you want to add extra toppings? (y/n)");
+			Console.WriteLine("\nDo you want to add extra toppings (max 3 extra toppings)? (y/n)");
 			string response = Console.ReadLine().ToLower();
 			int toppingsCount = 0;
 
@@ -61,10 +52,11 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			while (response == "y" && toppingsCount < MaxToppings)
 			{
 				Console.WriteLine("\nEnter the number of the topping you want to add:");
-				if (int.TryParse(Console.ReadLine(), out int toppingChoice) && toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
+				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
+					toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
 				{
 					string selectedTopping = _availableToppings[toppingChoice - 1];
-					var decorator = new PizzaToppingDecorator(pizza, _toppingPrices);
+					var decorator = new PizzaToppingDecorator(pizza);
 					decorator.AddTopping(selectedTopping);
 					pizza = decorator;
 
