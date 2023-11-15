@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace PizzaOrderingApp.Application_logic.Decorators
+﻿namespace PizzaOrderingApp.Application_logic.Decorators
 {
-	public class ToppingDecorator : IPizza
+	public class PizzaToppingDecorator : IPizza
 	{
 		private readonly IPizza _decoratedPizza;
 		private readonly List<string> _additionalToppings = new List<string>();
 		private readonly Dictionary<string, int> _toppingPrices;
 
-		public ToppingDecorator(IPizza decoratedPizza, Dictionary<string, int> toppingPrices)
+		public PizzaToppingDecorator(IPizza decoratedPizza, Dictionary<string, int> toppingPrices)
 		{
 			_decoratedPizza = decoratedPizza;
 			_toppingPrices = toppingPrices;

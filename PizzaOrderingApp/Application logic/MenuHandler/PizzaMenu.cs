@@ -1,4 +1,5 @@
-﻿using PizzaOrderingApp.MenuHandler;
+﻿using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+using PizzaOrderingApp.MenuHandler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,33 @@ namespace PizzaOrderingApp.Entities
 
 					if (pizzas.Any())
 					{
+
 						foreach (var pizza in pizzas)
 						{
 							Console.WriteLine($"Nr. {pizza.PizzaId}. {pizza.PizzaName} {pizza.Price}kr");
 							Console.WriteLine($"Description: {pizza.Description} \n");
 						}
 
+						// Hente brukerens valg av pizza
+						if (int.TryParse(Console.ReadLine(), out int pizzaId))
+						{
+							var selectedPizza = pizzas.FirstOrDefault(p => p.PizzaId == pizzaId);
+
+							if (selectedPizza != null)
+							{
+								var toppingHandler = new PizzaToppingSelectionHandler();
+								var decoratedPizza = toppingHandler.HandleToppingSelection(selectedPizza);
+
+							}
+							else
+							{
+								Console.WriteLine("Invalid pizza number. Please try again.");
+							}
+						}
+						else
+						{
+							Console.WriteLine("Invalid input. Please enter a number.");
+						}
 					}
 					else
 					{
