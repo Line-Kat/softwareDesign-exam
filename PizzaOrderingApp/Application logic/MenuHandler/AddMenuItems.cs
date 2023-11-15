@@ -20,10 +20,10 @@ namespace PizzaOrderingApp.MenuHandler
 				{
 					List<Pizza> pizzas = new List<Pizza>
 				{
-					new Pizza { PizzaName = "Margarita", Price = 99, Description = "Tomato sauce and cheese" },
-					new Pizza { PizzaName = "Pepperoni", Price = 149, Description = "Tomato sauce, cheese and pepperoni" },
-					new Pizza { PizzaName = "Vegan deluxe", Price = 129, Description = "Tomato sauce, vegan cheese, peppers and olives"},
-					new Pizza { PizzaName = "Hawaiian dream", Price = 149, Description = "Tomato sauce, cheese, pianpple and ham"}
+					new Pizza { PizzaName = "Margarita", Price = 99, Description = "Tomato sauce, cheese" },
+					new Pizza { PizzaName = "Pepperoni", Price = 149, Description = "Tomato sauce, cheese, pepperoni" },
+					new Pizza { PizzaName = "Vegan deluxe", Price = 129, Description = "Tomato sauce, vegan cheese, peppers, olives"},
+					new Pizza { PizzaName = "Hawaiian dream", Price = 149, Description = "Tomato sauce, cheese, pianpple, ham"}
 				};
 
 					foreach (var pizza in pizzas)

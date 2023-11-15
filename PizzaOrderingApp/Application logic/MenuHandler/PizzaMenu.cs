@@ -1,10 +1,10 @@
-﻿using PizzaOrderingApp.MenuHandler;
+﻿using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+using PizzaOrderingApp.MenuHandler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 namespace PizzaOrderingApp.Entities
 {
 	public class PizzaMenu : Menu
@@ -14,7 +14,7 @@ namespace PizzaOrderingApp.Entities
 
 		public override void PrintMenu()
 		{
-			Console.WriteLine("Here is the pizza menu:\n");
+			Console.WriteLine($"\n{Divider}\nHere is the pizza menu:\n{Divider}");
 
 			//fetche listen med pizza fra db
 			using (var db = new PizzaOrderingDbContext())
@@ -25,12 +25,33 @@ namespace PizzaOrderingApp.Entities
 
 					if (pizzas.Any())
 					{
+
 						foreach (var pizza in pizzas)
 						{
 							Console.WriteLine($"Nr. {pizza.PizzaId}. {pizza.PizzaName} {pizza.Price}kr");
 							Console.WriteLine($"Description: {pizza.Description} \n");
 						}
 
+						// Hente brukerens valg av pizza
+						if (int.TryParse(Console.ReadLine(), out int pizzaId))
+						{
+							var selectedPizza = pizzas.FirstOrDefault(p => p.PizzaId == pizzaId);
+
+							if (selectedPizza != null)
+							{
+								var toppingHandler = new PizzaToppingSelectionHandler();
+								var decoratedPizza = toppingHandler.HandleToppingSelection(selectedPizza);
+
+							}
+							else
+							{
+								Console.WriteLine("Invalid pizza number, please try again.");
+							}
+						}
+						else
+						{
+							Console.WriteLine("Please enter a number.");
+						}
 					}
 					else
 					{

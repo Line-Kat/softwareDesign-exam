@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
+
 
 namespace PizzaOrderingApp.Entities {
-	public class Pizza {
+
+	public class Pizza : IPizza
+
+	{
 		public int PizzaId { get; set; }
 		public string PizzaName { get; set; } = string.Empty;
 		public int Price { get; set; }

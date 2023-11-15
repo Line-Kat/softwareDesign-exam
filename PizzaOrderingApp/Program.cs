@@ -39,16 +39,34 @@ namespace PizzaOrderingApp
 					PizzaQueue queue = new PizzaQueue();
 					bool NumInputIsEmpty = true;
 
+<<<<<<< HEAD
+					while (NumInputIsEmpty)
+					{
+=======
 					while (NumInputIsEmpty) {
+>>>>>>> main
 						Console.WriteLine("Skriv antall pizzaer");
 						string countAsString = Console.ReadLine();
 						int userPizzaCount;
 
+<<<<<<< HEAD
+						if (!int.TryParse(countAsString, out userPizzaCount))
+						{
+							Console.WriteLine("Count needs to be higher than 1");
+						}
+						else if (userPizzaCount <= 0)
+						{
+							Console.WriteLine("Count needs to be higher than 1");
+						}
+						else
+						{
+=======
 						if (!int.TryParse(countAsString, out userPizzaCount)) {
 							Console.WriteLine("Count needs to be higher than 1");
 						} else if (userPizzaCount <= 0) {
 							Console.WriteLine("Count needs to be higher than 1");
 						} else {
+>>>>>>> main
 							DateTime dateTime = queue.CheckQueue(userPizzaCount);
 							order.printOrder(customer, dateTime);
 							order.addOrder(customer);
