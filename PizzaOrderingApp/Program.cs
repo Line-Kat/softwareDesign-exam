@@ -9,16 +9,17 @@ namespace PizzaOrderingApp
 		static void Main(string[] args)
 		{
 
-			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
-			AddMenuItems addMenuItems = new AddMenuItems();
-			addMenuItems.AddItems();
+			/*
+			 * Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
+				AddMenuItems addMenuItems = new AddMenuItems();
+				addMenuItems.AddItems();
+			
+			* Metode for å printe ut pizzamenyen
+				PizzaMenu menu = new PizzaMenu();
+				menu.PrintMenu();
+			 
+			 */
 
-			// Displaye menyene
-			PizzaMenu pizzaMenu = new PizzaMenu();
-			DisplayMenus displayMenus = new DisplayMenus(pizzaMenu);
-			displayMenus.PrintMenu();
-
-/*
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();
@@ -39,9 +40,30 @@ namespace PizzaOrderingApp
 				{
 					HandleOrder order = new();
 					PizzaQueue queue = new PizzaQueue();
-					DateTime dateTime = queue.CheckQueue();
-					order.printOrder(customer, dateTime);
-					order.addOrder(customer);
+					bool NumInputIsEmpty = true;
+
+					while (NumInputIsEmpty)
+					{
+						Console.WriteLine("Skriv antall pizzaer");
+						string countAsString = Console.ReadLine();
+						int userPizzaCount;
+
+						if (!int.TryParse(countAsString, out userPizzaCount))
+						{
+							Console.WriteLine("Count needs to be higher than 1");
+						}
+						else if (userPizzaCount <= 0)
+						{
+							Console.WriteLine("Count needs to be higher than 1");
+						}
+						else
+						{
+							DateTime dateTime = queue.CheckQueue(userPizzaCount);
+							order.printOrder(customer, dateTime);
+							order.addOrder(customer);
+							NumInputIsEmpty = false;
+						}
+					}
 					keepRunning = false;
 
 				}
@@ -59,7 +81,9 @@ namespace PizzaOrderingApp
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
 				}
-			}*/
+
+			}
+
 		}
 	}
 }
