@@ -8,7 +8,7 @@ namespace PizzaOrderingApp
 	{
 		static void Main(string[] args)
 		{
-
+	
 			/*
 
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
