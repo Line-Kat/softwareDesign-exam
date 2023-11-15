@@ -1,10 +1,4 @@
 ﻿using PizzaOrderingApp.Application_logic.Decorators;
-using PizzaOrderingApp.Application_logic.MenuHandler;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 {
@@ -36,7 +30,8 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 		public IPizza HandleToppingSelection (IPizza pizza)
 		{
-			Console.WriteLine("\nDo you want to add extra toppings (max 3 extra toppings)? (y/n)");
+
+			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra topping, +10 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 			int toppingsCount = 0;
 
@@ -51,6 +46,8 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 			while (response == "y" && toppingsCount < MaxToppings)
 			{
+				DisplayCurrentPizzaState(pizza);
+
 				Console.WriteLine("\nEnter the number of the topping you want to add:");
 
 				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
@@ -62,9 +59,11 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 					pizza = decorator;
 
 					toppingsCount++;
+					
 					if (toppingsCount < MaxToppings)
 					{
-						Console.WriteLine("Do you want to add another topping? (y/n)");
+						DisplayCurrentPizzaState(pizza);
+						Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
 						response = Console.ReadLine().ToLower();
 					}
 				}
@@ -75,6 +74,14 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			}
 
 			return pizza;
+		}
+
+
+		public void DisplayCurrentPizzaState(IPizza pizza)
+		{
+			Console.WriteLine($"\nYour pizza order:");
+			Console.WriteLine($"{pizza.PizzaName}, {pizza.Description}");
+			Console.WriteLine($"{pizza.Price} kr");
 		}
 	}
 
