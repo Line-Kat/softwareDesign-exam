@@ -11,6 +11,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 	public class PizzaToppingSelectionHandler
 	{
 		private readonly Dictionary<string, int> _toppingPrices = new Dictionary<string, int>();
+		private readonly List<string> _availableToppings = new List<string>();
 		private const int MaxToppings = 3;
 
 		public PizzaToppingSelectionHandler()
@@ -38,41 +39,45 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 					_toppingPrices[topping] = 10; 
 				}
 			}
+
+			_availableToppings.AddRange(_toppingPrices.Keys);
 		}
 
 		public IPizza HandleToppingSelection(IPizza pizza)
 		{
-			Console.WriteLine("Do you want to add extra toppings? (y/n)");
+			Console.WriteLine("\nDo you want to add extra toppings? (y/n)");
 			string response = Console.ReadLine().ToLower();
 			int toppingsCount = 0;
 
-			while (response == "y" && toppingsCount < MaxToppings)
+			if (response == "y")
 			{
 				Console.WriteLine("Available toppings:");
-				foreach (var topping in _toppingPrices.Keys)
+				for (int i = 0; i < _availableToppings.Count; i++)
 				{
-					Console.WriteLine(topping);
+					Console.WriteLine($"{i + 1}. {_availableToppings[i]}");
 				}
+			}
 
-				Console.WriteLine("Which topping do you want to add:");
-				string toppingChoice = Console.ReadLine();
-
-				if (_toppingPrices.ContainsKey(toppingChoice))
+			while (response == "y" && toppingsCount < MaxToppings)
+			{
+				Console.WriteLine("\nEnter the number of the topping you want to add:");
+				if (int.TryParse(Console.ReadLine(), out int toppingChoice) && toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
 				{
+					string selectedTopping = _availableToppings[toppingChoice - 1];
 					var decorator = new PizzaToppingDecorator(pizza, _toppingPrices);
-					decorator.AddTopping(toppingChoice);
+					decorator.AddTopping(selectedTopping);
 					pizza = decorator;
 
 					toppingsCount++;
 					if (toppingsCount < MaxToppings)
 					{
-						Console.WriteLine("Do you want to add another topping? (yes/no)");
+						Console.WriteLine("Do you want to add another topping? (y/n)");
 						response = Console.ReadLine().ToLower();
 					}
 				}
 				else
 				{
-					Console.WriteLine($"Topping '{toppingChoice}' is not available, sry!");
+					Console.WriteLine($"\nTopping '{toppingChoice}' is not available, sry!\n");
 				}
 			}
 
