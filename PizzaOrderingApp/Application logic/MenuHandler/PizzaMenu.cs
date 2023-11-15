@@ -1,4 +1,5 @@
-﻿using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+﻿using PizzaOrderingApp.Application_logic.MenuHandler;
+using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.MenuHandler;
 using System;
 using System.Collections.Generic;
@@ -45,12 +46,14 @@ namespace PizzaOrderingApp.Entities
 							}
 							else
 							{
-								Console.WriteLine("Invalid pizza number, please try again.");
+								Console.WriteLine("\nInvalid pizza number, please try again.");
+								PrintMenu();
 							}
 						}
 						else
 						{
-							Console.WriteLine("Please enter a number.");
+							Console.WriteLine("\nPlease enter a number.");
+							PrintMenu();
 						}
 					}
 					else
