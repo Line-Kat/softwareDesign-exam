@@ -8,7 +8,7 @@ namespace PizzaOrderingApp {
 			//henter bestillingen fra cart klassen (mat/drikke, totalsum)
 			string name = customer.CustomerName;
 
-			Console.WriteLine($"Thank you for ordering from Pizza Factory! Here is your receipt:\n" +
+			Console.WriteLine($"\nThank you for ordering from Pizza Factory! Here is your receipt:\n" +
 				$"Name: {customer.CustomerName}\n" +
 				$"Your order is ready for pick up at {dateTime}\n" +
 				"Welcome back another time!");
