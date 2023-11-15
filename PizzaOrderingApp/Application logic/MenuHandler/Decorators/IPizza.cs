@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Application_logic.Decorators
 {
+
 	public interface IPizza
 	{
 		int PizzaId { get; }
