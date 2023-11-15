@@ -51,7 +51,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 			if (response == "y")
 			{
-				Console.WriteLine("Available toppings:");
+				Console.WriteLine("\nAvailable toppings:");
 				for (int i = 0; i < _availableToppings.Count; i++)
 				{
 					Console.WriteLine($"{i + 1}. {_availableToppings[i]}");
