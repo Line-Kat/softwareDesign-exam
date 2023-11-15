@@ -2,70 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingApp {
 	public class PizzaQueue {
-		
 
-		public DateTime CheckQueue() {
+		public DateTime CheckQueue(int userPizzaCount) {
+			int totalPizzaNumber = 0;
+			totalPizzaNumber += userPizzaCount;
+
+			// update queueWait with queueEnd and add userPizzaCount to totalPizzaNumber
+			DateTime queueEnd = new DateTime();
+
 			DateTime timeNow = DateTime.Now;
-			DateTime queueEnd = new DateTime(2023, 11, 9, 07, 00, 00);
-			var pizzaCookingTime = new TimeSpan(0, 20, 0);
+			TimeSpan pizzaCookingTime = new TimeSpan(0, (userPizzaCount * 10), 0);
 
 			if (timeNow < queueEnd) {
 				DateTime queueWait = (queueEnd + pizzaCookingTime);
-				var queueWaitHours = (queueWait - timeNow);
+				Console.WriteLine(totalPizzaNumber);
 				return queueWait;
 			}
-			else if (timeNow > queueEnd) {
+			else if (timeNow >= queueEnd) {
 				DateTime queueWait = (timeNow + pizzaCookingTime);
 				return queueWait;
 			}
 			return timeNow;
-		}
-		// method to get number of minutes
-
-		/*
-		 * // for å displaye i tid (timer)
-				var queueWait = (queueEnd-timeNow);
-				// regne ut tid
-				var newQueueEnd = timeNow + queueWait;
-
-		public static bool checkQueue(DateTime inQueue, DateTime orderTime) {
-			var currentTime = orderTime;
-			return currentTime.CompareTo(inQueue) > 0;
-		}
-
-		public DateTime pickupTime() {
-
-			checkQueue(orderTime = DateTime.Now);
-			if (checkQueue = true){
-			}
-			return 0;
-		}
-		get current time and date
-		DateTime lastOrderFinished = new DateTime(2023, 11, 9, 14, 45, 20);
-		DateTime orderTime = DateTime.Now;
-	
-			Console.WriteLine("Current date and time: " + orderTime.ToString());
-
-		bool isAfter = lastOrderFinished orderTime; // true
-		
-		
-		if(isAfter){
-		}
-		
-		DateTime newQueueTime = DateTime.Now;
-		string dateWithFormat = timeNow.ToLongDateString();
-		
-		// Console.WriteLine((newQueueTime - timeNow)).TotalHours);
-
-		private double calcQueue() { 
 
 		}
-		*/
 
 	}
 }
