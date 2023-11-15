@@ -9,8 +9,10 @@ namespace PizzaOrderingApp.Application_logic.Decorators
 {
 	public interface IPizza
 	{
-		string Description { get; }
+		int PizzaId { get; }
+		string PizzaName { get; }
 		int Price { get; }
-
+		string Description { get; }
 	}
+
 }
