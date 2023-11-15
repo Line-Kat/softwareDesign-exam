@@ -9,7 +9,7 @@ namespace PizzaOrderingApp
 		static void Main(string[] args)
 		{
 
-			
+			/*
 
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
 			AddMenuItems addMenuItems = new AddMenuItems();
@@ -20,7 +20,7 @@ namespace PizzaOrderingApp
 			DisplayMenus displayMenus = new DisplayMenus(pizzaMenu);
 			displayMenus.PrintMenu();
 
-			/*
+			*/
 
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
@@ -104,7 +104,7 @@ namespace PizzaOrderingApp
 					}
 
 				}
-			}*/
+			}
 		}
 	}
 }
