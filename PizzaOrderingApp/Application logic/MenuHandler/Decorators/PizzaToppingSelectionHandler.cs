@@ -28,52 +28,81 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			}
 		}
 
-		public IPizza HandleToppingSelection (IPizza pizza)
+		public IPizza HandleToppingSelection(IPizza pizza)
 		{
-
-			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra topping, +10 kr per topping. (y/n)");
+			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +10 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
-			int toppingsCount = 0;
 
 			if (response == "y")
 			{
-				Console.WriteLine("\nAvailable toppings:");
-				for (int i = 0; i < _availableToppings.Count; i++)
-				{
-					Console.WriteLine($"{i + 1}. {_availableToppings[i]}");
-				}
+				pizza = ChooseToppings(pizza);
+			}  
+			else if (response == "n")
+			{
+				DisplayCurrentPizzaState(pizza);
+			}
+			else
+			{
+				Console.WriteLine("\nPlease write y (yes) or n (no).");
+				HandleToppingSelection(pizza);
 			}
 
-			while (response == "y" && toppingsCount < MaxToppings)
+			return pizza;
+		}
+
+		private IPizza ChooseToppings(IPizza pizza)
+		{
+			int toppingsCount = 0;
+			while (toppingsCount < MaxToppings)
 			{
+				DisplayAvailableToppings();
 				DisplayCurrentPizzaState(pizza);
 
 				Console.WriteLine("\nEnter the number of the topping you want to add:");
-
 				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
 					toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
 				{
-					string selectedTopping = _availableToppings[toppingChoice - 1];
-					var decorator = new PizzaToppingDecorator(pizza);
-					decorator.AddTopping(selectedTopping);
-					pizza = decorator;
-
+					pizza = AddToppingToPizza(pizza, toppingChoice); // Oppdaterer pizzaobjektet
 					toppingsCount++;
-					
+
 					if (toppingsCount < MaxToppings)
 					{
 						DisplayCurrentPizzaState(pizza);
 						Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
-						response = Console.ReadLine().ToLower();
-					}
+						
+						if (Console.ReadLine().ToLower() != "y")
+						{
+							break;
+						}
+					} 
 				}
+				
 				else
 				{
-					Console.WriteLine($"\nTopping '{toppingChoice}' is not available, sry!\n");
+					Console.WriteLine($"\nInvalid choice. Please try again.\n");
+					HandleToppingSelection(pizza);
 				}
 			}
+			DisplayCurrentPizzaState(pizza);
+			return pizza; // Returne den oppdaterte pizzaen
+		}
 
-			return pizza;
+		private IPizza AddToppingToPizza(IPizza pizza, int toppingChoice)
+		{
+			string selectedTopping = _availableToppings[toppingChoice - 1];
+			var decorator = new PizzaToppingDecorator(pizza);
+			decorator.AddTopping(selectedTopping);
+			return decorator; // Returner den dekorerte pizzaen
+		}
+
+
+		private void DisplayAvailableToppings()
+		{
+			Console.WriteLine("\nAvailable toppings:");
+			for (int i = 0; i < _availableToppings.Count; i++)
+			{
+				Console.WriteLine($"{i + 1}. {_availableToppings[i]}");
+			}
 		}
 
 
