@@ -30,11 +30,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 		public IPizza HandleToppingSelection(IPizza pizza)
 		{
+			
 			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +10 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 
 			if (response == "y")
 			{
+				
 				pizza = ChooseToppings(pizza);
 			}  
 			else if (response == "n")
@@ -67,20 +69,30 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 					if (toppingsCount < MaxToppings)
 					{
-						DisplayCurrentPizzaState(pizza);
-						Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
-						
-						if (Console.ReadLine().ToLower() != "y")
+						while (true)
 						{
-							break;
+							DisplayCurrentPizzaState(pizza);
+							Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
+							string response = Console.ReadLine().ToLower();
+
+							if (response == "y")
+							{
+								break; 
+							}
+							else if (response == "n")
+							{
+								return pizza; // Avslutter og returnere pizzaen som den e
+							}
+							else
+							{
+								Console.WriteLine("Invalid response. Please enter 'y' for yes or 'n' for no.");
+							}
 						}
-					} 
+					}
 				}
-				
 				else
 				{
 					Console.WriteLine($"\nInvalid choice. Please try again.\n");
-					HandleToppingSelection(pizza);
 				}
 			}
 			DisplayCurrentPizzaState(pizza);
