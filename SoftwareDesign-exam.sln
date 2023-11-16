@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinResources", "BinResource
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaOrderingApp.UnitTest", "PizzaOrderingApp.UnitTest\PizzaOrderingApp.UnitTest.csproj", "{A3667F2A-E897-4911-AA45-8F5F0B9C652F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaOrderingApp.IntegrationTest", "PizzaOrderingApp.IntegrationTest\PizzaOrderingApp.IntegrationTest.csproj", "{EC2A2C16-B4B8-4B71-BA1C-A21BCD72F472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{A3667F2A-E897-4911-AA45-8F5F0B9C652F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3667F2A-E897-4911-AA45-8F5F0B9C652F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3667F2A-E897-4911-AA45-8F5F0B9C652F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC2A2C16-B4B8-4B71-BA1C-A21BCD72F472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC2A2C16-B4B8-4B71-BA1C-A21BCD72F472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC2A2C16-B4B8-4B71-BA1C-A21BCD72F472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC2A2C16-B4B8-4B71-BA1C-A21BCD72F472}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

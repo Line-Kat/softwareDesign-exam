@@ -5,8 +5,6 @@ public class Tests
 {
 
     
-
-
     [Test]
     public void AddPizzaToCart_ValidInput_AddsFromDbToList()
     {
@@ -37,5 +35,26 @@ public class Tests
 
         //Assert
         Assert.That(shoppingCart.pizzaItems.Count, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void EditCart_ValidInput_EditsPizzaFromList()
+    {
+        //Assign
+
+        //Act
+
+        //Assert
+    }
+
+
+    [Test]
+    public void ViewCart_ValidInput_UserViewsCart()
+    {
+        //Assign
+
+        //Act
+
+        //Assert
     }
 }
