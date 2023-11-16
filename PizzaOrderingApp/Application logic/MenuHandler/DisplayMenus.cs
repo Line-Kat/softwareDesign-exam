@@ -6,46 +6,45 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 
 	public class DisplayMenus : Menu
 	{
-		
-		public readonly PizzaMenu? _pizzaMenu;
+		private readonly List<Menu> _menus;
 
-		//konstruktør, vil og gjøre det lettere å teste
-		public DisplayMenus(PizzaMenu pizzaMenu)
+		public DisplayMenus()
 		{
-			_pizzaMenu = pizzaMenu;
+			_menus = new List<Menu> {
+				new PizzaMenu() 
+                // Legg t flere menyer her
+            };
 		}
 
-		//metode som printer alle menyene fra databasen
 		public override void PrintMenu()
 		{
-
 			Console.WriteLine($"\n{Divider}\nSelect a menu:\n{Divider}");
-			Console.WriteLine("1. Pizza");
+			for (int i = 0; i < _menus.Count; i++)
+			{
+				Console.WriteLine($"{i + 1}. {_menus[i].GetType().Name}");
+			}
 
 			int userChoice = GetMenuChoice();
-
-			switch (userChoice)
+			if (userChoice > 0 && userChoice <= _menus.Count)
 			{
-				case 1:
-					_pizzaMenu.PrintMenu();
-					break;
-				default:
-					Console.WriteLine("Invalid choice. Please try again.");
-					PrintMenu();
-					break;
-
+				_menus[userChoice - 1].PrintMenu();
+			}
+			else
+			{
+				Console.WriteLine("\nInvalid input, please try again!");
+				PrintMenu();
 			}
 		}
 
-			public int GetMenuChoice()
+		private int GetMenuChoice()
+		{
+			int choice;
+			while (!int.TryParse(Console.ReadLine(), out choice))
 			{
-				int choice;
-				while (!int.TryParse (Console.ReadLine(), out choice)) //prøver å gjøre input t int
-				{
-					Console.WriteLine("Invalid input. Please enter a number.");
-			
-				}
-				return choice; //returnere
+				Console.WriteLine("Please enter a number from the list.");
+			}
+			return choice;
 		}
 	}
 }
+	
