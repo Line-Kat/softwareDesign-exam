@@ -23,6 +23,7 @@ namespace PizzaOrderingApp
 
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
+			HandleOrder handleOrder = new();
 			Customer customer = new();
 
 			Login login = new Login();
@@ -39,26 +40,11 @@ namespace PizzaOrderingApp
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
-					bool NumInputIsEmpty = true;
-					while (NumInputIsEmpty) {
+					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems());
+					order.PrintOrder(customer, dateTime);
+					order.AddOrder(customer);
 
-						Console.WriteLine("Skriv antall pizzaer");
-						string countAsString = Console.ReadLine();
-						int userPizzaCount;
-
-						if (!int.TryParse(countAsString, out userPizzaCount)) {
-							Console.WriteLine("Count needs to be higher than 1");
-						} else if (userPizzaCount <= 0) {
-							Console.WriteLine("Count needs to be higher than 1");
-						} else {
-							DateTime dateTime = queue.CheckQueue(userPizzaCount);
-							order.PrintOrder(customer, dateTime);
-							order.AddOrder(customer);
-							NumInputIsEmpty = false;
-						}
-
-						keepRunning = false;
-					}
+					keepRunning = false;
 				}
 
 				if (userInput.Equals("2")) {
