@@ -4,13 +4,12 @@ using PizzaOrderingApp.MenuHandler;
 namespace PizzaOrderingApp.Application_logic.MenuHandler
 {
 
-
 	public class DisplayMenus : Menu
 	{
 		
 		public readonly PizzaMenu? _pizzaMenu;
 
-		//konstruktør, vil gjøre det lettere å teste
+		//konstruktør, vil og gjøre det lettere å teste
 		public DisplayMenus(PizzaMenu pizzaMenu)
 		{
 			_pizzaMenu = pizzaMenu;
