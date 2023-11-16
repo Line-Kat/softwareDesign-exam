@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6wFpeYrUwEE0TUN8HXooOcFBCl4ZbnDrmErh8HG2297cT97otwGrUngtgbPzlVSKJ3MXU2MqQ3nPOrNHDCU0Gg==",
+  "dgSpecHash": "RJCcs/bNSDlXn9JVYN2aC9B5YJOcJcKI6YCtARLhJejWdQi6u8e2EzYShjOjUEDVrkJeIeYy7sL998hiFCYgOg==",
   "success": true,
-  "projectFilePath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/PizzaOrderingApp.IntegrationTest.csproj",
+  "projectFilePath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/Test.csproj",
   "expectedPackageFiles": [
     "/Users/annarandeberg/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/Users/annarandeberg/.nuget/packages/microsoft.codecoverage/17.5.0/microsoft.codecoverage.17.5.0.nupkg.sha512",

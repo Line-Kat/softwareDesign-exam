@@ -2138,9 +2138,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj",
-      "projectName": "PizzaOrderingApp.UnitTest",
-      "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj",
+      "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.Test.csproj",
+      "projectName": "PizzaOrderingApp.Test",
+      "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.Test.csproj",
       "packagesPath": "/Users/annarandeberg/.nuget/packages/",
       "outputPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/obj/",
       "projectStyle": "PackageReference",

@@ -992,9 +992,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/PizzaOrderingApp.IntegrationTest.csproj",
-      "projectName": "PizzaOrderingApp.IntegrationTest",
-      "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/PizzaOrderingApp.IntegrationTest.csproj",
+      "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/Test.csproj",
+      "projectName": "Test",
+      "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/Test.csproj",
       "packagesPath": "/Users/annarandeberg/.nuget/packages/",
       "outputPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.IntegrationTest/obj/",
       "projectStyle": "PackageReference",
