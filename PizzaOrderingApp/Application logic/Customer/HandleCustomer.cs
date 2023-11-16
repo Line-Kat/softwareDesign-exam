@@ -13,7 +13,7 @@ namespace PizzaOrderingApp {
 		//method to ask user information questions to console and validate that the user types an input
 		//could the validation be moved to fields in the Customer class?
 
-		CrudOperations crudOperations = new();
+		CrudOperationsCustomer crudOperations = new();
 
 		internal string AskForUserInput(string typeOfInput) {
 			string? userInput = null;

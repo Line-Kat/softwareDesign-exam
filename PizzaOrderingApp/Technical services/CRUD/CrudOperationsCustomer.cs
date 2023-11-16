@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Technical_services {
-	public class CrudOperations {
+	public class CrudOperationsCustomer {
 
 
 		public Customer getCustomerByPhoneNr(int phoneNumber) {
