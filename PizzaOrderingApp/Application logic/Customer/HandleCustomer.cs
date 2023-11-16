@@ -6,11 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using PizzaOrderingApp.Entities;
+using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp {
 	public class HandleCustomer {
 		//method to ask user information questions to console and validate that the user types an input
 		//could the validation be moved to fields in the Customer class?
+
+		CrudOperations crudOperations = new();
+
 		internal string AskForUserInput(string typeOfInput) {
 			string? userInput = null;
 
@@ -21,7 +25,7 @@ namespace PizzaOrderingApp {
 				}
 			} 
 			while (string.IsNullOrEmpty(userInput)) {
-				Console.WriteLine("Type phone number (8 digits): ");
+				Console.WriteLine("Type phone number: ");
 				userInput = Console.ReadLine();
 			}
 			return userInput;
@@ -38,11 +42,11 @@ namespace PizzaOrderingApp {
 				PhoneNr = inputPhoneNr
 			};
 
-			//should this be a global object?
-			using PizzaOrderingDbContext db = new();
 
-			db.Customer.Add(customer);
-			db.SaveChanges();
+			//using PizzaOrderingDbContext db = new();
+			//db.Customer.Add(customer);
+			//db.SaveChanges();
+			customer = crudOperations.addCustomer(customer);
 
 			confirmAddCustomer(customer);
 
@@ -89,10 +93,12 @@ namespace PizzaOrderingApp {
 		//edit customers information
 		//method must handle the user not typing a value
 		public Customer editCustomer(int id) {
-			using PizzaOrderingDbContext db = new();
+			//using PizzaOrderingDbContext db = new();
 			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
 
-			Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
+			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
+
+			Customer customer = crudOperations.getCustomerById(id);
 
 			switch (EditCustomerMenu()) {
 				case 1: {
@@ -101,8 +107,9 @@ namespace PizzaOrderingApp {
 
 						if (customer != null) {
 							customer.CustomerName = name;
-							db.Update(customer);
-							db.SaveChanges();
+							//db.Update(customer);
+							//db.SaveChanges();
+							crudOperations.updateCustomer(customer);
 						}
 					}
 					break;
@@ -112,8 +119,7 @@ namespace PizzaOrderingApp {
 
 					if (customer != null) {
 						customer.PhoneNr = phoneNumber;
-						db.Update(customer);
-						db.SaveChanges();
+						crudOperations.updateCustomer(customer);
 					}
 				}
 					break;
@@ -122,14 +128,16 @@ namespace PizzaOrderingApp {
 		}
 
 		public void deleteCustomer(int id) {
-			using PizzaOrderingDbContext db = new();
+			//using PizzaOrderingDbContext db = new();
 
 			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
-			Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
+			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
+			Customer customer = crudOperations.getCustomerById(id);
 
 			if (customer != null) {
-				db.Customer.Remove(customer);
-				db.SaveChanges();
+				//db.Customer.Remove(customer);
+				//db.SaveChanges();
+				crudOperations.deleteCustomer(customer);
 			}
 
 		}
