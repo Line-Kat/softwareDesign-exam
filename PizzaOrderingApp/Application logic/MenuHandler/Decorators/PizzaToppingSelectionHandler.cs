@@ -1,31 +1,22 @@
 ﻿using PizzaOrderingApp.Application_logic.Decorators;
+using PizzaOrderingApp.Technical_services.CRUD;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 {
+
 	public class PizzaToppingSelectionHandler
 	{
-
-		private readonly List<string> _availableToppings = new List<string>();
+		
 		private const int MaxToppings = 3;
+		//crud
+		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
+		private readonly List<string> _availablePizzaToppings;
 
+		
 		public PizzaToppingSelectionHandler()
-		{
-			LoadToppingsFromDatabase();
-		}
-
-		private void LoadToppingsFromDatabase()
-		{
-			using (var db = new PizzaOrderingDbContext())
-			{
-				var pizzaDescriptions = db.Pizza.Select(p => p.Description).ToList();
-				var allToppings = pizzaDescriptions
-					.SelectMany(description => description.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-					.Distinct()
-					.Select(topping => topping.Trim())
-					.ToList();
-
-				_availableToppings.AddRange(allToppings);
-			}
+		{	
+			//crud
+			_availablePizzaToppings = crudOperationsMenu.GetAvailablePizzaToppings();
 		}
 
 		public IPizza HandleToppingSelection(IPizza pizza)
@@ -62,7 +53,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 				Console.WriteLine("\nEnter the number of the topping you want to add:");
 				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
-					toppingChoice > 0 && toppingChoice <= _availableToppings.Count)
+					toppingChoice > 0 && toppingChoice <= _availablePizzaToppings.Count)
 				{
 					pizza = AddToppingToPizza(pizza, toppingChoice); // Oppdaterer pizzaobjektet
 					toppingsCount++;
@@ -101,7 +92,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 		private IPizza AddToppingToPizza(IPizza pizza, int toppingChoice)
 		{
-			string selectedTopping = _availableToppings[toppingChoice - 1];
+			string selectedTopping = _availablePizzaToppings[toppingChoice - 1];
 			var decorator = new PizzaToppingDecorator(pizza);
 			decorator.AddTopping(selectedTopping);
 			return decorator; // Returner den dekorerte pizzaen
@@ -111,9 +102,9 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 		private void DisplayAvailableToppings()
 		{
 			Console.WriteLine("\nAvailable toppings:");
-			for (int i = 0; i < _availableToppings.Count; i++)
+			for (int i = 0; i < _availablePizzaToppings.Count; i++)
 			{
-				Console.WriteLine($"{i + 1}. {_availableToppings[i]}");
+				Console.WriteLine($"{i + 1}. {_availablePizzaToppings[i]}");
 			}
 		}
 

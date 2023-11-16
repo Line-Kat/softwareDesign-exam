@@ -36,24 +36,39 @@ namespace PizzaOrderingApp.Technical_services.CRUD
 			db.SaveChanges();
 		}
 
-	/*	public void UpdatePizza(Pizza pizza)
+
+		// For å printe ut toppings
+
+		public List<string> GetAvailablePizzaToppings()
 		{
 			using var db = new PizzaOrderingDbContext();
-			db.Pizza.Update(pizza);
-			db.SaveChanges();
+			var pizzaDescriptions = db.Pizza.Select(p => p.Description).ToList();
+			var allToppings = pizzaDescriptions
+				.SelectMany(description => description.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+				.Distinct()
+				.Select(topping => topping.Trim())
+				.ToList();
+			return allToppings;
 		}
 
-		public void DeletePizza(int pizzaId)
-		{
-			using var db = new PizzaOrderingDbContext();
-			var pizza = db.Pizza.Find(pizzaId);
-			if (pizza != null)
+		/*	public void UpdatePizza(Pizza pizza)
 			{
-				db.Pizza.Remove(pizza);
+				using var db = new PizzaOrderingDbContext();
+				db.Pizza.Update(pizza);
 				db.SaveChanges();
 			}
-		} */
 
-	
+			public void DeletePizza(int pizzaId)
+			{
+				using var db = new PizzaOrderingDbContext();
+				var pizza = db.Pizza.Find(pizzaId);
+				if (pizza != null)
+				{
+					db.Pizza.Remove(pizza);
+					db.SaveChanges();
+				}
+			} */
+
+
 	}
 }
