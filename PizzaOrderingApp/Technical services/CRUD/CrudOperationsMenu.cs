@@ -22,14 +22,21 @@ namespace PizzaOrderingApp.Technical_services.CRUD
 			return db.Pizza.FirstOrDefault(p => p.PizzaId == pizzaId);
 		}
 
-		public void AddPizza(Pizza pizza)
+		public void AddPizzas(List<Pizza> pizzas)
 		{
 			using var db = new PizzaOrderingDbContext();
-			db.Pizza.Add(pizza);
+			foreach (var pizza in pizzas)
+			{
+				var existingPizza = db.Pizza.FirstOrDefault(p => p.PizzaName == pizza.PizzaName);
+				if (existingPizza == null)
+				{
+					db.Pizza.Add(pizza);
+				}
+			}
 			db.SaveChanges();
 		}
 
-		public void UpdatePizza(Pizza pizza)
+	/*	public void UpdatePizza(Pizza pizza)
 		{
 			using var db = new PizzaOrderingDbContext();
 			db.Pizza.Update(pizza);
@@ -45,7 +52,7 @@ namespace PizzaOrderingApp.Technical_services.CRUD
 				db.Pizza.Remove(pizza);
 				db.SaveChanges();
 			}
-		}
+		} */
 
 	
 	}

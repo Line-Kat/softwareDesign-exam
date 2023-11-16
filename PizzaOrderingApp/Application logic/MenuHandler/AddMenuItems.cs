@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingApp.Entities;
+using PizzaOrderingApp.Technical_services.CRUD;
 using PizzaOrderingApp;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,14 @@ namespace PizzaOrderingApp.MenuHandler
 {
 	public class AddMenuItems
 	{
+		//crud
+		CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
+
 		//Metode for å legge til pizzaer i databasen
 		public void AddItems()
 		{
 			try
 			{
-				using (PizzaOrderingDbContext db = new PizzaOrderingDbContext())
-				{
 					List<Pizza> pizzas = new List<Pizza>
 				{
 					new Pizza { PizzaName = "Margarita", Price = 99, Description = "Tomato sauce, cheese" },
@@ -26,27 +28,10 @@ namespace PizzaOrderingApp.MenuHandler
 					new Pizza { PizzaName = "Hawaiian dream", Price = 149, Description = "Tomato sauce, cheese, pianpple, ham"}
 				};
 
-					foreach (var pizza in pizzas)
-					{
-						//sjekke om pizzaen så legges til allerede finnes i db
-						var existingPizza = db.Pizza.FirstOrDefault(p => p.PizzaName == pizza.PizzaName);
+					//crud
+					crudOperationsMenu.AddPizzas(pizzas);
 
-						if (existingPizza == null)
-						{
-							// Pizzaen finnes ikkje i pizza tabellen i db, den blir lagt til
-							db.Pizza.Add(pizza);
-						}
-						else
-						{
-							// Pizzaen finnes allerede i db
-							Console.WriteLine($"Pizza '{pizza.PizzaName}' already exists in the database.");
-						}
-					}
-					
-					db.SaveChanges();
-				}
-
-				Console.WriteLine("(Pizzas added to the database successfully.)");
+					Console.WriteLine("(Pizzas added to the database successfully.)");
 			}
 			catch (Exception ex)
 			{
