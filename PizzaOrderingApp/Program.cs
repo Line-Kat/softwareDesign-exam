@@ -8,7 +8,7 @@ namespace PizzaOrderingApp
 	{
 		static void Main(string[] args)
 		{
-	
+
 			/*
 
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
@@ -44,35 +44,66 @@ namespace PizzaOrderingApp
 					bool NumInputIsEmpty = true;
 					while (NumInputIsEmpty) {
 
-						Console.WriteLine("Skriv antall pizzaer");
-						string countAsString = Console.ReadLine();
-						int userPizzaCount;
 
-						if (!int.TryParse(countAsString, out userPizzaCount)) {
-							Console.WriteLine("Count needs to be higher than 1");
-						} else if (userPizzaCount <= 0) {
-							Console.WriteLine("Count needs to be higher than 1");
-						} else {
-							DateTime dateTime = queue.CheckQueue(userPizzaCount);
-							order.printOrder(customer, dateTime);
-							order.addOrder(customer);
-							NumInputIsEmpty = false;
+					while (NumInputIsEmpty)
+					{
+
+						while (NumInputIsEmpty)
+						{
+
+							Console.WriteLine("Skriv antall pizzaer");
+							string countAsString = Console.ReadLine();
+							int userPizzaCount;
+
+							if (!int.TryParse(countAsString, out userPizzaCount))
+							{
+								Console.WriteLine("Count needs to be higher than 1");
+							}
+							else if (userPizzaCount <= 0)
+							{
+								Console.WriteLine("Count needs to be higher than 1");
+							}
+							else
+							{
+
+								if (!int.TryParse(countAsString, out userPizzaCount))
+								{
+									Console.WriteLine("Count needs to be higher than 1");
+								}
+								else if (userPizzaCount <= 0)
+								{
+									Console.WriteLine("Count needs to be higher than 1");
+								}
+								else
+								{
+
+									DateTime dateTime = queue.CheckQueue(userPizzaCount);
+									order.printOrder(customer, dateTime);
+									order.addOrder(customer);
+									NumInputIsEmpty = false;
+								}
+							}
+							keepRunning = false;
+
 						}
 
-						keepRunning = false;
+						if (userInput.Equals("2"))
+						{
+							Console.WriteLine("Thank you for visiting us. Welcome back!");
+							keepRunning = false;
+
+						}
+
+						if (userInput.Equals("3"))
+						{
+							handleCustomer.deleteCustomer(customer.CustomerId);
+							Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
+							keepRunning = false;
+						}
+
 					}
-				}
 
-				if (userInput.Equals("2")) {
-					Console.WriteLine("Thank you for visiting us. Welcome back!");
-					keepRunning = false;
 				}
-
-				if (userInput.Equals("3")) {
-					handleCustomer.deleteCustomer(customer.CustomerId);
-					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
-					keepRunning = false;
-				}	
 			}
 		}
 	}
