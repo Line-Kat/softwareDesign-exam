@@ -12,7 +12,7 @@ namespace PizzaOrderingApp {
 
 		public Customer userLogin() {
 			HandleCustomer handleCustomer = new();
-			CrudOperations crudOperations = new();
+			CrudOperationsCustomer crudOperations = new();
 			Customer? customer = new();
 
 			Console.WriteLine("Choose an option\n1 Login\n2 Register a new user");
