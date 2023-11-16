@@ -26,12 +26,10 @@ namespace PizzaOrderingApp
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();
 
-
 			Login login = new Login();
-			customer = login.userLogin(); //customer holder på den innloggede brukeren
+			customer = login.UserLogin(); //customer holder på den innloggede brukeren
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
-
 
 			bool keepRunning = true;
 			while (keepRunning) {
@@ -43,47 +41,23 @@ namespace PizzaOrderingApp
 
 					bool NumInputIsEmpty = true;
 					while (NumInputIsEmpty) {
+            
+						Console.WriteLine("Skriv antall pizzaer");
+						string countAsString = Console.ReadLine();
+						int userPizzaCount;
 
-
-					while (NumInputIsEmpty)
-					{
-
-						while (NumInputIsEmpty)
-						{
-
-							Console.WriteLine("Skriv antall pizzaer");
-							string countAsString = Console.ReadLine();
-							int userPizzaCount;
-
-							if (!int.TryParse(countAsString, out userPizzaCount))
-							{
-								Console.WriteLine("Count needs to be higher than 1");
+						if (!int.TryParse(countAsString, out userPizzaCount)) {
+							Console.WriteLine("Count needs to be higher than 1");
+						} else if (userPizzaCount <= 0) {
+							Console.WriteLine("Count needs to be higher than 1");
+						} else {
+							DateTime dateTime = queue.CheckQueue(userPizzaCount);
+							order.PrintOrder(customer, dateTime);
+							order.AddOrder(customer);
+							NumInputIsEmpty = false;
 							}
-							else if (userPizzaCount <= 0)
-							{
-								Console.WriteLine("Count needs to be higher than 1");
-							}
-							else
-							{
-
-								if (!int.TryParse(countAsString, out userPizzaCount))
-								{
-									Console.WriteLine("Count needs to be higher than 1");
-								}
-								else if (userPizzaCount <= 0)
-								{
-									Console.WriteLine("Count needs to be higher than 1");
-								}
-								else
-								{
-
-									DateTime dateTime = queue.CheckQueue(userPizzaCount);
-									order.printOrder(customer, dateTime);
-									order.addOrder(customer);
-									NumInputIsEmpty = false;
-								}
-							}
-							keepRunning = false;
+							
+            keepRunning = false;
 
 						}
 
@@ -99,11 +73,13 @@ namespace PizzaOrderingApp
 							handleCustomer.deleteCustomer(customer.CustomerId);
 							Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 							keepRunning = false;
-						}
 
-					}
 
-				}
+				if (userInput.Equals("3")) {
+					handleCustomer.DeleteCustomer(customer.CustomerId);
+					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
+					keepRunning = false;
+				}	
 			}
 		}
 	}

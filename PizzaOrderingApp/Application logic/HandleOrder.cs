@@ -8,9 +8,7 @@ namespace PizzaOrderingApp {
 
 		CrudOperationsOrder crudOperationsOrder = new();
 
-		public void printOrder(Customer customer, DateTime dateTime) {
-			//henter bestillingen fra cart klassen (mat/drikke, totalsum)
-			string name = customer.CustomerName;
+		public void PrintOrder(Customer customer, DateTime dateTime) {
 
 			Console.WriteLine($"\nThank you for ordering from Pizza Factory! Here is your receipt:\n" +
 				$"Name: {customer.CustomerName}\n" +
@@ -18,18 +16,13 @@ namespace PizzaOrderingApp {
 				"Welcome back another time!");
 		}
 
-		public Order addOrder(Customer customer) {
+		public Order AddOrder(Customer customer) {
 
 			Order order = new() {
 				CustomerId = customer.CustomerId
 			};
-		
-			//using PizzaOrderingDbContext db = new ();
 
-			//db.Order.Add(order);
-			//db.SaveChanges();
-
-			return crudOperationsOrder.addOrder(order);
+			return crudOperationsOrder.AddOrder(order);
 		}
 	}
 }
