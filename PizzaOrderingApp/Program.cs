@@ -26,12 +26,10 @@ namespace PizzaOrderingApp
 			HandleCustomer handleCustomer = new();
 			Customer customer = new();
 
-
 			Login login = new Login();
-			customer = login.userLogin(); //customer holder på den innloggede brukeren
+			customer = login.UserLogin(); //customer holder på den innloggede brukeren
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
-
 
 			bool keepRunning = true;
 			while (keepRunning) {
@@ -54,8 +52,8 @@ namespace PizzaOrderingApp
 							Console.WriteLine("Count needs to be higher than 1");
 						} else {
 							DateTime dateTime = queue.CheckQueue(userPizzaCount);
-							order.printOrder(customer, dateTime);
-							order.addOrder(customer);
+							order.PrintOrder(customer, dateTime);
+							order.AddOrder(customer);
 							NumInputIsEmpty = false;
 						}
 
@@ -69,7 +67,7 @@ namespace PizzaOrderingApp
 				}
 
 				if (userInput.Equals("3")) {
-					handleCustomer.deleteCustomer(customer.CustomerId);
+					handleCustomer.DeleteCustomer(customer.CustomerId);
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
 				}	
