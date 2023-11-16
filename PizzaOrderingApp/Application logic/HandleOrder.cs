@@ -1,8 +1,12 @@
 ﻿using System.Threading.Tasks;
 using PizzaOrderingApp.Entities;
+using PizzaOrderingApp.Technical_services.CRUD;
 
 namespace PizzaOrderingApp {
+	
 	public class HandleOrder {
+
+		CrudOperationsOrder crudOperationsOrder = new();
 
 		public void printOrder(Customer customer, DateTime dateTime) {
 			//henter bestillingen fra cart klassen (mat/drikke, totalsum)
@@ -20,13 +24,12 @@ namespace PizzaOrderingApp {
 				CustomerId = customer.CustomerId
 			};
 		
-			using PizzaOrderingDbContext db = new ();
+			//using PizzaOrderingDbContext db = new ();
 
-			db.Order.Add(order);
-			db.SaveChanges();
-		
+			//db.Order.Add(order);
+			//db.SaveChanges();
 
-			return order;
+			return crudOperationsOrder.addOrder(order);
 		}
 	}
 }
