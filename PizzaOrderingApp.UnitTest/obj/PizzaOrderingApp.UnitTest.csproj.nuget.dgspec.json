@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj": {}
+  },
+  "projects": {
+    "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj",
+        "projectName": "PizzaOrderingApp.UnitTest",
+        "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/PizzaOrderingApp.UnitTest.csproj",
+        "packagesPath": "/Users/annarandeberg/.nuget/packages/",
+        "outputPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp.UnitTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/annarandeberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/PizzaOrderingApp.csproj": {
+                "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/PizzaOrderingApp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.4.2, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/PizzaOrderingApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/PizzaOrderingApp.csproj",
+        "projectName": "PizzaOrderingApp",
+        "projectPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/PizzaOrderingApp.csproj",
+        "packagesPath": "/Users/annarandeberg/.nuget/packages/",
+        "outputPath": "/Users/annarandeberg/Desktop/SoftwareDesign-exam/PizzaOrderingApp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/annarandeberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

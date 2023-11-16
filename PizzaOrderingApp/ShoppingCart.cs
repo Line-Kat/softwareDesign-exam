@@ -10,6 +10,10 @@ namespace PizzaOrderingApp
         //Lager en liste for å holde på elementer
         public List<CartItem> pizzaItems = new List<CartItem>();
 
+        public List<CartItem> GetCartItems()
+        {
+            return pizzaItems;
+        }
 
         public void CartInteraction()
         {
@@ -61,7 +65,7 @@ namespace PizzaOrderingApp
         //Lager metode for å legge til pizza i handlekurven
         //Kilde: forelesning EFCoreExample
         //burde kanskje lage en loop istedenfor å kalle på alle metodene?
-        public void AddPizzaToCart()
+        public void AddPizzaToCart(int pizzaId, int quantity, string size)
         {
             try
             {
@@ -70,13 +74,13 @@ namespace PizzaOrderingApp
 
                 {
                     Console.WriteLine("Enter the id of the pizza you would like to add to cart");
-                    int pizzaId = Convert.ToInt32(Console.ReadLine());
+                    pizzaId = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("Enter the quantity of how many pizzas you would like");
-                    int quantity = Convert.ToInt32(Console.ReadLine());
+                    quantity = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("Enter the size of pizza S/L");
-                    string size = Console.ReadLine();
+                    size = Console.ReadLine();
 
                     var selectedPizza = db.Pizza.Find(pizzaId);
 
@@ -101,7 +105,7 @@ namespace PizzaOrderingApp
         }
 
 
-    
+
         //Kilde: forelesning EFCoreExample, writeEduaction metoden
         public void ViewCart()
         {
@@ -118,16 +122,16 @@ namespace PizzaOrderingApp
             CartMenu();
         }
 
-        public void RemovePizzaFromCart()
+        public void RemovePizzaFromCart(int pizzaId)
         {
-            try { 
+            try {
                 Console.WriteLine("Write the Id of the pizza you would like to remove from your shoppingcart: ");
                 int selectedPizzaId = Convert.ToInt32(Console.ReadLine());
 
                 CartItem? pizzaToRemove = null;
-                foreach(var item in pizzaItems)
+                foreach (var item in pizzaItems)
                 {
-                    if(item.PizzaId == selectedPizzaId)
+                    if (item.PizzaId == selectedPizzaId)
                     {
                         pizzaToRemove = item;
                         break;
@@ -142,22 +146,22 @@ namespace PizzaOrderingApp
                 else
                 {
                     Console.WriteLine($"Pizza with id: {selectedPizzaId} could not be found/removed from shoppingcart, please try again");
-                    RemovePizzaFromCart();
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error, could not remove pizza");
                 Console.WriteLine(ex.Message);
             }
             CartMenu();
-                
-            }
+
+        }
 
 
-           
-            public void EditCart()
-            {
+
+        public void EditCart()
+        {
             try
             {
                 Console.WriteLine("Write the id of the pizza you would like to edit in your cart");
@@ -167,14 +171,14 @@ namespace PizzaOrderingApp
 
                 foreach (var item in pizzaItems)
                 {
-                    if(item.PizzaId == selectedPizzaIdToEdit)
+                    if (item.PizzaId == selectedPizzaIdToEdit)
                     {
                         pizzaToEdit = item;
                         break;
                     }
                 }
 
-                if(pizzaToEdit != null)
+                if (pizzaToEdit != null)
                 {
                     Console.WriteLine($"The pizza with id {selectedPizzaIdToEdit} was found in your cart");
                     Console.WriteLine("What would you like to edit?");
@@ -186,15 +190,54 @@ namespace PizzaOrderingApp
 
                     switch (editCartChoice)
                     {
+                        case 1:
+                            Console.WriteLine("Enter the Quantity you would like to change to: ");
+                            int newQuantity = Convert.ToInt32(Console.ReadLine());
+                            pizzaToEdit.Quantity = newQuantity;
+                            Console.WriteLine($"The Quantity is updated to {newQuantity}");
+                            break;
 
+                        case 2:
+                            Console.WriteLine("Enter the size you would like to change to: ");
+                            string newSize = Console.ReadLine();
+                            pizzaToEdit.Size = newSize;
+                            Console.WriteLine($"The size is updated to {newSize}");
+                            break;
+                        case 3:
+
+                            Console.WriteLine("Enter the Quantity you would like to change to: ");
+                            newQuantity = Convert.ToInt32(Console.ReadLine());
+                            pizzaToEdit.Quantity = newQuantity;
+
+                            Console.WriteLine("Enter the size you would like to change to: ");
+                            newSize = Console.ReadLine();
+                            pizzaToEdit.Size = newSize;
+                            Console.WriteLine($"The quantity and size is updated to {newSize} and {newQuantity}");
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid option. Please try again");
+                            break;
                     }
                 }
-            
-            }
-            
-        }
+                else
+                {
+                    Console.WriteLine($"The pizza with the id: {selectedPizzaIdToEdit} was not found...");
 
-    }
+                }
+            } catch (Exception ex)
+            {
+                Console.WriteLine("Error, try again. ");
+                Console.WriteLine(ex.Message);
+            }
+            CartMenu();
+        }
+    
+            
+            
+        
+
+    
 
 
 	
