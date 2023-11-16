@@ -30,12 +30,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 		public IPizza HandleToppingSelection(IPizza pizza)
 		{
-			DisplayCurrentPizzaState(pizza);
+			
 			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +10 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 
 			if (response == "y")
 			{
+				
 				pizza = ChooseToppings(pizza);
 			}  
 			else if (response == "n")
@@ -70,6 +71,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 					{
 						while (true)
 						{
+							DisplayCurrentPizzaState(pizza);
 							Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
 							string response = Console.ReadLine().ToLower();
 
