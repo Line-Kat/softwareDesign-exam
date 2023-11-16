@@ -40,7 +40,7 @@ namespace PizzaOrderingApp
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
-					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems());
+					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems()); //GetNumberOfItems er antallet brukeren velger
 					order.PrintOrder(customer, dateTime);
 					order.AddOrder(customer);
 
