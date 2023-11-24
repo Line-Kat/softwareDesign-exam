@@ -15,6 +15,7 @@ namespace PizzaOrderingApp {
 
 		internal string AskForUserInput(string typeOfInput) {
 			string? userInput = null;
+			int userInputInt = 0;
 
 			if (typeOfInput == "name") {
 				while (string.IsNullOrEmpty(userInput)) {
@@ -22,10 +23,12 @@ namespace PizzaOrderingApp {
 					userInput = Console.ReadLine();
 				}
 			} 
-			while (string.IsNullOrEmpty(userInput)) {
+
+			while (string.IsNullOrEmpty(userInput) && !int.TryParse(userInput, out userInputInt)) {
 				Console.WriteLine("Type phone number: ");
 				userInput = Console.ReadLine();
 			}
+
 			return userInput;
 		}
 
@@ -40,9 +43,9 @@ namespace PizzaOrderingApp {
 				PhoneNr = inputPhoneNr
 			};
 
-			customer = crudOperationsCustomer.AddCustomer(customer);
-
 			ConfirmAddCustomer(customer);
+
+			customer = crudOperationsCustomer.AddCustomer(customer);
 
 			return customer;
 		}
@@ -52,6 +55,7 @@ namespace PizzaOrderingApp {
 
 			bool inputHasNoValue = true;
 			string? userInput = string.Empty;
+
 			while (inputHasNoValue) {
 				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
 					inputHasNoValue = false;
@@ -67,16 +71,20 @@ namespace PizzaOrderingApp {
 		}
 
 		internal int EditCustomerMenu() {
-			Console.WriteLine(
+			bool keepRunning = true;
+			string userInput = string.Empty;
+
+			while (keepRunning ) {
+				Console.WriteLine(
 				"Type the number of the alternative you need to edit\n" +
 				"1 name\n" +
 				"2 phone number");
 
-			string? userInput = Console.ReadLine();
+				userInput = Console.ReadLine();
 
-			if ( (string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 3) ) {
-				Console.WriteLine("You must select one of the alternatives (number 1 or 2)");
-				EditCustomerMenu();
+				if (!((string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 2))) {
+					keepRunning = false;
+				}
 			}
 
 			return Int32.Parse(userInput);
