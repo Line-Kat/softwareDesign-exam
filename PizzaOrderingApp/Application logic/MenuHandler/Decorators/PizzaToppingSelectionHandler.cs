@@ -8,6 +8,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 	{
 		
 		private const int MaxToppings = 3;
+		private IPizza finalPizza;
 		//crud
 		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 		private readonly List<string> _availablePizzaToppings;
@@ -40,7 +41,14 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 				HandleToppingSelection(pizza);
 			}
 
-			return pizza;
+			finalPizza = pizza;
+			Console.WriteLine($"Pizza satt som finalPizza: {finalPizza.PizzaName}"); 
+			return finalPizza;
+		}
+
+		public IPizza GetFinalPizza()
+		{
+			return finalPizza;
 		}
 
 		private IPizza ChooseToppings(IPizza pizza)
