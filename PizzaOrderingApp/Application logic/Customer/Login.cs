@@ -63,9 +63,9 @@ namespace PizzaOrderingApp {
 			Customer customer = new();
 
 			
-			string? userInput = string.Empty;
+			//string? userInput = string.Empty;
 
-			userInput = LoginMenu("login");
+			string userInput = LoginMenu("login");
 
 			if(userInput.Equals("1")) {
 				int inputNumber = Convert.ToInt32(LoginMenu("phoneNr"));
