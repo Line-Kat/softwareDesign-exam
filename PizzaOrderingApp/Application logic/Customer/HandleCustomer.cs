@@ -13,41 +13,36 @@ namespace PizzaOrderingApp {
 
 		CrudOperationsCustomer crudOperationsCustomer = new();
 
-		internal string AskForUserInput(string typeOfInput) {
-			string? userInput = null;
-			int userInputInt = 0;
+		//Method to print output to the console and collect input from the user
+		//The input is validated before creating an object of type Customer that is returned
+		internal Customer AskForUserInput() {
+			string? userInputName = string.Empty;
+			string? userInputPhoneNr = string.Empty;
 
-			if (typeOfInput == "name") {
-				while (string.IsNullOrEmpty(userInput)) {
-					Console.WriteLine("Type name: ");
-					userInput = Console.ReadLine();
-				}
-			} 
-
-			while (string.IsNullOrEmpty(userInput) && !int.TryParse(userInput, out userInputInt)) {
+			while (string.IsNullOrEmpty(userInputName)) {
+				Console.WriteLine("Type name: ");
+				userInputName = Console.ReadLine();
+			}
+			 
+			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt)) {
 				Console.WriteLine("Type phone number: ");
-				userInput = Console.ReadLine();
+				userInputPhoneNr = Console.ReadLine();
 			}
 
-			return userInput;
+			int phoneNr = Convert.ToInt32(userInputPhoneNr);
+
+			return new() { CustomerName = userInputName, PhoneNr = phoneNr };
 		}
 
+		//Method to add a customer to the database by calling AskForUserInput to get input from the user, and calling AddCustomer
+		//to add the customer to the database
+		//The method also asks the user to validate the information
 		public Customer AddCustomer() {
-
-			string inputName = AskForUserInput("name");
-			int inputPhoneNr = Convert.ToInt32(AskForUserInput(""));
-
-			
-			Customer customer = new() {
-				CustomerName = inputName,
-				PhoneNr = inputPhoneNr
-			};
+			Customer customer = AskForUserInput();
 
 			ConfirmAddCustomer(customer);
 
-			customer = crudOperationsCustomer.AddCustomer(customer);
-
-			return customer;
+			return crudOperationsCustomer.AddCustomer(customer);
 		}
 
 		internal void ConfirmAddCustomer(Customer customer) {
