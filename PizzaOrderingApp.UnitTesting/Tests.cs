@@ -7,10 +7,10 @@ using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp.UnitTesting {
-	public class CustomerTest {
+	public class UnitTests {
 
 		[Test]
-		public void addCustomer() {
+		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer() {
 			//Arrange
 			CrudOperationsCustomer crudOperationsCustomer = new();
 			string expectedName = "Dutleif";
