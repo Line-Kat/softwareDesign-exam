@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp {
 	public class Login {
+
 		//This method is called by the method UserLogin
 		//Writes messages to the console and gets input from the user
 		//The input is returned to UserLogin
@@ -50,20 +51,15 @@ namespace PizzaOrderingApp {
 
 		//This method asks if the user wants to log in or register a new user
 		//To get input from the user, the method LoginMenu is called
-		
 		//The user logs in with phone number
 		//To check if the user is registered, the the method GetCustomerByPhoneNumber is called
 		//If the phone number is registered, the user gets logged in
 		//If the phone number is not registered, the user is asked to registered and the method AddCustomer is called
-
-		//If the user chooses to register from the menu presented, the the method AddCustomer is called
+		//If the user chooses to register from the menu presented, then the method AddCustomer is called
 		public Customer UserLogin() {
 			HandleCustomer handleCustomer = new();
 			CrudOperationsCustomer crudOperations = new();
 			Customer customer = new();
-
-			
-			//string? userInput = string.Empty;
 
 			string userInput = LoginMenu("login");
 

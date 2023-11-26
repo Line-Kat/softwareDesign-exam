@@ -53,15 +53,15 @@ namespace PizzaOrderingApp {
 			string? userInput = string.Empty;
 
 			while (inputHasNoValue) {
-				if (userInput.ToUpper().Equals("N")) {
-					EditCustomer(customer.CustomerId);
-					inputHasNoValue = false;
-				} else if (userInput.ToUpper().Equals("Y")) {
+				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
 					inputHasNoValue = false;
 				} else {
 					Console.WriteLine("Please confirm if the information correct? (type Y for yes or N for no)");
 					userInput = Console.ReadLine();
 				}
+			}
+			if(userInput.ToUpper() == "N") {
+				EditCustomer(customer.CustomerId);
 			}
 		}
 
