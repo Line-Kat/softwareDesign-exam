@@ -16,7 +16,6 @@ namespace PizzaOrderingApp.UnitTesting {
 			//Arrange
 			string expectedName = "Dutleif";
 			
-
 			//Act
 			Customer customer = crudOperationsCustomer.AddCustomer(new() { CustomerName = "Dutleif" });
 			string actualName = customer.CustomerName;
