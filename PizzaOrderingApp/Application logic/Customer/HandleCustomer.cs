@@ -45,6 +45,7 @@ namespace PizzaOrderingApp {
 			return crudOperationsCustomer.AddCustomer(customer);
 		}
 
+		//Method so the user can confirm that the input values are correct
 		internal void ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
@@ -52,19 +53,20 @@ namespace PizzaOrderingApp {
 			string? userInput = string.Empty;
 
 			while (inputHasNoValue) {
-				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
+				if (userInput.ToUpper().Equals("N")) {
+					EditCustomer(customer.CustomerId);
+					inputHasNoValue = false;
+				} else if (userInput.ToUpper().Equals("Y")) {
 					inputHasNoValue = false;
 				} else {
 					Console.WriteLine("Please confirm if the information correct? (type Y for yes or N for no)");
 					userInput = Console.ReadLine();
 				}
 			}
-
-			if (userInput.ToUpper() == "N") {
-				EditCustomer(customer.CustomerId);
-			} 
 		}
 
+		//Method to show the user a menu to choose from
+		//The method also collects and returns the userinput after validating that the input is correct
 		internal int EditCustomerMenu() {
 			bool keepRunning = true;
 			string userInput = string.Empty;
@@ -85,6 +87,9 @@ namespace PizzaOrderingApp {
 			return Int32.Parse(userInput);
 		}
 
+		//After the user is asked to confirm that the user information is correct, if the user answers 'no', this method is called
+		//First the current customer is requested from the database, then the user is asked what information needs to be edited
+		//The database is updated and a object of type customer is returned
 		public Customer EditCustomer(int id) {
 			
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
@@ -115,6 +120,7 @@ namespace PizzaOrderingApp {
 			return customer;
 		}
 
+		//Method to delete the customer from the database
 		public void DeleteCustomer(int id) {
 			
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
