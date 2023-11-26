@@ -10,13 +10,12 @@ using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp {
 	public class HandleCustomer {
-		//method to ask user information questions to console and validate that the user types an input
-		//could the validation be moved to fields in the Customer class?
 
-		CrudOperationsCustomer crudOperations = new();
+		CrudOperationsCustomer crudOperationsCustomer = new();
 
 		internal string AskForUserInput(string typeOfInput) {
 			string? userInput = null;
+			int userInputInt = 0;
 
 			if (typeOfInput == "name") {
 				while (string.IsNullOrEmpty(userInput)) {
@@ -24,10 +23,12 @@ namespace PizzaOrderingApp {
 					userInput = Console.ReadLine();
 				}
 			} 
-			while (string.IsNullOrEmpty(userInput)) {
+
+			while (string.IsNullOrEmpty(userInput) && !int.TryParse(userInput, out userInputInt)) {
 				Console.WriteLine("Type phone number: ");
 				userInput = Console.ReadLine();
 			}
+
 			return userInput;
 		}
 
@@ -42,22 +43,19 @@ namespace PizzaOrderingApp {
 				PhoneNr = inputPhoneNr
 			};
 
+			ConfirmAddCustomer(customer);
 
-			//using PizzaOrderingDbContext db = new();
-			//db.Customer.Add(customer);
-			//db.SaveChanges();
-			customer = crudOperations.addCustomer(customer);
-
-			confirmAddCustomer(customer);
+			customer = crudOperationsCustomer.AddCustomer(customer);
 
 			return customer;
 		}
 
-		internal void confirmAddCustomer(Customer customer) {
+		internal void ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
 			string? userInput = string.Empty;
+
 			while (inputHasNoValue) {
 				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
 					inputHasNoValue = false;
@@ -68,37 +66,33 @@ namespace PizzaOrderingApp {
 			}
 
 			if (userInput.ToUpper() == "N") {
-				editCustomer(customer.CustomerId);
+				EditCustomer(customer.CustomerId);
 			} 
 		}
 
-		//method that shows the menu for editing customer information
 		internal int EditCustomerMenu() {
-			Console.WriteLine(
+			bool keepRunning = true;
+			string userInput = string.Empty;
+
+			while (keepRunning ) {
+				Console.WriteLine(
 				"Type the number of the alternative you need to edit\n" +
 				"1 name\n" +
 				"2 phone number");
 
-			string? userInput = Console.ReadLine();
+				userInput = Console.ReadLine();
 
-			if ( (string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 3) ) {
-				Console.WriteLine("You must select one of the alternatives (number 1 or 2)");
-				EditCustomerMenu();
+				if (!((string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 2))) {
+					keepRunning = false;
+				}
 			}
-
 
 			return Int32.Parse(userInput);
 		}
 
-		//edit customers information
-		//method must handle the user not typing a value
-		public Customer editCustomer(int id) {
-			//using PizzaOrderingDbContext db = new();
-			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
-
-			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
-
-			Customer customer = crudOperations.getCustomerById(id);
+		public Customer EditCustomer(int id) {
+			
+			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			switch (EditCustomerMenu()) {
 				case 1: {
@@ -107,9 +101,7 @@ namespace PizzaOrderingApp {
 
 						if (customer != null) {
 							customer.CustomerName = name;
-							//db.Update(customer);
-							//db.SaveChanges();
-							crudOperations.updateCustomer(customer);
+							crudOperationsCustomer.UpdateCustomer(customer);
 						}
 					}
 					break;
@@ -119,27 +111,22 @@ namespace PizzaOrderingApp {
 
 					if (customer != null) {
 						customer.PhoneNr = phoneNumber;
-						crudOperations.updateCustomer(customer);
+						crudOperationsCustomer.UpdateCustomer(customer);
 					}
 				}
 					break;
 			}
+
 			return customer;
 		}
 
-		public void deleteCustomer(int id) {
-			//using PizzaOrderingDbContext db = new();
-
-			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
-			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
-			Customer customer = crudOperations.getCustomerById(id);
+		public void DeleteCustomer(int id) {
+			
+			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			if (customer != null) {
-				//db.Customer.Remove(customer);
-				//db.SaveChanges();
-				crudOperations.deleteCustomer(customer);
+				crudOperationsCustomer.DeleteCustomer(customer);
 			}
-
 		}
 	}
 }

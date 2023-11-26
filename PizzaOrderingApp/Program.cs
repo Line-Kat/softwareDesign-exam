@@ -6,8 +6,7 @@ namespace PizzaOrderingApp
 {
 	internal class Program
 	{
-		static void Main(string[] args)
-		{
+		static void Main(string[] args) {
 
 			/*
 
@@ -50,19 +49,17 @@ namespace PizzaOrderingApp
 					keepRunning = false;
 				}
 
-				if (userInput.Equals("2"))
-				{
+				if (userInput.Equals("2")) {
 					Console.WriteLine("Thank you for visiting us. Welcome back!");
 					keepRunning = false;
 				}
 
-				if (userInput.Equals("3"))
-				{
+				if (userInput.Equals("3")) {
 					handleCustomer.DeleteCustomer(customer.CustomerId);
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
 				}
-
+				
 			}
 		}
 	}
