@@ -9,8 +9,9 @@ namespace PizzaOrderingApp
 		static void Main(string[] args)
 		{
 
+			/*
 
-
+			
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
 			AddMenuItems addMenuItems = new AddMenuItems();
 			addMenuItems.AddItems();
@@ -20,7 +21,7 @@ namespace PizzaOrderingApp
 			DisplayMenus displayMenus = new DisplayMenus();
 			displayMenus.PrintMenu();
 
-			/*
+			*/
 
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
@@ -61,8 +62,9 @@ namespace PizzaOrderingApp
 					handleCustomer.DeleteCustomer(customer.CustomerId);
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
-				}*/
+				}
 
-		}
+			}
 		}
 	}
+}
