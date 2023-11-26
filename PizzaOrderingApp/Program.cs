@@ -6,20 +6,21 @@ namespace PizzaOrderingApp
 {
 	internal class Program
 	{
-		static void Main(string[] args) {
+		static void Main(string[] args)
+		{
 
-			/*
+
 
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
 			AddMenuItems addMenuItems = new AddMenuItems();
 			addMenuItems.AddItems();
 
 			// Displaye menyene
-			PizzaMenu pizzaMenu = new PizzaMenu();
-			DisplayMenus displayMenus = new DisplayMenus(pizzaMenu);
+
+			DisplayMenus displayMenus = new DisplayMenus();
 			displayMenus.PrintMenu();
 
-			*/
+			/*
 
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
@@ -49,18 +50,19 @@ namespace PizzaOrderingApp
 					keepRunning = false;
 				}
 
-				if (userInput.Equals("2")) {
+				if (userInput.Equals("2"))
+				{
 					Console.WriteLine("Thank you for visiting us. Welcome back!");
 					keepRunning = false;
 				}
 
-				if (userInput.Equals("3")) {
+				if (userInput.Equals("3"))
+				{
 					handleCustomer.DeleteCustomer(customer.CustomerId);
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
-				}
-				
-			}
+				}*/
+
+		}
 		}
 	}
-}
