@@ -11,6 +11,7 @@
 			_decoratedPizza = decoratedPizza;
 		}
 
+		// properties
 		public int PizzaId => _decoratedPizza.PizzaId;
 		public string PizzaName => _decoratedPizza.PizzaName;
 		public int Price => _decoratedPizza.Price + _additionalToppings.Count * ToppingPrice;
@@ -20,5 +21,6 @@
 		{
 			_additionalToppings.Add(topping);
 		}
+
 	}
 }

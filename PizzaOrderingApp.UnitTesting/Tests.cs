@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services;
 
-namespace PizzaOrderingApp.UnitTesting {
-	public class Tests {
+namespace PizzaOrderingApp.UnitTesting
+{
+	public class Tests
+	{
 
 		//Testing CrudOperationsCustomer
 		CrudOperationsCustomer crudOperationsCustomer = new();
 		[Test]
-		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer() {
+		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer()
+		{
 			//Arrange
 			string expectedName = "Dutleif";
 			

@@ -1,4 +1,4 @@
-﻿using PizzaOrderingApp.Application_logic.MenuHandler;
+﻿using PizzaOrderingApp.Technical_services.CRUD;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.MenuHandler;
 using System;
@@ -6,23 +6,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace PizzaOrderingApp.Entities
 {
 	public class PizzaMenu : Menu
 	{
 		//relasjon til koblingstabellen
 		public ICollection<Pizza_Order>? Pizza_Order { get; set; }
+		// crud
+		CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
+
 
 		public override void PrintMenu()
 		{
 			Console.WriteLine($"\n{Divider}\nHere is the pizza menu:\n{Divider}");
 
 			//fetche listen med pizza fra db
-			using (var db = new PizzaOrderingDbContext())
-			{
+			
 				try
 				{
-					var pizzas = db.Pizza.ToList();
+					//crud
+					var pizzas = crudOperationsMenu.GetAllPizzas();
 
 					if (pizzas.Any())
 					{
@@ -36,7 +40,8 @@ namespace PizzaOrderingApp.Entities
 						// Hente brukerens valg av pizza
 						if (int.TryParse(Console.ReadLine(), out int pizzaId))
 						{
-							var selectedPizza = pizzas.FirstOrDefault(p => p.PizzaId == pizzaId);
+							//crud
+							var selectedPizza = crudOperationsMenu.GetPizzaById(pizzaId);
 
 							if (selectedPizza != null)
 							{
@@ -65,7 +70,7 @@ namespace PizzaOrderingApp.Entities
 				{
 					Console.WriteLine("Error, could not fetch the pizza menu");
 					Console.WriteLine(ex.Message); //printer ut error meldingen
-				}
+				
 			}
 		}
 	}
