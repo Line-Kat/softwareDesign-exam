@@ -10,13 +10,14 @@ namespace PizzaOrderingApp
 
 			/*
 
+			
 			// Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
 			AddMenuItems addMenuItems = new AddMenuItems();
 			addMenuItems.AddItems();
 
 			// Displaye menyene
-			PizzaMenu pizzaMenu = new PizzaMenu();
-			DisplayMenus displayMenus = new DisplayMenus(pizzaMenu);
+
+			DisplayMenus displayMenus = new DisplayMenus();
 			displayMenus.PrintMenu();
 
 			*/
