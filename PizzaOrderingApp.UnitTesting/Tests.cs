@@ -9,13 +9,15 @@ using PizzaOrderingApp.Technical_services;
 namespace PizzaOrderingApp.UnitTesting {
 	public class Tests {
 
+		//TESTING CRUD OPERATIONS
 
-
+		//Customer
+		CrudOperationsCustomer crudOperationsCustomer = new();
 		[Test]
 		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer() {
 			//Arrange
-			CrudOperationsCustomer crudOperationsCustomer = new();
 			string expectedName = "Dutleif";
+			
 
 			//Act
 			Customer customer = crudOperationsCustomer.AddCustomer(new() { CustomerName = "Dutleif" });
@@ -25,6 +27,21 @@ namespace PizzaOrderingApp.UnitTesting {
 			Assert.That(actualName, Is.EqualTo(expectedName));
 		}
 
+		[Test]
+
+		public void GetCustomerByPhoneNr_GettingCustomerByPhoneNumber_ReturnCustomer() {
+			//Arrange
+			Customer expectedCustomer = new() { CustomerName = "Sandra", PhoneNr = 87654321 };
+			crudOperationsCustomer.AddCustomer(expectedCustomer);
+
+			//Act
+			Customer actualCustomer = crudOperationsCustomer.GetCustomerByPhoneNr(expectedCustomer.PhoneNr);
+
+			//Assert
+			Assert.That(expectedCustomer.PhoneNr, Is.EqualTo(actualCustomer.PhoneNr));
+
+
+		}
 
 	}
 }
