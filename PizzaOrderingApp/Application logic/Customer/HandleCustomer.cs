@@ -58,6 +58,7 @@ namespace PizzaOrderingApp {
 					inputHasNoValue = false;
 				} else if (userInput.ToUpper().Equals("Y")) {
 					inputHasNoValue = false;
+					return;
 				} else {
 					Console.WriteLine("Please confirm if the information correct? (type Y for yes or N for no)");
 					userInput = Console.ReadLine();
