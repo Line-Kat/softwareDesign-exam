@@ -9,9 +9,7 @@ using PizzaOrderingApp.Technical_services;
 namespace PizzaOrderingApp.UnitTesting {
 	public class Tests {
 
-		//TESTING CRUD OPERATIONS
-
-		//Customer
+		//Testing CrudOperationsCustomer
 		CrudOperationsCustomer crudOperationsCustomer = new();
 		[Test]
 		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer() {
@@ -28,7 +26,6 @@ namespace PizzaOrderingApp.UnitTesting {
 		}
 
 		[Test]
-
 		public void GetCustomerByPhoneNr_GettingCustomerByPhoneNumber_ReturnCustomer() {
 			//Arrange
 			Customer expectedCustomer = new() { CustomerName = "Sandra", PhoneNr = 87654321 };
@@ -39,9 +36,6 @@ namespace PizzaOrderingApp.UnitTesting {
 
 			//Assert
 			Assert.That(expectedCustomer.PhoneNr, Is.EqualTo(actualCustomer.PhoneNr));
-
-
 		}
-
 	}
 }
