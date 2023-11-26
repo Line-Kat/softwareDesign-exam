@@ -7,7 +7,9 @@ using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp.UnitTesting {
-	public class UnitTests {
+	public class Tests {
+
+
 
 		[Test]
 		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer() {
@@ -22,5 +24,7 @@ namespace PizzaOrderingApp.UnitTesting {
 			//Assert
 			Assert.That(actualName, Is.EqualTo(expectedName));
 		}
+
+
 	}
 }
