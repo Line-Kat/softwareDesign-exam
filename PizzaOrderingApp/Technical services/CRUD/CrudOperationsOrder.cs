@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.Technical_services.CRUD {
 	public class CrudOperationsOrder {
-		public Order addOrder(Order order) {
+		public Order AddOrder(Order order) {
 			using PizzaOrderingDbContext db = new();
-
 			db.Order.Add(order);
 			db.SaveChanges();
 

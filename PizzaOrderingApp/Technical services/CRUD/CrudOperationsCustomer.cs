@@ -8,35 +8,29 @@ using System.Threading.Tasks;
 namespace PizzaOrderingApp.Technical_services {
 	public class CrudOperationsCustomer {
 
-
-		public Customer getCustomerByPhoneNr(int phoneNumber) {
+		public Customer GetCustomerByPhoneNr(int phoneNumber) {
 			using PizzaOrderingDbContext db = new();
+			Customer? customer = db.Customer.Where(customer => customer.PhoneNr == phoneNumber).FirstOrDefault();
 
-			Customer customer = db.Customer.FirstOrDefault(customer => customer.PhoneNr == phoneNumber);
 			return customer;
 		}
 
-		public Customer getCustomerById(int id) {
+		public Customer GetCustomerById(int id) {
 			using PizzaOrderingDbContext db = new();
+			Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
 
-
-			Customer customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
 			return customer;
 		}
 
-		public Customer addCustomer(Customer customer) {
-
+		public Customer AddCustomer(Customer customer) {
 			using PizzaOrderingDbContext db = new();
-
 			db.Customer.Add(customer);
 			db.SaveChanges();
 
 			return customer;
-
 		}
 
-		//denne kan være void
-		public Customer updateCustomer(Customer customer) {
+		public Customer UpdateCustomer(Customer customer) {
 			using PizzaOrderingDbContext db = new();
 			db.Update(customer);
 			db.SaveChanges();
@@ -44,7 +38,7 @@ namespace PizzaOrderingApp.Technical_services {
 			return customer;
 		}
 
-		public void deleteCustomer(Customer customer) {
+		public void DeleteCustomer(Customer customer) {
 			using PizzaOrderingDbContext db = new();
 			db.Customer.Remove(customer);
 			db.SaveChanges();

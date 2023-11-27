@@ -10,54 +10,50 @@ using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp {
 	public class HandleCustomer {
-		//method to ask user information questions to console and validate that the user types an input
-		//could the validation be moved to fields in the Customer class?
 
-		CrudOperationsCustomer crudOperations = new();
+		CrudOperationsCustomer crudOperationsCustomer = new();
 
-		internal string AskForUserInput(string typeOfInput) {
-			string? userInput = null;
+		//Method to print output to the console and collect input from the user
+		//The input is validated before creating an object of type Customer that is returned
+		internal Customer AskForUserInput() {
+			string? userInputName = string.Empty;
+			string? userInputPhoneNr = string.Empty;
 
-			if (typeOfInput == "name") {
-				while (string.IsNullOrEmpty(userInput)) {
-					Console.WriteLine("Type name: ");
-					userInput = Console.ReadLine();
-				}
-			} 
-			while (string.IsNullOrEmpty(userInput)) {
-				Console.WriteLine("Type phone number: ");
-				userInput = Console.ReadLine();
+			while (string.IsNullOrEmpty(userInputName)) {
+				Console.WriteLine("Type name: ");
+				userInputName = Console.ReadLine();
 			}
-			return userInput;
+			 
+			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt) || (userInputPhoneNr.Length != 8)) {
+				Console.WriteLine("Type a phone number with eight digits: ");
+				userInputPhoneNr = Console.ReadLine();
+			}
+
+			int phoneNr = Convert.ToInt32(userInputPhoneNr);
+
+			return new() { CustomerName = userInputName, PhoneNr = phoneNr };
 		}
 
+		//Method to add a customer to the database by calling AskForUserInput to get input from the user, and calling AddCustomer
+		//to add the customer to the database
+		//The method also asks the user to validate the information
 		public Customer AddCustomer() {
+			Customer customer = AskForUserInput();
 
-			string inputName = AskForUserInput("name");
-			int inputPhoneNr = Convert.ToInt32(AskForUserInput(""));
+			customer = crudOperationsCustomer.AddCustomer(customer);
 
-			
-			Customer customer = new() {
-				CustomerName = inputName,
-				PhoneNr = inputPhoneNr
-			};
-
-
-			//using PizzaOrderingDbContext db = new();
-			//db.Customer.Add(customer);
-			//db.SaveChanges();
-			customer = crudOperations.addCustomer(customer);
-
-			confirmAddCustomer(customer);
+			customer = ConfirmAddCustomer(customer);
 
 			return customer;
 		}
 
-		internal void confirmAddCustomer(Customer customer) {
+		//Method so the user can confirm that the input values are correct
+		public Customer ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
 			string? userInput = string.Empty;
+
 			while (inputHasNoValue) {
 				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
 					inputHasNoValue = false;
@@ -66,80 +62,80 @@ namespace PizzaOrderingApp {
 					userInput = Console.ReadLine();
 				}
 			}
+			if(userInput.ToUpper() == "N") {
+				customer = EditCustomer(customer.CustomerId);
+			}
 
-			if (userInput.ToUpper() == "N") {
-				editCustomer(customer.CustomerId);
-			} 
+			return customer;
 		}
 
-		//method that shows the menu for editing customer information
+		//Method to show the user a menu to choose from
+		//The method also collects and returns the userinput after validating that the input is correct
 		internal int EditCustomerMenu() {
-			Console.WriteLine(
+			bool keepRunning = true;
+			string userInput = string.Empty;
+
+			while (keepRunning ) {
+				Console.WriteLine(
 				"Type the number of the alternative you need to edit\n" +
 				"1 name\n" +
 				"2 phone number");
 
-			string? userInput = Console.ReadLine();
+				userInput = Console.ReadLine();
 
-			if ( (string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 3) ) {
-				Console.WriteLine("You must select one of the alternatives (number 1 or 2)");
-				EditCustomerMenu();
+				if (!((string.IsNullOrEmpty(userInput)) || (Int32.Parse(userInput) < 1) || (Int32.Parse(userInput) > 2))) {
+					keepRunning = false;
+				}
 			}
-
 
 			return Int32.Parse(userInput);
 		}
 
-		//edit customers information
-		//method must handle the user not typing a value
-		public Customer editCustomer(int id) {
-			//using PizzaOrderingDbContext db = new();
-			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
-
-			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
-
-			Customer customer = crudOperations.getCustomerById(id);
+		//After the user is asked to confirm that the user information is correct, if the user answers 'no', this method is called
+		//First the current customer is requested from the database, then the user is asked what information needs to be edited
+		//The database is updated and a object of type customer is returned
+		public Customer EditCustomer(int id) {
+			
+			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			switch (EditCustomerMenu()) {
+
 				case 1: {
+						
 						Console.WriteLine("Type name: ");
 						string? name = Console.ReadLine();
+						customer.CustomerName = name;
+						crudOperationsCustomer.UpdateCustomer(customer);
 
-						if (customer != null) {
-							customer.CustomerName = name;
-							//db.Update(customer);
-							//db.SaveChanges();
-							crudOperations.updateCustomer(customer);
-						}
 					}
 					break;
 				case 2: {
-					Console.WriteLine("Type phone number");
-					int phoneNumber = int.Parse(Console.ReadLine());
+						Console.WriteLine("Type phone number");
+						string phoneNumber = string.Empty;
+						int phoneNumberInt = -1;
 
-					if (customer != null) {
-						customer.PhoneNr = phoneNumber;
-						crudOperations.updateCustomer(customer);
+						while (phoneNumber.Length != 8 || !int.TryParse(phoneNumber, out phoneNumberInt)) {
+							Console.WriteLine("Type a phone number with eight digits: ");
+							phoneNumber = Console.ReadLine();
+						}
+
+						int phoneNr = Convert.ToInt32(phoneNumber);
+						customer.PhoneNr = phoneNumberInt;
+						crudOperationsCustomer.UpdateCustomer(customer);
 					}
-				}
 					break;
 			}
 			return customer;
 		}
 
-		public void deleteCustomer(int id) {
-			//using PizzaOrderingDbContext db = new();
-
-			//Customer? customer = db.Customer.SingleOrDefault(customer => customer.CustomerId == id);
-			//Customer? customer = db.Customer.Where(customer => customer.CustomerId == id).FirstOrDefault();
-			Customer customer = crudOperations.getCustomerById(id);
+		//Method to delete the customer from the database
+		public void DeleteCustomer(int id) {
+			
+			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			if (customer != null) {
-				//db.Customer.Remove(customer);
-				//db.SaveChanges();
-				crudOperations.deleteCustomer(customer);
+				crudOperationsCustomer.DeleteCustomer(customer);
 			}
-
 		}
 	}
 }
