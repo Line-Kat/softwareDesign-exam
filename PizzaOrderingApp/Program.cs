@@ -26,6 +26,7 @@ namespace PizzaOrderingApp
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			HandleOrder handleOrder = new();
+			DisplayMenus displayMenus = new();
 
 			Login login = new Login();
 			Customer customer = login.UserLogin();
@@ -42,6 +43,7 @@ namespace PizzaOrderingApp
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
+					displayMenus.PrintMenu();
 					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems());
 					order.PrintOrder(customer, dateTime);
 					order.AddOrder(customer);
