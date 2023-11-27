@@ -35,7 +35,7 @@ namespace PizzaOrderingApp
 
 			bool keepRunning = true;
 			while (keepRunning) {
-				Console.WriteLine("Choose an option:\n1 Order pizza\n2 Log out\n3 Edit your user\n4 Delete your user");
+				Console.WriteLine("\nChoose an option:\n1 Order pizza\n2 Log out\n3 Manage User");
 
 				string? userInput = Console.ReadLine();
 				if (userInput.Equals("1"))
@@ -58,14 +58,26 @@ namespace PizzaOrderingApp
 				}
 
 				if (userInput.Equals("3")) {
-					handleCustomer.ConfirmAddCustomer(customer);
-				}
+					
+					bool keepRunning2 = true;
+					while (keepRunning2) {
 
-				if (userInput.Equals("4")) {
-					handleCustomer.DeleteCustomer(customer.CustomerId);
-					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
-					keepRunning = false;
+						Console.WriteLine("\nManage your account:\n1 Edit your user \n2 Delete user");
+						string? userInput2 = Console.ReadLine();
+						if (userInput2.Equals("1")) {
+							handleCustomer.ConfirmAddCustomer(customer);
+							keepRunning2 = false;
+						}
+
+						if (userInput2.Equals("2")) {
+							handleCustomer.DeleteCustomer(customer.CustomerId);
+							Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
+							keepRunning2 = false;
+						}
+
+					}
 				}
+				
 
 			}
 		}
