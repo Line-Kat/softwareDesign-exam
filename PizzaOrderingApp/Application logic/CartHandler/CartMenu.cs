@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PizzaOrderingApp.Application_logic.CartHandler;
+﻿using PizzaOrderingApp.Application_logic.CartHandler;
 using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
-	
 	public class CartMenu
 	{
 		private ShoppingCart shoppingCart;
 		private DisplayMenus displayMenus;
 		private PizzaToppingSelectionHandler toppingHandler;
 
+		//constructor for the CartMenu class
 		public CartMenu(ShoppingCart shoppingCart, DisplayMenus displayMenus, PizzaToppingSelectionHandler toppingHandler)
 		{
 			this.shoppingCart = shoppingCart;
@@ -24,17 +20,18 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 			this.toppingHandler = toppingHandler;
 		}
 
+		//method that displays the menu for interacting with the shoppingCart
 		public void ShowMenu()
 		{
 			bool running = true;
 			while (running)
 			{
-				Console.WriteLine("\nVelg en handling:");
-				Console.WriteLine("1. Vis handlekurv");
-				Console.WriteLine("2. Legg til ny pizza");
-				Console.WriteLine("3. Fjern pizza fra handlekurv");
-				Console.WriteLine("4. Endre antall på en pizza i handlekurven");
-				Console.WriteLine("5. Avslutt");
+				Console.WriteLine("\nChoose an action:");
+				Console.WriteLine("1. View shopping cart");
+				Console.WriteLine("2. Add a new pizza");
+				Console.WriteLine("3. Remove a pizza from the shopping cart");
+				Console.WriteLine("4. Change the quantity of a pizza in the shopping cart");
+				Console.WriteLine("5. Exit");
 
 				string userInput = Console.ReadLine();
 				switch (userInput)
@@ -44,28 +41,41 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						break;
 					case "2":
 						displayMenus.PrintMenu();
-						IPizza selectedPizza = toppingHandler.GetFinalPizza(); 
+						IPizza selectedPizza = displayMenus.GetSelectedPizza();
+						Console.WriteLine("Selected pizza: " + (selectedPizza != null ? selectedPizza.PizzaName : "No pizza selected"));
+
 						if (selectedPizza != null)
 						{
-							shoppingCart.AddPizzaToCart(selectedPizza);
+							toppingHandler.HandleToppingSelection(selectedPizza);
+							IPizza finalPizza = toppingHandler.GetFinalPizza();
+							Console.WriteLine("Final pizza: " + (finalPizza != null ? finalPizza.PizzaName : "No final pizza"));
+
+							if (finalPizza != null)
+							{
+								shoppingCart.AddPizzaToCart(finalPizza);
+							}
+							else
+							{
+								Console.WriteLine("An error occurred: FinalPizza is null.");
+							}
 						}
 						else
 						{
-							Console.WriteLine("Ingen pizza ble valgt.");
+							Console.WriteLine("No pizza was selected.");
 						}
 						break;
 					case "3":
-						shoppingCart.RemovePizzaFromCartInteraction();
+						shoppingCart.RemovePizzaFromCart();
 						break;
 					case "4":
-						shoppingCart.EditCartInteraction();
+						shoppingCart.EditCart();
 						break;
 					case "5":
-						Console.WriteLine("Avslutter...");
+						Console.WriteLine("Exiting...");
 						running = false;
 						break;
 					default:
-						Console.WriteLine("Ugyldig valg, vennligst prøv igjen.");
+						Console.WriteLine("Invalid choice, please try again.");
 						break;
 				}
 			}

@@ -2,123 +2,143 @@
 using PizzaOrderingApp.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
 	public class ShoppingCart
 	{
-		private List<CartItem> items;
+
+		//a list to store the pizzas
+		private List<CartItem?> items { get; } = new List<CartItem?>();
 
 		public ShoppingCart()
 		{
-			items = new List<CartItem>();
+			items = new List<CartItem?>();
 		}
 
+		//method that adds a pizza to the list. Checks if the pizza exist or not.
+		//Also checks if the pizza with the same id already exists in the cart, and if so - adds it to the quantity
 		public void AddPizzaToCart(IPizza pizza)
 		{
-			var existingItem = items.FirstOrDefault(i => i.PizzaId == pizza.PizzaId);
-			if (existingItem != null)
+			if (pizza != null)
 			{
-				existingItem.Quantity++;
+				bool pizzaExists = false;
+
+				foreach (CartItem? item in items)
+				{
+					if (item?.PizzaId == pizza.PizzaId)
+					{
+						item.Quantity++;
+						pizzaExists = true;
+						break; 
+					}
+				}
+
+				if (!pizzaExists)
+				{
+					
+					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1 , pizza.Price);
+					items.Add(cartItem);
+				}
+
+				Console.WriteLine($"{pizza.PizzaName} added to the cart for {pizza.Price} kr");
 			}
 			else
 			{
-				CartItem cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1, pizza.Price);
-				items.Add(cartItem);
+				Console.WriteLine("Error: Could not add pizza to the cart.");
 			}
-			Console.WriteLine($"{pizza.PizzaName} med {pizza.Description} til {pizza.Price} kr er lagt til i handlekurven.");
 		}
 
+
+		//method that shows the pizzas in the shoppingCart(list) using a foreach to go through each item in the shoppingCart. 
 		public void ViewCart()
 		{
-			Console.WriteLine("Din handlekurv:");
-			foreach (var item in items)
+			Console.WriteLine("Your shoppingCart: ");
+			foreach (CartItem? item in items)
 			{
-				Console.WriteLine($"{item.PizzaName}, Antall: {item.Quantity}, Pris: {item.Price * item.Quantity} kr");
+				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
 			}
 		}
 
-		public void RemovePizzaFromCart(int pizzaId)
-		{
-			var itemToRemove = items.FirstOrDefault(i => i.PizzaId == pizzaId);
-			if (itemToRemove != null)
-			{
-				items.Remove(itemToRemove);
-				Console.WriteLine($"Pizza med ID {pizzaId} er fjernet fra handlekurven.");
-			}
-			else
-			{
-				Console.WriteLine($"Kunne ikke finne en pizza med ID {pizzaId} i handlekurven.");
-			}
-		}
 
-		public void EditCart(int pizzaId, int newQuantity)
+		//method that removes a pizza from cart using id, it searches through the list of cart items to find the matching pizza. 
+		public void RemovePizzaFromCart()
 		{
-			var itemToEdit = items.FirstOrDefault(i => i.PizzaId == pizzaId);
-			if (itemToEdit != null)
-			{
-				itemToEdit.Quantity = newQuantity;
-				Console.WriteLine($"Antallet for pizza med ID {pizzaId} er endret til {newQuantity}.");
-			}
-			else
-			{
-				Console.WriteLine($"Kunne ikke finne en pizza med ID {pizzaId} for å endre antallet.");
-			}
-		}
-
-		//..
-
-		public void RemovePizzaFromCartInteraction()
-		{
-			Console.WriteLine("Skriv inn ID for pizzaen du vil fjerne fra handlekurven:");
+			Console.WriteLine("Enter the number of the pizza you want to remove from the shopping cart:");
 			if (int.TryParse(Console.ReadLine(), out int pizzaId))
 			{
-				var itemToRemove = items.FirstOrDefault(i => i.PizzaId == pizzaId);
+				CartItem? itemToRemove = null;
+
+				foreach (CartItem? item in items)
+				{
+					if (item?.PizzaId == pizzaId)
+					{
+						itemToRemove = item;
+						break;
+					}
+				}
+
 				if (itemToRemove != null)
 				{
 					items.Remove(itemToRemove);
-					Console.WriteLine($"Pizza med ID {pizzaId} er fjernet fra handlekurven.");
+					Console.WriteLine($"Pizza with number {pizzaId} has been removed from the shopping cart.");
 				}
 				else
 				{
-					Console.WriteLine($"Kunne ikke finne en pizza med ID {pizzaId} i handlekurven.");
+					Console.WriteLine($"Could not find a pizza with number {pizzaId} in the shopping cart.");
 				}
 			}
 			else
 			{
-				Console.WriteLine("Ugyldig inntasting, vennligst prøv igjen.");
+				Console.WriteLine("Invalid input, please try again.");
 			}
 		}
 
-		public void EditCartInteraction()
+
+		//method that modifies the quantity of a pizza using id, and searches through the list to find the matching pizza.
+		//if the id matches the quantity is updated
+		public void EditCart()
 		{
-			Console.WriteLine("Skriv inn ID for pizzaen du vil endre i handlekurven:");
+			Console.WriteLine("Enter the number of the pizza you want to modify in the shopping cart:");
 			if (int.TryParse(Console.ReadLine(), out int pizzaId))
 			{
-				Console.WriteLine("Skriv inn det nye antallet:");
+				Console.WriteLine("Enter the new quantity:");
 				if (int.TryParse(Console.ReadLine(), out int newQuantity) && newQuantity > 0)
 				{
-					var itemToEdit = items.FirstOrDefault(i => i.PizzaId == pizzaId);
+					CartItem? itemToEdit = null;
+
+					foreach (CartItem? item in items)
+					{
+						if (item?.PizzaId == pizzaId)
+						{
+							itemToEdit = item;
+							break;
+						}
+					}
+
 					if (itemToEdit != null)
 					{
 						itemToEdit.Quantity = newQuantity;
-						Console.WriteLine($"Antallet for pizza med ID {pizzaId} er endret til {newQuantity}.");
+						Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
 					}
 					else
 					{
-						Console.WriteLine($"Kunne ikke finne en pizza med ID {pizzaId} for å endre antallet.");
+						Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
 					}
 				}
 				else
 				{
-					Console.WriteLine("Ugyldig antall, vennligst prøv igjen.");
+					Console.WriteLine("Invalid quantity, please try again.");
 				}
 			}
 			else
 			{
-				Console.WriteLine("Ugyldig inntasting, vennligst prøv igjen.");
+				Console.WriteLine("Invalid input, please try again.");
 			}
 		}
+
+
 	}
 }

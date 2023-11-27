@@ -1,4 +1,5 @@
-﻿using PizzaOrderingApp.Entities;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
+using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.MenuHandler;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler
@@ -7,6 +8,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 	public class DisplayMenus : Menu
 	{
 		private readonly List<Menu> _menus;
+		private IPizza SelectedPizza;
 
 		public DisplayMenus()
 		{
@@ -14,6 +16,10 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 				new PizzaMenu() 
                 // Legg t flere menyer her
             };
+		}
+		public IPizza GetSelectedPizza()
+		{
+			return SelectedPizza; // Returner den valgte pizzaen
 		}
 
 		public override void PrintMenu()
@@ -27,7 +33,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			int userChoice = GetMenuChoice();
 			if (userChoice > 0 && userChoice <= _menus.Count)
 			{
-				_menus[userChoice - 1].PrintMenu();
+				//
+				var chosenMenu = _menus[userChoice - 1];
+				chosenMenu.PrintMenu();
+				if (chosenMenu is PizzaMenu)
+				{
+					SelectedPizza = ((PizzaMenu) chosenMenu).GetSelectedPizza();
+				}
 			}
 			else
 			{

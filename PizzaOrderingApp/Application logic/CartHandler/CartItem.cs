@@ -14,17 +14,20 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 		public string PizzaName { get; set; }
 		public int Price { get; set; }
 
+		public string Description { get; set; }
+
 		public CartItem(int pizzaId, string pizzaName, int quantity, int price)
 		{
 			PizzaId = pizzaId;
 			PizzaName = pizzaName;
 			Quantity = quantity;
 			Price = price;
+		
 		}
 
 		public override string ToString()
 		{
-			return $"{PizzaName} {Price}kr, antall: {Quantity}, pris: {Price * Quantity}kr";
+			return $"{PizzaName}, Quantity: {Quantity}, Price: {Price * Quantity} kr";
 		}
 	}
 

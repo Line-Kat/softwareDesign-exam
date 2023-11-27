@@ -14,7 +14,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 		private readonly List<string> _availablePizzaToppings;
 
-		private readonly ShoppingCart shoppingCart = new ShoppingCart();
+		
 
 		
 		public PizzaToppingSelectionHandler()
@@ -37,7 +37,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			else if (response == "n")
 			{
 				DisplayCurrentPizzaState(pizza);
-				shoppingCart.AddPizzaToCart(finalPizza);
+				
 			}
 			else
 			{
