@@ -63,7 +63,7 @@ namespace PizzaOrderingApp {
 				}
 			}
 			if(userInput.ToUpper() == "N") {
-				customer = EditCustomer(customer.CustomerId);
+				EditCustomer(customer.CustomerId);
 			}
 
 			return customer;
@@ -111,10 +111,13 @@ namespace PizzaOrderingApp {
 					break;
 				case 2: {
 					Console.WriteLine("Type phone number");
-					int phoneNumber = int.Parse(Console.ReadLine());
+					string phoneNumber = string.Empty;
 
-					if (customer != null) {
-						customer.PhoneNr = phoneNumber;
+					while (phoneNumber.Length != 8) {
+						Console.WriteLine("Type a phone number with eight digits: ");
+						phoneNumber = Console.ReadLine();
+						int phoneNr = int.Parse(phoneNumber);
+						customer.PhoneNr = phoneNr;
 						crudOperationsCustomer.UpdateCustomer(customer);
 					}
 				}
