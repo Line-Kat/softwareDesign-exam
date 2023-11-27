@@ -28,7 +28,7 @@ namespace PizzaOrderingApp
 			Customer customer = new();
 
 			Login login = new Login();
-			customer = login.UserLogin(); //customer holder på den innloggede brukeren
+			customer = login.UserLogin();
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
 
