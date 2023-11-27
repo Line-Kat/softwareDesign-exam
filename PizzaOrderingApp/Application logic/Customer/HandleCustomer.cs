@@ -24,8 +24,8 @@ namespace PizzaOrderingApp {
 				userInputName = Console.ReadLine();
 			}
 			 
-			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt)) {
-				Console.WriteLine("Type phone number: ");
+			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt) || (userInputPhoneNr.Length != 8)) {
+				Console.WriteLine("Type a phone number with eight digits: ");
 				userInputPhoneNr = Console.ReadLine();
 			}
 
@@ -40,29 +40,33 @@ namespace PizzaOrderingApp {
 		public Customer AddCustomer() {
 			Customer customer = AskForUserInput();
 
-			ConfirmAddCustomer(customer);
+			customer = crudOperationsCustomer.AddCustomer(customer);
 
-			return crudOperationsCustomer.AddCustomer(customer);
+			customer = ConfirmAddCustomer(customer);
+
+			return customer;
 		}
 
 		//Method so the user can confirm that the input values are correct
-		internal void ConfirmAddCustomer(Customer customer) {
+		public Customer ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
 			string? userInput = string.Empty;
 
 			while (inputHasNoValue) {
-				if (userInput.ToUpper().Equals("N")) {
-					EditCustomer(customer.CustomerId);
-					inputHasNoValue = false;
-				} else if (userInput.ToUpper().Equals("Y")) {
+				if ((userInput.ToUpper().Equals("N")) || (userInput.ToUpper().Equals("Y"))) {
 					inputHasNoValue = false;
 				} else {
 					Console.WriteLine("Please confirm if the information correct? (type Y for yes or N for no)");
 					userInput = Console.ReadLine();
 				}
 			}
+			if(userInput.ToUpper() == "N") {
+				EditCustomer(customer.CustomerId);
+			}
+
+			return customer;
 		}
 
 		//Method to show the user a menu to choose from
@@ -95,28 +99,30 @@ namespace PizzaOrderingApp {
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			switch (EditCustomerMenu()) {
+
 				case 1: {
+						
 						Console.WriteLine("Type name: ");
 						string? name = Console.ReadLine();
+						customer.CustomerName = name;
+						crudOperationsCustomer.UpdateCustomer(customer);
 
-						if (customer != null) {
-							customer.CustomerName = name;
-							crudOperationsCustomer.UpdateCustomer(customer);
-						}
 					}
 					break;
 				case 2: {
 					Console.WriteLine("Type phone number");
-					int phoneNumber = int.Parse(Console.ReadLine());
+					string phoneNumber = string.Empty;
 
-					if (customer != null) {
-						customer.PhoneNr = phoneNumber;
+					while (phoneNumber.Length != 8) {
+						Console.WriteLine("Type a phone number with eight digits: ");
+						phoneNumber = Console.ReadLine();
+						int phoneNr = int.Parse(phoneNumber);
+						customer.PhoneNr = phoneNr;
 						crudOperationsCustomer.UpdateCustomer(customer);
 					}
 				}
 					break;
 			}
-
 			return customer;
 		}
 
