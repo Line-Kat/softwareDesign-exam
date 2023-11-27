@@ -24,8 +24,8 @@ namespace PizzaOrderingApp {
 				userInputName = Console.ReadLine();
 			}
 			 
-			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt)) {
-				Console.WriteLine("Type phone number: ");
+			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt) || (userInputPhoneNr.Length != 8)) {
+				Console.WriteLine("Type a phone number with eight digits: ");
 				userInputPhoneNr = Console.ReadLine();
 			}
 
@@ -40,13 +40,15 @@ namespace PizzaOrderingApp {
 		public Customer AddCustomer() {
 			Customer customer = AskForUserInput();
 
-			ConfirmAddCustomer(customer);
+			customer = crudOperationsCustomer.AddCustomer(customer);
 
-			return crudOperationsCustomer.AddCustomer(customer);
+			customer = ConfirmAddCustomer(customer);
+
+			return customer;
 		}
 
 		//Method so the user can confirm that the input values are correct
-		internal void ConfirmAddCustomer(Customer customer) {
+		internal Customer ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
@@ -61,8 +63,10 @@ namespace PizzaOrderingApp {
 				}
 			}
 			if(userInput.ToUpper() == "N") {
-				EditCustomer(customer.CustomerId);
+				customer = EditCustomer(customer.CustomerId);
 			}
+
+			return customer;
 		}
 
 		//Method to show the user a menu to choose from
@@ -95,14 +99,14 @@ namespace PizzaOrderingApp {
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			switch (EditCustomerMenu()) {
+
 				case 1: {
+						
 						Console.WriteLine("Type name: ");
 						string? name = Console.ReadLine();
+						customer.CustomerName = name;
+						crudOperationsCustomer.UpdateCustomer(customer);
 
-						if (customer != null) {
-							customer.CustomerName = name;
-							crudOperationsCustomer.UpdateCustomer(customer);
-						}
 					}
 					break;
 				case 2: {
@@ -116,7 +120,6 @@ namespace PizzaOrderingApp {
 				}
 					break;
 			}
-
 			return customer;
 		}
 
