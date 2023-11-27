@@ -57,6 +57,10 @@ namespace PizzaOrderingApp
 				}
 
 				if (userInput.Equals("3")) {
+					handleCustomer.ConfirmAddCustomer(customer);
+				}
+
+				if (userInput.Equals("4")) {
 					handleCustomer.DeleteCustomer(customer.CustomerId);
 					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
 					keepRunning = false;
