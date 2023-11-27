@@ -48,7 +48,7 @@ namespace PizzaOrderingApp {
 		}
 
 		//Method so the user can confirm that the input values are correct
-		internal Customer ConfirmAddCustomer(Customer customer) {
+		public Customer ConfirmAddCustomer(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
