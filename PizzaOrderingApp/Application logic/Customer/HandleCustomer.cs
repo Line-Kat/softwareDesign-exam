@@ -112,7 +112,7 @@ namespace PizzaOrderingApp {
 				case 2: {
 						Console.WriteLine("Type phone number");
 						string phoneNumber = string.Empty;
-						int phoneNumberInt = -1;
+						int phoneNumberInt;
 
 						while (phoneNumber.Length != 8 || !int.TryParse(phoneNumber, out phoneNumberInt)) {
 							Console.WriteLine("Type a phone number with eight digits: ");
