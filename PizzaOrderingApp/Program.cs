@@ -53,6 +53,7 @@ namespace PizzaOrderingApp
 					keepRunning = false;
 				}
 
+
 				if (userInput.Equals("3")) { 
 					handleCustomer.ConfirmAddCustomer(customer);
 				}
