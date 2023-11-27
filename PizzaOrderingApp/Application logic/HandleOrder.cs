@@ -8,6 +8,7 @@ namespace PizzaOrderingApp {
 
 		CrudOperationsOrder crudOperationsOrder = new();
 
+		//Method to print the receipt to the customer
 		public void PrintOrder(Customer customer, DateTime dateTime) {
 
 			Console.WriteLine($"\nThank you for ordering from Pizza Factory! Here is your receipt:\n" +
@@ -16,6 +17,7 @@ namespace PizzaOrderingApp {
 				"Welcome back another time!");
 		}
 
+		//Method to add order to the database
 		public Order AddOrder(Customer customer) {
 
 			Order order = new() {
@@ -25,6 +27,7 @@ namespace PizzaOrderingApp {
 			return crudOperationsOrder.AddOrder(order);
 		}
 
+		//Method to get the number of pizzas the customer wants to order
 		public int GetNumberOfItems() {
 
 			bool numInputIsEmpty = true;
