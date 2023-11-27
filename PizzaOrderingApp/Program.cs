@@ -26,10 +26,9 @@ namespace PizzaOrderingApp
 			Console.WriteLine("Welcome to Pizza Factory");
 			HandleCustomer handleCustomer = new();
 			HandleOrder handleOrder = new();
-			Customer customer = new();
 
 			Login login = new Login();
-			customer = login.UserLogin();
+			Customer customer = login.UserLogin();
 
 			Console.WriteLine($"Welcome {customer.CustomerName}");
 
@@ -37,13 +36,13 @@ namespace PizzaOrderingApp
 			while (keepRunning) {
 				Console.WriteLine("Choose an option:\n1 Order pizza\n2 Log out\n3 Edit your user\n4 Delete your user");
 
-				string userInput = Console.ReadLine();
+				string? userInput = Console.ReadLine();
 				if (userInput.Equals("1"))
 				{
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
-					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems()); //GetNumberOfItems er antallet brukeren velger
+					DateTime dateTime = queue.CheckQueue(handleOrder.GetNumberOfItems());
 					order.PrintOrder(customer, dateTime);
 					order.AddOrder(customer);
 
