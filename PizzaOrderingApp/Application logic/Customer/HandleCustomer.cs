@@ -42,13 +42,13 @@ namespace PizzaOrderingApp {
 
 			customer = crudOperationsCustomer.AddCustomer(customer);
 
-			customer = ConfirmAddCustomer(customer);
+			customer = ConfirmCustomerInformation(customer);
 
 			return customer;
 		}
 
 		//Method so the user can confirm that the input values are correct
-		public Customer ConfirmAddCustomer(Customer customer) {
+		public Customer ConfirmCustomerInformation(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
