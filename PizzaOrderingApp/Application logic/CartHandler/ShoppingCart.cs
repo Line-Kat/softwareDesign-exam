@@ -83,44 +83,26 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 		//if the id matches the quantity is updated
 		public void EditCart(int pizzaId, int newQuantity)
 		{
-			Console.WriteLine("Enter the number of the pizza you want to modify in the shopping cart:");
-			if (int.TryParse(Console.ReadLine(), out pizzaId))
+			// Directly use the parameters pizzaId and newQuantity without additional input prompts
+			if (newQuantity > 0)
 			{
-				Console.WriteLine("Enter the new quantity:");
-				if (int.TryParse(Console.ReadLine(), out newQuantity) && newQuantity > 0)
+				CartItem? itemToEdit = Items.FirstOrDefault(item => item?.PizzaId == pizzaId);
+
+				if (itemToEdit != null)
 				{
-					CartItem? itemToEdit = null;
-
-					foreach (CartItem? item in Items)
-					{
-						if (item?.PizzaId == pizzaId)
-						{
-							itemToEdit = item;
-							break;
-						}
-					}
-
-					if (itemToEdit != null)
-					{
-						itemToEdit.Quantity = newQuantity;
-						Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
-					}
-					else
-					{
-						Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
-					}
+					itemToEdit.Quantity = newQuantity;
+					Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
 				}
 				else
 				{
-					Console.WriteLine("Invalid quantity, please try again.");
+					Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
 				}
 			}
 			else
 			{
-				Console.WriteLine("Invalid input, please try again.");
+				Console.WriteLine("Invalid quantity, please enter a positive number.");
 			}
 		}
-
 
 	}
 }

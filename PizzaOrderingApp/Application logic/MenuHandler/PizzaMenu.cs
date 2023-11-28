@@ -1,11 +1,6 @@
 ﻿using PizzaOrderingApp.Technical_services.CRUD;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.MenuHandler;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PizzaOrderingApp.Application_logic.Decorators;
 
 namespace PizzaOrderingApp.Entities
@@ -30,7 +25,7 @@ namespace PizzaOrderingApp.Entities
 
 			try
 			{
-				List<Pizza> pizzas = crudOperationsMenu.GetAllPizzas(); // Assuming GetAllPizzas() returns List<Pizza>
+				List<Pizza> pizzas = crudOperationsMenu.GetAllPizzas(); // Explicit type instead of var
 
 				if (pizzas.Any())
 				{
@@ -43,15 +38,15 @@ namespace PizzaOrderingApp.Entities
 					Console.WriteLine("Please enter the number of the pizza you want to select:");
 					if (int.TryParse(Console.ReadLine(), out int pizzaId))
 					{
-						Pizza tempSelectedPizza = crudOperationsMenu.GetPizzaById(pizzaId); // Assuming GetPizzaById() returns a Pizza object
+						Pizza tempSelectedPizza = crudOperationsMenu.GetPizzaById(pizzaId); // Explicit type instead of var
 
 						if (tempSelectedPizza != null)
 						{
 							this.selectedPizza = tempSelectedPizza; // Updating selected pizza
 
-							PizzaToppingSelectionHandler toppingHandler = new PizzaToppingSelectionHandler();
+							PizzaToppingSelectionHandler toppingHandler = new PizzaToppingSelectionHandler(); // Explicit type instead of var
 							toppingHandler.HandleToppingSelection(this.selectedPizza);
-							// You can also handle the decorated pizza here if necessary
+							// Here you can also handle the decorated pizza if necessary
 						}
 						else
 						{
@@ -76,6 +71,5 @@ namespace PizzaOrderingApp.Entities
 				Console.WriteLine(ex.Message);
 			}
 		}
-
 	}
 }
