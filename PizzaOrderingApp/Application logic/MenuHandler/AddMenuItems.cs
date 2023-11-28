@@ -22,7 +22,8 @@ namespace PizzaOrderingApp.MenuHandler
 
 					crudOperationsMenu.AddPizzas(pizzas);
 
-					Console.WriteLine("(Pizzas added to the database successfully.)");
+				// Can uncomment this to see if items are added to database
+				//	Console.WriteLine("(Pizzas added to the database successfully.)");
 			}
 			catch (Exception ex)
 			{

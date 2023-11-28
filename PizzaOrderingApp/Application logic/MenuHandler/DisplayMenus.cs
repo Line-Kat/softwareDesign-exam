@@ -9,7 +9,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 	public class DisplayMenus : Menu
 	{
 		private readonly List<Menu> _menus; //store the menus
-		private IPizza SelectedPizza;
+		private IPizza SelectedPizza; //FLYTT
 
 		public DisplayMenus()
 		{
@@ -18,12 +18,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
                 // Add more menus here
             };
 		}
-
+		//FLYTT
 		public IPizza GetSelectedPizza()
 		{
 			return SelectedPizza; 
 		}
 
+		//Prints out all the available menus
 		public override void PrintMenu()
 		{
 			Console.WriteLine($"\n{Divider}\nSelect a menu:\n{Divider}");
@@ -50,6 +51,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			}
 		}
 
+		// Prompts the user to choose a menu option and validates the input
 		private int GetMenuChoice()
 		{
 			int choice;
