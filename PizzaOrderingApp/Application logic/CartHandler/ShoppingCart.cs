@@ -11,11 +11,11 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 	{
 
 		//a list to store the pizzas
-		private List<CartItem?> items { get; } = new List<CartItem?>();
+		public List<CartItem?> Items { get; } = new List<CartItem?>();
 
 		public ShoppingCart()
 		{
-			items = new List<CartItem?>();
+			Items = new List<CartItem?>();
 		}
 
 		//method that adds a pizza to the list. Checks if the pizza exist or not.
@@ -26,7 +26,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 			{
 				bool pizzaExists = false;
 
-				foreach (CartItem? item in items)
+				foreach (CartItem? item in Items)
 				{
 					if (item?.PizzaId == pizza.PizzaId)
 					{
@@ -40,7 +40,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 				{
 					
 					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1 , pizza.Price);
-					items.Add(cartItem);
+					Items.Add(cartItem);
 				}
 
 				Console.WriteLine($"{pizza.PizzaName} added to the cart for {pizza.Price} kr");
@@ -56,7 +56,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 		public void ViewCart()
 		{
 			Console.WriteLine("Your shoppingCart: ");
-			foreach (CartItem? item in items)
+			foreach (CartItem? item in Items)
 			{
 				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
 			}
@@ -71,7 +71,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 			{
 				CartItem? itemToRemove = null;
 
-				foreach (CartItem? item in items)
+				foreach (CartItem? item in Items)
 				{
 					if (item?.PizzaId == pizzaId)
 					{
@@ -82,7 +82,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 				if (itemToRemove != null)
 				{
-					items.Remove(itemToRemove);
+					Items.Remove(itemToRemove);
 					Console.WriteLine($"Pizza with number {pizzaId} has been removed from the shopping cart.");
 				}
 				else
@@ -109,7 +109,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 				{
 					CartItem? itemToEdit = null;
 
-					foreach (CartItem? item in items)
+					foreach (CartItem? item in Items)
 					{
 						if (item?.PizzaId == pizzaId)
 						{
