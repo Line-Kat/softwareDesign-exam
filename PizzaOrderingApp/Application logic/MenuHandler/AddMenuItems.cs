@@ -1,21 +1,13 @@
 ﻿using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services.CRUD;
-using PizzaOrderingApp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaOrderingApp.MenuHandler
 {
 	public class AddMenuItems
 	{
-		//crud
 		CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 
-		//Metode for å legge til pizzaer i databasen
+		//Method to add pizzas to the database
 		public void AddItems()
 		{
 			try
@@ -28,7 +20,6 @@ namespace PizzaOrderingApp.MenuHandler
 					new Pizza { PizzaName = "Hawaiian dream", Price = 149, Description = "Tomato sauce, cheese, pianpple, ham"}
 				};
 
-					//crud
 					crudOperationsMenu.AddPizzas(pizzas);
 
 					Console.WriteLine("(Pizzas added to the database successfully.)");

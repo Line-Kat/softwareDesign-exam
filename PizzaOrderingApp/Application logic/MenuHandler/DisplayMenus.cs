@@ -4,9 +4,11 @@ using PizzaOrderingApp.MenuHandler;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler
 {
+
+	//Class to display all the menus
 	public class DisplayMenus : Menu
 	{
-		private readonly List<Menu> _menus;
+		private readonly List<Menu> _menus; //store the menus
 		private IPizza SelectedPizza;
 
 		public DisplayMenus()

@@ -7,21 +7,22 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 	{
 		private const int MaxToppings = 3;
 		private IPizza finalPizza;
-		// CRUD
 		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 		private readonly List<string> _availablePizzaToppings;
 
+		// Fetches available toppings from the database
 		public PizzaToppingSelectionHandler()
 		{
-			// CRUD
 			_availablePizzaToppings = crudOperationsMenu.GetAvailablePizzaToppings();
 		}
 
+		// Handles user interaction for adding toppings
 		public IPizza HandleToppingSelection(IPizza pizza)
 		{
-			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +10 kr per topping. (y/n)");
+			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +30 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 
+			// Prompt and logic for topping selection
 			if (response == "y")
 			{
 				pizza = ChooseToppings(pizza);
@@ -37,11 +38,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			return finalPizza;
 		}
 
+		// Method that returns the final pizza with toppings selected
 		public IPizza GetFinalPizza()
 		{
 			return finalPizza;
 		}
 
+		// Main loop for topping choice
 		private IPizza ChooseToppings(IPizza pizza)
 		{
 			int toppingsCount = 0;
@@ -59,12 +62,12 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 					if (toppingsCount < MaxToppings)
 					{
-						Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
+						Console.WriteLine("\nDo you want to add another topping (+ 30kr)? (y/n)");
 						string innerResponse = Console.ReadLine().ToLower();
 
 						if (innerResponse != "y")
 						{
-							return pizza; 
+							return pizza; // Returns pizza with user-selected toppings
 						}
 					}
 				}
@@ -77,16 +80,19 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			return pizza; // Return the updated pizza
 		}
 
+		// Adds selected topping to pizza
 		private IPizza AddToppingToPizza(IPizza pizza, int toppingChoice)
 		{
 			string selectedTopping = _availablePizzaToppings[toppingChoice - 1];
 			PizzaToppingDecorator decorator = new PizzaToppingDecorator(pizza);
 			decorator.AddTopping(selectedTopping);
-			return decorator; // Return the decorated pizza
+			return decorator; //returns new pizza object
 		}
 
+		// Displays available toppings to user
 		private void DisplayAvailableToppings()
 		{
+			// Outputs available toppings to the console
 			Console.WriteLine("\nAvailable toppings:");
 			for (int i = 0; i < _availablePizzaToppings.Count; i++)
 			{
@@ -94,6 +100,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			}
 		}
 
+		// Shows current state of pizza order
 		public void DisplayCurrentPizzaState(IPizza pizza)
 		{
 			Console.WriteLine($"\nYour pizza order:");
