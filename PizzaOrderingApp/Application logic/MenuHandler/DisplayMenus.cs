@@ -1,21 +1,30 @@
-﻿using PizzaOrderingApp.Entities;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
+using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.MenuHandler;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler
 {
 
+	//Class to display all the menus
 	public class DisplayMenus : Menu
 	{
-		private readonly List<Menu> _menus;
+		private readonly List<Menu> _menus; //store the menus
+		private IPizza SelectedPizza; //FLYTT
 
 		public DisplayMenus()
 		{
 			_menus = new List<Menu> {
 				new PizzaMenu() 
-                // Legg t flere menyer her
+                // Add more menus here
             };
 		}
+		//FLYTT
+		public IPizza GetSelectedPizza()
+		{
+			return SelectedPizza; 
+		}
 
+		//Prints out all the available menus
 		public override void PrintMenu()
 		{
 			Console.WriteLine($"\n{Divider}\nSelect a menu:\n{Divider}");
@@ -27,7 +36,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			int userChoice = GetMenuChoice();
 			if (userChoice > 0 && userChoice <= _menus.Count)
 			{
-				_menus[userChoice - 1].PrintMenu();
+				
+				Menu chosenMenu = _menus[userChoice - 1];
+				chosenMenu.PrintMenu();
+				if (chosenMenu is PizzaMenu)
+				{
+					SelectedPizza = ((PizzaMenu) chosenMenu).GetSelectedPizza();
+				}
 			}
 			else
 			{
@@ -36,6 +51,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			}
 		}
 
+		// Prompts the user to choose a menu option and validates the input
 		private int GetMenuChoice()
 		{
 			int choice;
@@ -47,4 +63,3 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 		}
 	}
 }
-	

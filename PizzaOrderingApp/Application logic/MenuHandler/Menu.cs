@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaOrderingApp.MenuHandler
+﻿namespace PizzaOrderingApp.MenuHandler
 {
-    public abstract class Menu
+	// Abstract base class for menus
+	public abstract class Menu
     {
-      
-        protected string Divider = "~~~~~~~~~~~~~~~~~~~~~~";
 
-        //Abstrakt metode så alle menyene bruker for å printe ut
-        public abstract void PrintMenu();
+		// Visual separator for menu display
+		protected string Divider = "~~~~~~~~~~~~~~~~~~~~~~";
+
+		// Abstract method that must be implemented to print the menu in derived classes
+		public abstract void PrintMenu();
       
 
     }
