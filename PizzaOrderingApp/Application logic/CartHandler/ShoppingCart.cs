@@ -43,7 +43,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 					Items.Add(cartItem);
 				}
 
-				Console.WriteLine($"{pizza.PizzaName} added to the cart for {pizza.Price} kr");
+				Console.WriteLine($"{pizza.PizzaName} added to the cart.");
 			}
 			else
 			{

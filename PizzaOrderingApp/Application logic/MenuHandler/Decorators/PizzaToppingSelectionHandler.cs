@@ -33,7 +33,6 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			}
 
 			finalPizza = pizza;
-			Console.WriteLine($"Pizza satt som finalPizza: {finalPizza.PizzaName}");
 			DisplayCurrentPizzaState(finalPizza); 
 			return finalPizza;
 		}

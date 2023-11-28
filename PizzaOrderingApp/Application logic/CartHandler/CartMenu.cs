@@ -43,22 +43,10 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 					case "2":
 						displayMenus.PrintMenu();
 						IPizza selectedPizza = displayMenus.GetSelectedPizza();
-						Console.WriteLine("Selected pizza: " + (selectedPizza != null ? selectedPizza.PizzaName : "No pizza selected"));
-
+						
 						if (selectedPizza != null)
 						{
-							toppingHandler.HandleToppingSelection(selectedPizza);
-							IPizza finalPizza = toppingHandler.GetFinalPizza();
-							Console.WriteLine("Final pizza: " + (finalPizza != null ? finalPizza.PizzaName : "No final pizza"));
-
-							if (finalPizza != null)
-							{
-								shoppingCart.AddPizzaToCart(finalPizza);
-							}
-							else
-							{
-								Console.WriteLine("An error occurred: FinalPizza is null.");
-							}
+							shoppingCart.AddPizzaToCart(selectedPizza);
 						}
 						else
 						{
