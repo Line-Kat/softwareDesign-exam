@@ -73,7 +73,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						}
 						else
 						{
-							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+							Console.WriteLine("Invalid input for pizzaId. Please enter a valid number.");
 						}
 						
 						break;
@@ -94,7 +94,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						}
 						else
 						{
-							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+							Console.WriteLine("Invalid input for pizzaId. Please enter a valid number.");
 						}
 					
 						break;
