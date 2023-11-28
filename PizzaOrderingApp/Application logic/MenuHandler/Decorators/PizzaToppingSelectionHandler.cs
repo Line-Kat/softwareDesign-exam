@@ -1,7 +1,5 @@
-﻿using PizzaOrderingApp.Application_logic.CartHandler;
-using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Technical_services.CRUD;
-using System.Collections.Generic;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 {
@@ -31,12 +29,12 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			else if (response != "y" && response != "n")
 			{
 				Console.WriteLine("\nPlease write y (yes) or n (no).");
-				return HandleToppingSelection(pizza); // Recursive call to re-ask the question
+				return HandleToppingSelection(pizza); 
 			}
 
 			finalPizza = pizza;
 			Console.WriteLine($"Pizza satt som finalPizza: {finalPizza.PizzaName}");
-			DisplayCurrentPizzaState(finalPizza); // Call it once here after finalPizza is set
+			DisplayCurrentPizzaState(finalPizza); 
 			return finalPizza;
 		}
 
@@ -67,7 +65,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 
 						if (innerResponse != "y")
 						{
-							return pizza; // Ends and returns the pizza as is
+							return pizza; 
 						}
 					}
 				}
