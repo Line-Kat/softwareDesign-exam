@@ -78,7 +78,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 						break;
 					case "4":
-						Console.WriteLine("Enter pizzaId:");
+						Console.WriteLine("Enter the number of the pizza:");
 						if (int.TryParse(Console.ReadLine(), out pizzaId))
 						{
 							Console.WriteLine("Enter new quantity:");
