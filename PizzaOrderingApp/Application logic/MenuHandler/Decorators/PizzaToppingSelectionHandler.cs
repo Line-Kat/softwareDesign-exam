@@ -1,52 +1,42 @@
 ﻿using PizzaOrderingApp.Application_logic.CartHandler;
 using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Technical_services.CRUD;
+using System.Collections.Generic;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 {
-
 	public class PizzaToppingSelectionHandler
 	{
-		
 		private const int MaxToppings = 3;
 		private IPizza finalPizza;
-		//crud
+		// CRUD
 		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 		private readonly List<string> _availablePizzaToppings;
 
-		
-
-		
 		public PizzaToppingSelectionHandler()
-		{	
-			//crud
+		{
+			// CRUD
 			_availablePizzaToppings = crudOperationsMenu.GetAvailablePizzaToppings();
 		}
 
 		public IPizza HandleToppingSelection(IPizza pizza)
 		{
-			
 			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +10 kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 
 			if (response == "y")
 			{
-				
 				pizza = ChooseToppings(pizza);
-			}  
-			else if (response == "n")
-			{
-				DisplayCurrentPizzaState(pizza);
-				
 			}
-			else
+			else if (response != "y" && response != "n")
 			{
 				Console.WriteLine("\nPlease write y (yes) or n (no).");
-				HandleToppingSelection(pizza);
+				return HandleToppingSelection(pizza); // Recursive call to re-ask the question
 			}
 
 			finalPizza = pizza;
-			Console.WriteLine($"Pizza satt som finalPizza: {finalPizza.PizzaName}"); 
+			Console.WriteLine($"Pizza satt som finalPizza: {finalPizza.PizzaName}");
+			DisplayCurrentPizzaState(finalPizza); // Call it once here after finalPizza is set
 			return finalPizza;
 		}
 
@@ -67,49 +57,36 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 				if (int.TryParse(Console.ReadLine(), out int toppingChoice) &&
 					toppingChoice > 0 && toppingChoice <= _availablePizzaToppings.Count)
 				{
-					pizza = AddToppingToPizza(pizza, toppingChoice); // Oppdaterer pizzaobjektet
+					pizza = AddToppingToPizza(pizza, toppingChoice);
 					toppingsCount++;
 
 					if (toppingsCount < MaxToppings)
 					{
-						while (true)
-						{
-							DisplayCurrentPizzaState(pizza);
-							Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
-							string response = Console.ReadLine().ToLower();
+						Console.WriteLine("\nDo you want to add another topping (+ 10kr)? (y/n)");
+						string innerResponse = Console.ReadLine().ToLower();
 
-							if (response == "y")
-							{
-								break; 
-							}
-							else if (response == "n")
-							{
-								return pizza; // Avslutter og returnere pizzaen som den e
-							}
-							else
-							{
-								Console.WriteLine("Invalid response. Please enter 'y' for yes or 'n' for no.");
-							}
+						if (innerResponse != "y")
+						{
+							return pizza; // Ends and returns the pizza as is
 						}
 					}
 				}
 				else
 				{
-					Console.WriteLine($"\nInvalid choice. Please try again.\n");
+					Console.WriteLine("\nInvalid choice. Please try again.\n");
 				}
 			}
 			DisplayCurrentPizzaState(pizza);
-			return pizza; // Returne den oppdaterte pizzaen
+			return pizza; // Return the updated pizza
 		}
 
 		private IPizza AddToppingToPizza(IPizza pizza, int toppingChoice)
 		{
 			string selectedTopping = _availablePizzaToppings[toppingChoice - 1];
-			var decorator = new PizzaToppingDecorator(pizza);
+			PizzaToppingDecorator decorator = new PizzaToppingDecorator(pizza);
 			decorator.AddTopping(selectedTopping);
-			return decorator; // Returner den dekorerte pizzaen
+			return decorator; // Return the decorated pizza
 		}
-
 
 		private void DisplayAvailableToppings()
 		{
@@ -120,7 +97,6 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			}
 		}
 
-
 		public void DisplayCurrentPizzaState(IPizza pizza)
 		{
 			Console.WriteLine($"\nYour pizza order:");
@@ -128,6 +104,4 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			Console.WriteLine($"{pizza.Price} kr");
 		}
 	}
-
-
 }

@@ -30,11 +30,11 @@ namespace PizzaOrderingApp.Entities
 
 			try
 			{
-				var pizzas = crudOperationsMenu.GetAllPizzas();
+				List<Pizza> pizzas = crudOperationsMenu.GetAllPizzas(); // Assuming GetAllPizzas() returns List<Pizza>
 
 				if (pizzas.Any())
 				{
-					foreach (var pizza in pizzas)
+					foreach (Pizza pizza in pizzas) // Explicit type instead of var
 					{
 						Console.WriteLine($"Nr. {pizza.PizzaId}. {pizza.PizzaName} {pizza.Price}kr");
 						Console.WriteLine($"Description: {pizza.Description} \n");
@@ -43,15 +43,15 @@ namespace PizzaOrderingApp.Entities
 					Console.WriteLine("Please enter the number of the pizza you want to select:");
 					if (int.TryParse(Console.ReadLine(), out int pizzaId))
 					{
-						var tempSelectedPizza = crudOperationsMenu.GetPizzaById(pizzaId);
+						Pizza tempSelectedPizza = crudOperationsMenu.GetPizzaById(pizzaId); // Assuming GetPizzaById() returns a Pizza object
 
 						if (tempSelectedPizza != null)
 						{
-							this.selectedPizza = tempSelectedPizza; // Oppdaterer valgt pizza
+							this.selectedPizza = tempSelectedPizza; // Updating selected pizza
 
-							var toppingHandler = new PizzaToppingSelectionHandler();
+							PizzaToppingSelectionHandler toppingHandler = new PizzaToppingSelectionHandler();
 							toppingHandler.HandleToppingSelection(this.selectedPizza);
-							// Her kan du også håndtere den dekorerte pizzaen hvis nødvendig
+							// You can also handle the decorated pizza here if necessary
 						}
 						else
 						{
@@ -76,5 +76,6 @@ namespace PizzaOrderingApp.Entities
 				Console.WriteLine(ex.Message);
 			}
 		}
+
 	}
 }

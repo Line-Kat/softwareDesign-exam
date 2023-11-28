@@ -4,7 +4,6 @@ using PizzaOrderingApp.MenuHandler;
 
 namespace PizzaOrderingApp.Application_logic.MenuHandler
 {
-
 	public class DisplayMenus : Menu
 	{
 		private readonly List<Menu> _menus;
@@ -14,12 +13,13 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 		{
 			_menus = new List<Menu> {
 				new PizzaMenu() 
-                // Legg t flere menyer her
+                // Add more menus here
             };
 		}
+
 		public IPizza GetSelectedPizza()
 		{
-			return SelectedPizza; // Returner den valgte pizzaen
+			return SelectedPizza; 
 		}
 
 		public override void PrintMenu()
@@ -33,8 +33,8 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 			int userChoice = GetMenuChoice();
 			if (userChoice > 0 && userChoice <= _menus.Count)
 			{
-				//
-				var chosenMenu = _menus[userChoice - 1];
+				
+				Menu chosenMenu = _menus[userChoice - 1];
 				chosenMenu.PrintMenu();
 				if (chosenMenu is PizzaMenu)
 				{
@@ -59,4 +59,3 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler
 		}
 	}
 }
-	
