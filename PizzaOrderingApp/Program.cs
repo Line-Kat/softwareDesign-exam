@@ -1,4 +1,7 @@
+using PizzaOrderingApp.Application_logic.CartHandler;
+using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
+using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.MenuHandler;
 
@@ -17,6 +20,12 @@ namespace PizzaOrderingApp
 			HandleCustomer handleCustomer = new();
 			HandleOrder handleOrder = new();
 			DisplayMenus displayMenus = new();
+			ShoppingCart shoppingCart = new ShoppingCart();
+			PizzaToppingSelectionHandler toppingHandler = new PizzaToppingSelectionHandler();
+			IPizza finalPizza = toppingHandler.GetFinalPizza();
+			CartMenu cartMenu = new CartMenu(shoppingCart, displayMenus, toppingHandler);
+
+			
 
 			Login login = new Login();
 			Customer customer = login.UserLogin();
@@ -33,9 +42,7 @@ namespace PizzaOrderingApp
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
-					displayMenus.PrintMenu();
-
-					//her trenger vi å vite hvilke pizza brukeren har bestilt
+					cartMenu.ShowMenu();
 
 					int numberOfPizzas = handleOrder.GetNumberOfItems();
 
