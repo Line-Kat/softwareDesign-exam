@@ -42,13 +42,13 @@ namespace PizzaOrderingApp {
 
 			customer = crudOperationsCustomer.AddCustomer(customer);
 
-			customer = ConfirmAddCustomer(customer);
+			customer = ConfirmCustomerInformation(customer);
 
 			return customer;
 		}
 
 		//Method so the user can confirm that the input values are correct
-		public Customer ConfirmAddCustomer(Customer customer) {
+		public Customer ConfirmCustomerInformation(Customer customer) {
 			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
@@ -112,7 +112,7 @@ namespace PizzaOrderingApp {
 				case 2: {
 						Console.WriteLine("Type phone number");
 						string phoneNumber = string.Empty;
-						int phoneNumberInt = -1;
+						int phoneNumberInt;
 
 						while (phoneNumber.Length != 8 || !int.TryParse(phoneNumber, out phoneNumberInt)) {
 							Console.WriteLine("Type a phone number with eight digits: ");
