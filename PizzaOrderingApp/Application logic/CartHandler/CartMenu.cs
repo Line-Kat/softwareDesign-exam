@@ -66,16 +66,16 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						}
 						break;
 					case "3":
+						Console.WriteLine("Enter the number of the pizza you want to remove from the shopping cart:");
 						if (int.TryParse(Console.ReadLine(), out int pizzaId))
 						{
-						
 							shoppingCart.RemovePizzaFromCart(pizzaId);
 						}
 						else
 						{
-							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+							Console.WriteLine("Invalid input. Please enter a valid pizza number.");
 						}
-						
+
 						break;
 					case "4":
 						Console.WriteLine("Enter pizzaId:");
@@ -89,12 +89,12 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 							}
 							else
 							{
-								Console.WriteLine("Invalid input for newQuantity. Please enter a valid integer.");
+								Console.WriteLine("Invalid input. Please enter a valid pizza number.");
 							}
 						}
 						else
 						{
-							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+							Console.WriteLine("Invalid input. Please enter a valid number.");
 						}
 					
 						break;
