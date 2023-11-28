@@ -65,6 +65,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						}
 						break;
 					case "3":
+						
 						shoppingCart.RemovePizzaFromCart();
 						break;
 					case "4":
