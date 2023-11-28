@@ -2,6 +2,7 @@
 using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+using PizzaOrderingApp.Entities;
 using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
@@ -65,11 +66,37 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						}
 						break;
 					case "3":
+						if (int.TryParse(Console.ReadLine(), out int pizzaId))
+						{
 						
-						shoppingCart.RemovePizzaFromCart();
+							shoppingCart.RemovePizzaFromCart(pizzaId);
+						}
+						else
+						{
+							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+						}
+						
 						break;
 					case "4":
-						shoppingCart.EditCart();
+						Console.WriteLine("Enter pizzaId:");
+						if (int.TryParse(Console.ReadLine(), out pizzaId))
+						{
+							Console.WriteLine("Enter new quantity:");
+							if (int.TryParse(Console.ReadLine(), out int newQuantity))
+							{
+								// Call the EditCart method with pizzaId and newQuantity arguments
+								shoppingCart.EditCart(pizzaId, newQuantity);
+							}
+							else
+							{
+								Console.WriteLine("Invalid input for newQuantity. Please enter a valid integer.");
+							}
+						}
+						else
+						{
+							Console.WriteLine("Invalid input for pizzaId. Please enter a valid integer.");
+						}
+					
 						break;
 					case "5":
 						Console.WriteLine("Exiting...");

@@ -8,15 +8,87 @@ using System.Threading.Tasks;
 using PizzaOrderingApp.Technical_services;
 using PizzaOrderingApp.Application_logic.Decorators;
 
+//source: lecture 5
 namespace PizzaOrderingApp.UnitTesting
 {
 
-	//source: lecture 5
-	
-
-	internal class CartTests
+	public class TestPizza : IPizza
 	{
+		public int PizzaId { get; }
+		public string PizzaName { get; }
+		public int Price { get; }
+
+		public string Description { get; }
+
+		public TestPizza(int pizzaId, string pizzaName, int price)
+		{
+			PizzaId = pizzaId;
+			PizzaName = pizzaName;
+			Price = price;
+			Description = "";
+		}
+	}
+
+	[TestFixture]
+	public class CartTests
+	{
+
+		//Denne testen funker
 		[Test]
+		public void TestAddPizzaToCart_WithValidPizza_AddsPizza()
+		{
+			// Arrange
+			ShoppingCart cart = new ShoppingCart();
+			TestPizza pizza = new TestPizza(1, "Margherita", 100);
+
+			// Act
+			cart.AddPizzaToCart(pizza);
+
+			// Assert
+			Assert.That(cart.Items.Count, Is.EqualTo(1));
+			Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
+		}
+
+
+		//Denne testen bare står å loeader
+		[Test]
+		public void TestRemovePizzaFromCart_WithValidId_RemovesPizza()
+		{
+			// Arrange
+			ShoppingCart cart = new ShoppingCart();
+			TestPizza pizza = new TestPizza(1, "Margherita", 100);
+			cart.AddPizzaToCart(pizza);
+
+			// Act
+			cart.RemovePizzaFromCart(pizza.PizzaId);
+
+			// Assert
+			Assert.That(cart.Items, Is.Empty);
+		}
+
+		//står bare å loader
+
+		[Test]
+		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity()
+		{
+			// Arrange
+			ShoppingCart cart = new ShoppingCart();
+			TestPizza pizza = new TestPizza(1, "Margherita", 100);
+			cart.AddPizzaToCart(pizza);
+
+			// Act
+			cart.EditCart(pizza.PizzaId, 3);
+
+			// Assert
+			Assert.That(cart.Items[0]?.Quantity, Is.EqualTo(3));
+		}
+	}
+}
+
+		//Denne testen funket, men den tester bare om noe blir lagt til i listen,
+		//men bruker ingentin fra IPizza
+
+		/*[Test]
 		public void TestAddPizzaToCart_WithValidPizza_AddsPizza()
 		{
 			ShoppingCart cart = new ShoppingCart();
@@ -28,40 +100,5 @@ namespace PizzaOrderingApp.UnitTesting
 			// Assert that the pizza has been added
 			Assert.That(cart.Items.Count, Is.EqualTo(1));
 			Assert.That(cart.Items[0].PizzaId, Is.EqualTo(newItem.PizzaId));
-		}
-
-
-/*
-		[Test]
-		public void TestRemovePizzaFromCart_RemovesItemSuccessfully()
-		{
-			ShoppingCart cart = new ShoppingCart();
-
-			CartItem newItem = new CartItem(1, "Margherita", 1, 100);
-			cart.Items.Add(newItem);
-
-			cart.RemovePizzaFromCart(newItem.PizzaId);
-
-			// Assert that the item has been removed
-			Assert.That(cart.Items.Any(item => item.PizzaId == newItem.PizzaId), Is.False);
-		}
-
-		*/
-
-
-		[Test]
-		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity()
-		{
-			ShoppingCart cart = new ShoppingCart();
-
-			CartItem newItem = new CartItem(1, "Margherita", 1, 100);
-			cart.Items.Add(newItem);
-
-			
-			cart.EditCart(newItem.PizzaId, 3);
-
-			// Assert
-			Assert.That(cart.Items[0].Quantity, Is.EqualTo(3));
-		}
-	}
-}
+		}*/
+	

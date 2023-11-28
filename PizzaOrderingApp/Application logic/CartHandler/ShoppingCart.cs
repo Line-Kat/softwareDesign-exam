@@ -64,10 +64,10 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 
 		//method that removes a pizza from cart using id, it searches through the list of cart items to find the matching pizza. 
-		public void RemovePizzaFromCart()
+		public void RemovePizzaFromCart(int pizzaId)
 		{
 			Console.WriteLine("Enter the number of the pizza you want to remove from the shopping cart:");
-			if (int.TryParse(Console.ReadLine(), out int pizzaId))
+			if (int.TryParse(Console.ReadLine(), out pizzaId))
 			{
 				CartItem? itemToRemove = null;
 
@@ -99,13 +99,13 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 		//method that modifies the quantity of a pizza using id, and searches through the list to find the matching pizza.
 		//if the id matches the quantity is updated
-		public void EditCart()
+		public void EditCart(int pizzaId, int newQuantity)
 		{
 			Console.WriteLine("Enter the number of the pizza you want to modify in the shopping cart:");
-			if (int.TryParse(Console.ReadLine(), out int pizzaId))
+			if (int.TryParse(Console.ReadLine(), out pizzaId))
 			{
 				Console.WriteLine("Enter the new quantity:");
-				if (int.TryParse(Console.ReadLine(), out int newQuantity) && newQuantity > 0)
+				if (int.TryParse(Console.ReadLine(), out newQuantity) && newQuantity > 0)
 				{
 					CartItem? itemToEdit = null;
 
