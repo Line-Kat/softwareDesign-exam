@@ -8,15 +8,15 @@ using PizzaOrderingApp.Technical_services;
 
 namespace PizzaOrderingApp.Test
 {
-	public class Tests
+	public class CrudOperationsCustomerTests
 	{
 
-		//Testing CrudOperationsCustomer
-		CrudOperationsCustomer crudOperationsCustomer = new();
+
 		[Test]
 		public void AddCustomer_AddingCustomerToDb_ReturnsCustomer()
 		{
 			//Arrange
+			CrudOperationsCustomer crudOperationsCustomer = new();
 			string expectedName = "Dutleif";
 			
 			//Act
@@ -30,6 +30,7 @@ namespace PizzaOrderingApp.Test
 		[Test]
 		public void GetCustomerByPhoneNr_GettingCustomerByPhoneNumber_ReturnCustomer() {
 			//Arrange
+			CrudOperationsCustomer crudOperationsCustomer = new();
 			Customer expectedCustomer = new() { CustomerName = "Sandra", PhoneNr = 87654321 };
 			crudOperationsCustomer.AddCustomer(expectedCustomer);
 
