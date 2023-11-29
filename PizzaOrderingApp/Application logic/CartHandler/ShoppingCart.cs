@@ -7,59 +7,59 @@ using System.Linq;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
-	public class ShoppingCart
-	{
+	public class ShoppingCart {
 
 		//a list to store the pizzas
 		public List<CartItem?> Items { get; } = new List<CartItem?>();
 
-		public ShoppingCart()
-		{
+		public ShoppingCart() {
 			Items = new List<CartItem?>();
 		}
 
 		//method that adds a pizza to the list. Checks if the pizza exist or not.
 		//Also checks if the pizza with the same id already exists in the cart, and if so - adds it to the quantity
-		public void AddPizzaToCart(IPizza pizza)
-		{
-			if (pizza != null)
-			{
+		public void AddPizzaToCart(IPizza pizza) {
+			if (pizza != null) {
 				bool pizzaExists = false;
 
-				foreach (CartItem? item in Items)
-				{
-					if (item?.PizzaId == pizza.PizzaId)
-					{
+				foreach (CartItem? item in Items) {
+					if (item?.PizzaId == pizza.PizzaId) {
 						item.Quantity++;
 						pizzaExists = true;
-						break; 
+						break;
 					}
 				}
 
-				if (!pizzaExists)
-				{
-					
-					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1 , pizza.Price);
+				if (!pizzaExists) {
+
+					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1, pizza.Price);
 					Items.Add(cartItem);
 				}
 
 				Console.WriteLine($"{pizza.PizzaName} added to the cart.");
-			}
-			else
-			{
+			} else {
 				Console.WriteLine("Error: Could not add pizza to the cart.");
 			}
 		}
 
 
 		//method that shows the pizzas in the shoppingCart(list) using a foreach to go through each item in the shoppingCart. 
-		public void ViewCart()
-		{
+		public void ViewCart() {
 			Console.WriteLine("Your shoppingCart: ");
-			foreach (CartItem? item in Items)
-			{
+			foreach (CartItem? item in Items) {
 				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
 			}
+		}
+
+		public int totalNumberOfPizzas() {
+
+			int totalNumberOfPizzas = 0;
+
+			foreach (CartItem? item in Items) {
+				totalNumberOfPizzas += item.Quantity;
+			}
+
+			return totalNumberOfPizzas;
 		}
 
 

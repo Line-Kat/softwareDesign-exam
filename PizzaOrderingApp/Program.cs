@@ -25,8 +25,6 @@ namespace PizzaOrderingApp
 			IPizza finalPizza = toppingHandler.GetFinalPizza();
 			CartMenu cartMenu = new CartMenu(shoppingCart, displayMenus, toppingHandler);
 
-			
-
 			Login login = new Login();
 			Customer customer = login.UserLogin();
 
@@ -36,7 +34,7 @@ namespace PizzaOrderingApp
 			while (keepRunning) {
 				Console.WriteLine("Choose an option:\n1 Order pizza\n2 Log out\n3 Edit your user\n4 Delete your user");
 
-				string userInput = Console.ReadLine();
+				string? userInput = Console.ReadLine();
 				if (userInput.Equals("1"))
 				{
 					HandleOrder order = new();
@@ -44,10 +42,12 @@ namespace PizzaOrderingApp
 
 					cartMenu.ShowMenu();
 
-					int numberOfPizzas = handleOrder.GetNumberOfItems();
+					//int numberOfPizzas= handleOrder.GetNumberOfItems();
 
-					DateTime dateTime = queue.CheckQueue(numberOfPizzas);
-					order.PrintOrder(customer, dateTime, numberOfPizzas);
+					int totalNumberOfPizzas = shoppingCart.totalNumberOfPizzas();
+					
+					DateTime dateTime = queue.CheckQueue(totalNumberOfPizzas);
+					order.PrintOrder(customer, dateTime, totalNumberOfPizzas);
 					order.AddOrder(customer);
 
 					keepRunning = false;

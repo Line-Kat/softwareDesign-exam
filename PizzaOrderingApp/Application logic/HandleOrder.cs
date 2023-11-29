@@ -29,14 +29,15 @@ namespace PizzaOrderingApp {
 		}
 
 		//Method to get the number of pizzas the customer wants to order
-		public int GetNumberOfItems() {
+		//METODEN ER ERSTATTET AV METODEN TOTALNUMBEROFPIZZAS I KLASSEN SHOPPINGCART
+		/*public int GetNumberOfItems() {
 
 			bool numInputIsEmpty = true;
 			int userPizzaCount = 0;
 
 			while (numInputIsEmpty) {
 				Console.WriteLine("Type the number of pizzas you want");
-				string countAsString = Console.ReadLine();
+				string? countAsString = Console.ReadLine();
 
 				if (!int.TryParse(countAsString, out userPizzaCount)) {
 					Console.WriteLine("Count needs to be higher than 1");
@@ -48,5 +49,6 @@ namespace PizzaOrderingApp {
 			}
 			return userPizzaCount;
 		}
+		*/
 	}
 }
