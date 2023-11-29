@@ -5,13 +5,10 @@ using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.MenuHandler;
 
-namespace PizzaOrderingApp
-{
-	internal class Program
-	{
-		static void Main(string[] args)
-		{
-	
+namespace PizzaOrderingApp {
+	internal class Program {
+		static void Main(string[] args) {
+
 			//Metode som legger til pizza i pizza tabellen i db (om de ikke finnes fra før av)
 			AddMenuItems addMenuItems = new();
 			addMenuItems.AddItems();
@@ -35,8 +32,7 @@ namespace PizzaOrderingApp
 				Console.WriteLine("\nChoose an option:\n1. Order pizza\n2. Log out\n3. Manage your account");
 
 				string? userInput = Console.ReadLine();
-				if (userInput.Equals("1"))
-				{
+				if (userInput.Equals("1")) {
 					HandleOrder order = new();
 					PizzaQueue queue = new();
 
@@ -47,7 +43,7 @@ namespace PizzaOrderingApp
 					int totalNumberOfPizzas = shoppingCart.TotalNumberOfPizzas();
 					int totalToPay = shoppingCart.TotalToPay();
 					List<CartItem> cartItems = shoppingCart.GetCartItems();
-					
+
 					DateTime dateTime = queue.CheckQueue(totalNumberOfPizzas);
 					order.PrintOrder(customer, dateTime, totalToPay, cartItems);
 					order.AddOrder(customer);

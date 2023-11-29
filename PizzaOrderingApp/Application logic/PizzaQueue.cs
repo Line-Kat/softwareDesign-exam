@@ -24,8 +24,7 @@ namespace PizzaOrderingApp {
 				DateTime queueWait = (queueEnd + pizzaCookingTime);
 				Console.WriteLine(totalPizzaNumber);
 				return queueWait;
-			}
-			else if (timeNow >= queueEnd) {
+			} else if (timeNow >= queueEnd) {
 				DateTime queueWait = (timeNow + pizzaCookingTime);
 				return queueWait;
 			}
