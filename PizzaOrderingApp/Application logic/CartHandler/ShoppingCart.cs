@@ -46,7 +46,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 		public void ViewCart() {
 			Console.WriteLine("Your shoppingCart: ");
 			foreach (CartItem? item in Items) {
-				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
+				Console.WriteLine($"Nr. {item.PizzaId} {item.PizzaName}, with {item.Description}.  Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
 			}
 		}
 
@@ -85,7 +85,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 
 			if (itemToRemove != null) {
 				Items.Remove(itemToRemove);
-				Console.WriteLine($"Pizza with number {pizzaId} has been removed from the shopping cart.");
+				Console.WriteLine($"Pizza number {pizzaId} has been removed from the shopping cart.");
 			} else {
 				Console.WriteLine($"Could not find a pizza with number {pizzaId} in the shopping cart.");
 			}
@@ -100,12 +100,12 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 
 				if (itemToEdit != null) {
 					itemToEdit.Quantity = newQuantity;
-					Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
+					Console.WriteLine($"Quantity for pizza number {pizzaId} has been changed to {newQuantity}.");
 				} else {
-					Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
+					Console.WriteLine($"Could not find pizza number {pizzaId} to change the quantity.");
 				}
 			} else {
-				Console.WriteLine("Invalid quantity, please enter a positive number.");
+				Console.WriteLine("Invalid quantity, please enter a number.");
 			}
 		}
 

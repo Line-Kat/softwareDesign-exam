@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using PizzaOrderingApp.Application_logic.CartHandler;
+﻿using PizzaOrderingApp.Application_logic.CartHandler;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services.CRUD;
 
