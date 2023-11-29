@@ -27,7 +27,7 @@ namespace PizzaOrderingApp.Test {
 	}
 
 	[TestFixture]
-	public class CartTests {
+	public class ShoppingCartTest {
 
 		//Denne testen funker
 		[Test]
