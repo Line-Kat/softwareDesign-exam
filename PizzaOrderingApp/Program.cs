@@ -45,9 +45,10 @@ namespace PizzaOrderingApp
 					//int numberOfPizzas= handleOrder.GetNumberOfItems();
 
 					int totalNumberOfPizzas = shoppingCart.totalNumberOfPizzas();
+					int totalToPay = shoppingCart.totalToPay();
 					
 					DateTime dateTime = queue.CheckQueue(totalNumberOfPizzas);
-					order.PrintOrder(customer, dateTime, totalNumberOfPizzas);
+					order.PrintOrder(customer, dateTime, totalToPay);
 					order.AddOrder(customer);
 
 					keepRunning = false;

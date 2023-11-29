@@ -61,6 +61,17 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 			return totalNumberOfPizzas;
 		}
 
+		public int totalToPay() {
+
+			int sum = 0;
+
+			foreach (CartItem? item in Items) {
+				sum += (item.Price * item.Quantity);
+			}
+
+			return sum;
+		}
+
 
 		//method that removes a pizza from cart using id, it searches through the list of cart items to find the matching pizza. 
 		public void RemovePizzaFromCart(int pizzaId) {
