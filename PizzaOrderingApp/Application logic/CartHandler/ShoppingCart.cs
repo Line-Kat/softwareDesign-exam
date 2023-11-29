@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace PizzaOrderingApp.Application_logic.CartHandler
-{
+namespace PizzaOrderingApp.Application_logic.CartHandler {
 	public class ShoppingCart {
 
 		//a list to store the pizzas
@@ -64,42 +63,31 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 
 		//method that removes a pizza from cart using id, it searches through the list of cart items to find the matching pizza. 
-		public void RemovePizzaFromCart(int pizzaId)
-		{
+		public void RemovePizzaFromCart(int pizzaId) {
 			CartItem? itemToRemove = Items.FirstOrDefault(item => item?.PizzaId == pizzaId);
 
-			if (itemToRemove != null)
-			{
+			if (itemToRemove != null) {
 				Items.Remove(itemToRemove);
 				Console.WriteLine($"Pizza with number {pizzaId} has been removed from the shopping cart.");
-			}
-			else
-			{
+			} else {
 				Console.WriteLine($"Could not find a pizza with number {pizzaId} in the shopping cart.");
 			}
 		}
 
 		//method that modifies the quantity of a pizza using id, and searches through the list to find the matching pizza.
 		//if the id matches the quantity is updated
-		public void EditCart(int pizzaId, int newQuantity)
-		{
+		public void EditCart(int pizzaId, int newQuantity) {
 			// Directly use the parameters pizzaId and newQuantity without additional input prompts
-			if (newQuantity > 0)
-			{
+			if (newQuantity > 0) {
 				CartItem? itemToEdit = Items.FirstOrDefault(item => item?.PizzaId == pizzaId);
 
-				if (itemToEdit != null)
-				{
+				if (itemToEdit != null) {
 					itemToEdit.Quantity = newQuantity;
 					Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
-				}
-				else
-				{
+				} else {
 					Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
 				}
-			}
-			else
-			{
+			} else {
 				Console.WriteLine("Invalid quantity, please enter a positive number.");
 			}
 		}

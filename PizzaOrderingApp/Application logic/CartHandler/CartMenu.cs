@@ -5,28 +5,23 @@ using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.Entities;
 using System;
 
-namespace PizzaOrderingApp.Application_logic.CartHandler
-{
-	public class CartMenu
-	{
+namespace PizzaOrderingApp.Application_logic.CartHandler {
+	public class CartMenu {
 		private ShoppingCart shoppingCart;
 		private DisplayMenus displayMenus;
 		private PizzaToppingSelectionHandler toppingHandler;
 
 		//constructor for the CartMenu class
-		public CartMenu(ShoppingCart shoppingCart, DisplayMenus displayMenus, PizzaToppingSelectionHandler toppingHandler)
-		{
+		public CartMenu(ShoppingCart shoppingCart, DisplayMenus displayMenus, PizzaToppingSelectionHandler toppingHandler) {
 			this.shoppingCart = shoppingCart;
 			this.displayMenus = displayMenus;
 			this.toppingHandler = toppingHandler;
 		}
 
 		//method that displays the menu for interacting with the shoppingCart
-		public void ShowMenu()
-		{
+		public void ShowMenu() {
 			bool running = true;
-			while (running)
-			{
+			while (running) {
 				Console.WriteLine("\nChoose an action:");
 				Console.WriteLine("1. View shopping cart");
 				Console.WriteLine("2. Add a new pizza");
@@ -36,56 +31,43 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 				Console.WriteLine("5. Send order");
 
 				string? userInput = Console.ReadLine();
-				switch (userInput)
-				{
+				switch (userInput) {
 					case "1":
 						shoppingCart.ViewCart();
 						break;
 					case "2":
 						displayMenus.PrintMenu();
 						IPizza selectedPizza = displayMenus.GetSelectedPizza();
-						
-						if (selectedPizza != null)
-						{
+
+						if (selectedPizza != null) {
 							shoppingCart.AddPizzaToCart(selectedPizza);
-						}
-						else
-						{
+						} else {
 							Console.WriteLine("No pizza was selected.");
 						}
 						break;
 					case "3":
 						Console.WriteLine("Enter the number of the pizza you want to remove from the shopping cart:");
-						if (int.TryParse(Console.ReadLine(), out int pizzaId))
-						{
+						if (int.TryParse(Console.ReadLine(), out int pizzaId)) {
 							shoppingCart.RemovePizzaFromCart(pizzaId);
-						}
-						else
-						{
+						} else {
 							Console.WriteLine("Invalid input. Please enter a valid pizza number.");
 						}
 
 						break;
 					case "4":
 						Console.WriteLine("Enter the number of the pizza:");
-						if (int.TryParse(Console.ReadLine(), out pizzaId))
-						{
+						if (int.TryParse(Console.ReadLine(), out pizzaId)) {
 							Console.WriteLine("Enter new quantity:");
-							if (int.TryParse(Console.ReadLine(), out int newQuantity))
-							{
+							if (int.TryParse(Console.ReadLine(), out int newQuantity)) {
 								// Call the EditCart method with pizzaId and newQuantity arguments
 								shoppingCart.EditCart(pizzaId, newQuantity);
-							}
-							else
-							{
+							} else {
 								Console.WriteLine("Invalid input. Please enter a valid pizza number.");
 							}
-						}
-						else
-						{
+						} else {
 							Console.WriteLine("Invalid input. Please enter a valid number.");
 						}
-					
+
 						break;
 					case "5":
 						//Console.WriteLine("Exiting...");
