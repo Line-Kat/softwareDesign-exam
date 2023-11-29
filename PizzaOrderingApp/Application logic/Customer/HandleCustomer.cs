@@ -49,7 +49,7 @@ namespace PizzaOrderingApp {
 
 		//Method so the user can confirm that the input values are correct
 		public Customer ConfirmCustomerInformation(Customer customer) {
-			Console.WriteLine($"Your information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
+			Console.WriteLine($"\nYour information:\nName: {customer.CustomerName}\nPhone number: {customer.PhoneNr}");
 
 			bool inputHasNoValue = true;
 			string? userInput = string.Empty;
@@ -77,7 +77,7 @@ namespace PizzaOrderingApp {
 
 			while (keepRunning ) {
 				Console.WriteLine(
-				"Type the number of the alternative you need to edit\n" +
+				"\nType the number of the alternative you need to edit\n" +
 				"1 name\n" +
 				"2 phone number");
 
@@ -102,15 +102,16 @@ namespace PizzaOrderingApp {
 
 				case 1: {
 						
-						Console.WriteLine("Type name: ");
+						Console.WriteLine("\nType name: ");
 						string? name = Console.ReadLine();
 						customer.CustomerName = name;
 						crudOperationsCustomer.UpdateCustomer(customer);
+						Console.WriteLine($"New name: {name}");
 
 					}
 					break;
 				case 2: {
-						Console.WriteLine("Type phone number");
+						Console.WriteLine("\nType phone number");
 						string phoneNumber = string.Empty;
 						int phoneNumberInt;
 

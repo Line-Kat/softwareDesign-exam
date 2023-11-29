@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinResources", "BinResource
 		PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db = PizzaOrderingApp\bin\Debug\net7.0\Resources\PizzaOrdering.db
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaOrderingApp.UnitTesting", "PizzaOrderingApp.UnitTesting\PizzaOrderingApp.UnitTesting.csproj", "{9CF97842-21CE-4DB0-A36D-05A4D5E4ABE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PizzaOrderingApp.Test", "PizzaOrderingApp.Test\PizzaOrderingApp.Test.csproj", "{9CF97842-21CE-4DB0-A36D-05A4D5E4ABE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

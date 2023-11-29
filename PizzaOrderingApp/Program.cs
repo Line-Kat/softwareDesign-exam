@@ -31,8 +31,7 @@ namespace PizzaOrderingApp
 			Console.WriteLine($"\nWelcome {customer.CustomerName}");
 
 			bool keepRunning = true;
-			while (keepRunning)
-			{
+			while (keepRunning) {
 				Console.WriteLine("\nChoose an option:\n1. Order pizza\n2. Log out\n3. Manage your account");
 
 				string? userInput = Console.ReadLine();
@@ -45,12 +44,10 @@ namespace PizzaOrderingApp
 
 					//int numberOfPizzas= handleOrder.GetNumberOfItems();
 
-					int totalNumberOfPizzas = shoppingCart.TotalNumberOfPizzas();
-					int totalToPay = shoppingCart.TotalToPay();
-					List<CartItem> cartItems = shoppingCart.GetCartItems();
+					int numberOfPizzas = handleOrder.GetNumberOfItems();
 
-					DateTime dateTime = queue.CheckQueue(totalNumberOfPizzas);
-					order.PrintOrder(customer, dateTime, totalToPay, cartItems);
+					DateTime dateTime = queue.CheckQueue(numberOfPizzas);
+					order.PrintOrder(customer, dateTime, numberOfPizzas);
 					order.AddOrder(customer);
 
 					keepRunning = false;
@@ -62,32 +59,10 @@ namespace PizzaOrderingApp
 					keepRunning = false;
 				}
 
-				if (userInput.Equals("3"))
-				{
-
-					bool keepRunning2 = true;
-					while (keepRunning2)
-					{
-
-						Console.WriteLine("\nManage your account:\n1 Edit your user \n2 Delete user");
-						string? userInput2 = Console.ReadLine();
-						if (userInput2.Equals("1"))
-						{
-							customer = handleCustomer.ConfirmCustomerInformation(customer);
-							keepRunning2 = false;
-						}
-						else if (userInput2.Equals("2"))
-						{
-							handleCustomer.DeleteCustomer(customer.CustomerId);
-							Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
-							keepRunning2 = false;
-							keepRunning = false;
-						}
-						else
-						{
-							Console.WriteLine("\nChoose a number from the menu");
-						}
-					}
+				if (userInput.Equals("3")) {
+					handleCustomer.DeleteCustomer(customer.CustomerId);
+					Console.WriteLine("You are now deleted from out database. You are welcome to come back another time");
+					keepRunning = false;
 				}
 			}
 		}
