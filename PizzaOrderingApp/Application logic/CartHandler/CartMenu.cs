@@ -1,6 +1,9 @@
-﻿using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.CartHandler;
+using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
+using PizzaOrderingApp.Entities;
+using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
@@ -40,11 +43,10 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 					case "2":
 						displayMenus.PrintMenu();
 						IPizza selectedPizza = displayMenus.GetSelectedPizza();
-						
+
 						if (selectedPizza != null)
 						{
-							int numberOfToppings = toppingHandler.GetNumberOfToppings();
-							shoppingCart.AddPizzaToCart(selectedPizza, numberOfToppings);
+							shoppingCart.AddPizzaToCart(selectedPizza);
 						}
 						else
 						{
@@ -70,8 +72,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 							Console.WriteLine("Enter new quantity:");
 							if (int.TryParse(Console.ReadLine(), out int newQuantity))
 							{
-							
-								shoppingCart.EditCart(pizzaId, newQuantity, numberOfToppings);
+								// Call the EditCart method with pizzaId and newQuantity arguments
+								shoppingCart.EditCart(pizzaId, newQuantity);
 							}
 							else
 							{
@@ -82,7 +84,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						{
 							Console.WriteLine("Invalid input. Please enter a valid number.");
 						}
-					
+
 						break;
 					case "5":
 						Console.WriteLine("Exiting...");

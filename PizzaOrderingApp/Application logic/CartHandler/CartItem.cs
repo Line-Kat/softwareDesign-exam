@@ -15,9 +15,6 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 		public int Price { get; set; }
 
 		public string Description { get; set; }
-		public int ExtraToppingsCost { get; set; } = 0;
-		public int NumberOfToppings { get; set; } = 0;
-
 
 		public CartItem(int pizzaId, string pizzaName, int quantity, int price)
 		{
@@ -25,19 +22,13 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 			PizzaName = pizzaName;
 			Quantity = quantity;
 			Price = price;
-		
-		}
-		public void UpdateExtraToppingsCost(int numberOfToppings)
-		{
-			ExtraToppingsCost = numberOfToppings * 30;
-		}
 
+		}
 
 		public override string ToString()
 		{
-			int totalItemPrice = Price + ExtraToppingsCost;
-			return $"{PizzaName}, Quantity: {Quantity}, Price: {totalItemPrice} kr";
+			return $"{PizzaName}, Quantity: {Quantity}, Price: {Price * Quantity} kr";
 		}
 	}
-	}
 
+}
