@@ -1,9 +1,6 @@
-﻿using PizzaOrderingApp.Application_logic.CartHandler;
-using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
-using PizzaOrderingApp.Entities;
-using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler {
 	public class CartMenu {
