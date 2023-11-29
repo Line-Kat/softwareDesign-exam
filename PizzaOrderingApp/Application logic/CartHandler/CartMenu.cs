@@ -1,9 +1,6 @@
-﻿using PizzaOrderingApp.Application_logic.CartHandler;
-using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
-using PizzaOrderingApp.Entities;
-using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
@@ -41,16 +38,12 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						shoppingCart.ViewCart();
 						break;
 					case "2":
-						displayMenus.PrintMenu(); // Display the menu and handle the pizza selection
-						IPizza selectedPizza = displayMenus.GetSelectedPizza(); // Get the selected pizza
+						displayMenus.PrintMenu();
+						IPizza selectedPizza = displayMenus.GetSelectedPizza();
 
 						if (selectedPizza != null)
 						{
-							// Allow the user to add toppings to the selected pizza
-							selectedPizza = toppingHandler.HandleToppingSelection(selectedPizza);
-							// Add the final version of the pizza (with or without toppings) to the shopping cart
 							shoppingCart.AddPizzaToCart(selectedPizza);
-							Console.WriteLine($"{selectedPizza.PizzaName} has been added to your cart.");
 						}
 						else
 						{

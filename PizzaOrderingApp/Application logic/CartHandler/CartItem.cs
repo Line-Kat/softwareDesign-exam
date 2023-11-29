@@ -1,11 +1,4 @@
-﻿using PizzaOrderingApp.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaOrderingApp.Application_logic.CartHandler
+﻿namespace PizzaOrderingApp.Application_logic.CartHandler
 {
 	public class CartItem
 	{
@@ -16,20 +9,15 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 		public string Description { get; set; }
 
-		public CartItem(int pizzaId, string pizzaName, int quantity, int price, string description)
+		public CartItem(int pizzaId, string pizzaName, int quantity, int price)
 		{
 			PizzaId = pizzaId;
 			PizzaName = pizzaName;
 			Quantity = quantity;
 			Price = price;
-			Description = description;
 
 		}
 
-		public override string ToString()
-		{
-			return $"{PizzaName}, Quantity: {Quantity}, Price: {Price * Quantity} kr";
-		}
 	}
 
 }

@@ -30,11 +30,11 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators
 			else if (response != "y" && response != "n")
 			{
 				Console.WriteLine("\nPlease write y (yes) or n (no).");
-				return HandleToppingSelection(pizza); 
+				return HandleToppingSelection(pizza);
 			}
 
 			finalPizza = pizza;
-			DisplayCurrentPizzaState(finalPizza); 
+			DisplayCurrentPizzaState(finalPizza);
 			return finalPizza;
 		}
 
