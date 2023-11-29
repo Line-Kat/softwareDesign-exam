@@ -9,16 +9,19 @@ using PizzaOrderingApp.Technical_services;
 using PizzaOrderingApp.Application_logic.Decorators;
 
 //source: lecture 5
-namespace PizzaOrderingApp.Test {
+namespace PizzaOrderingApp.UnitTesting
+{
 
-	public class TestPizza : IPizza {
+	public class TestPizza : IPizza
+	{
 		public int PizzaId { get; }
 		public string PizzaName { get; }
 		public int Price { get; }
 
 		public string Description { get; }
 
-		public TestPizza(int pizzaId, string pizzaName, int price) {
+		public TestPizza(int pizzaId, string pizzaName, int price)
+		{
 			PizzaId = pizzaId;
 			PizzaName = pizzaName;
 			Price = price;
@@ -27,36 +30,30 @@ namespace PizzaOrderingApp.Test {
 	}
 
 	[TestFixture]
-	public class ShoppingCartTest {
+	public class CartTests
+	{
 
 		//Denne testen funker
 		[Test]
-		public void TestAddPizzaToCart_WithValidPizza_AddsPizza() {
+		public void TestAddPizzaToCart_WithValidPizza_AddsPizza()
+		{
 			// Arrange
 			ShoppingCart cart = new ShoppingCart();
 			TestPizza pizza = new TestPizza(1, "Margherita", 100);
 
-			Pizza testPizza = new() {
-				PizzaName = "Chicken",
-				Price = 100,
-				Description = "Spicy chicken"
-			};
-
 			// Act
-			//cart.AddPizzaToCart(pizza);
-			cart.AddPizzaToCart(testPizza);
+			cart.AddPizzaToCart(pizza);
 
 			// Assert
 			Assert.That(cart.Items.Count, Is.EqualTo(1));
-			//Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
-
-			Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(testPizza.PizzaId));
+			Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
 		}
 
 
 		//Denne testen bare står å loeader
 		[Test]
-		public void TestRemovePizzaFromCart_WithValidId_RemovesPizza() {
+		public void TestRemovePizzaFromCart_WithValidId_RemovesPizza()
+		{
 			// Arrange
 			ShoppingCart cart = new ShoppingCart();
 			TestPizza pizza = new TestPizza(1, "Margherita", 100);
@@ -72,7 +69,8 @@ namespace PizzaOrderingApp.Test {
 		//står bare å loader
 
 		[Test]
-		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity() {
+		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity()
+		{
 			// Arrange
 			ShoppingCart cart = new ShoppingCart();
 			TestPizza pizza = new TestPizza(1, "Margherita", 100);
