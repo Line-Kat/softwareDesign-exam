@@ -16,12 +16,13 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 
 		public string Description { get; set; }
 
-		public CartItem(int pizzaId, string pizzaName, int quantity, int price)
+		public CartItem(int pizzaId, string pizzaName, int quantity, int price, string description)
 		{
 			PizzaId = pizzaId;
 			PizzaName = pizzaName;
 			Quantity = quantity;
 			Price = price;
+			Description = description;
 
 		}
 

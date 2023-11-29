@@ -24,33 +24,29 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 		{
 			if (pizza != null)
 			{
-				bool pizzaExists = false;
+				CartItem? existingCartItem = Items.FirstOrDefault(item => item?.PizzaId == pizza.PizzaId);
 
-				foreach (CartItem? item in Items)
+				if (existingCartItem != null)
 				{
-					if (item?.PizzaId == pizza.PizzaId)
-					{
-						item.Quantity++;
-						pizzaExists = true;
-						break;
-					}
+					// If the pizza already exists in the cart, update the quantity.
+					existingCartItem.Quantity++;
+					// Update the price in case it's different (because of the toppings).
+					existingCartItem.Price = pizza.Price;
+					Console.WriteLine($"{pizza.PizzaName} quantity updated in the cart.");
 				}
-
-				if (!pizzaExists)
+				else
 				{
-
-					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1, pizza.Price);
-					Items.Add(cartItem);
+					// If the pizza is not in the cart, create a new CartItem and add it.
+					existingCartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1, pizza.Price, pizza.Description);
+					Items.Add(existingCartItem);
+					Console.WriteLine($"{pizza.PizzaName} added to the cart with new toppings.");
 				}
-
-				Console.WriteLine($"{pizza.PizzaName} added to the cart.");
 			}
 			else
 			{
 				Console.WriteLine("Error: Could not add pizza to the cart.");
 			}
 		}
-
 
 		//method that shows the pizzas in the shoppingCart(list) using a foreach to go through each item in the shoppingCart. 
 		public void ViewCart()
