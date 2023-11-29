@@ -1,12 +1,9 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services.CRUD;
 using Moq;
-using System.Linq;
 
 namespace PizzaOrderingApp.UnitTests
 {
@@ -15,29 +12,19 @@ namespace PizzaOrderingApp.UnitTests
 	{
 		private DisplayMenus _displayMenus;
 		private PizzaToppingSelectionHandler _toppingHandler;
-		private IPizza _pizza;
 		private PizzaToppingDecorator _decorator;
 		private IPizza _basePizza;
 		private PizzaMenu _pizzaMenu;
-		private Mock<CrudOperationsMenu> _mockCrudOperations;
 
 		[SetUp]
 		public void Setup()
 		{
 			_displayMenus = new DisplayMenus();
 			_toppingHandler = new PizzaToppingSelectionHandler();
-			_pizza = new Pizza { PizzaName = "Margherita", Price = 100, Description = "Tomato sauce, cheese" };
 			_basePizza = new Pizza { PizzaName = "Basic Pizza", Price = 100, Description = "Base pizza" };
 			_decorator = new PizzaToppingDecorator(_basePizza);
 			_pizzaMenu = new PizzaMenu();
 
-		/*	_mockCrudOperations = new Mock<CrudOperationsMenu>();
-			_mockCrudOperations.Setup(c => c.GetAllPizzas()).Returns(new List<Pizza>
-			{
-				new Pizza { PizzaId = 1, PizzaName = "Margherita", Price = 100, Description = "Tomato sauce, cheese" },
-            });
-
-			*/
 		}
 
 		//Test: after creating a DisplayMenus object, calling the GetSelectedPizza method returns null, indicating no pizza has been selected yet
@@ -88,6 +75,30 @@ namespace PizzaOrderingApp.UnitTests
 			});
 		}
 
-		
+		[Test]
+		public void AddPizzas_AddsNewPizzasToDatabase()
+		{
+			// Arrange
+			var crudOperations = new CrudOperationsMenu();
+					var newPizzas = new List<Pizza>
+			{
+				new Pizza { PizzaName = "Margarita", Price = 99, Description = "Tomato sauce, cheese" },
+				new Pizza { PizzaName = "Pepperoni", Price = 149, Description = "Tomato sauce, cheese, pepperoni" },
+				new Pizza { PizzaName = "Vegan deluxe", Price = 129, Description = "Tomato sauce, vegan cheese, peppers, olives"},
+				new Pizza { PizzaName = "Hawaiian dream", Price = 149, Description = "Tomato sauce, cheese, pineapple, ham"}
+			};
+
+			// Act
+			crudOperations.AddPizzas(newPizzas);
+
+			// Assert
+			using var db = new PizzaOrderingDbContext();
+			foreach (var pizza in newPizzas)
+			{
+				var dbPizza = db.Pizza.FirstOrDefault(p => p.PizzaName == pizza.PizzaName);
+				Assert.That(dbPizza, Is.Not.Null); // Check each pizza was added
+			}
+		}
+
 	}
 }
