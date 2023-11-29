@@ -33,7 +33,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 				Console.WriteLine("3. Remove a pizza from the shopping cart");
 				Console.WriteLine("4. Change the quantity of a pizza in the shopping cart");
 				//Console.WriteLine("5. Exit");
-				Console.WriteLine("Send order");
+				Console.WriteLine("5. Send order");
 
 				string? userInput = Console.ReadLine();
 				switch (userInput)
