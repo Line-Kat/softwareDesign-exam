@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /*
-namespace PizzaOrderingApp.UnitTesting
+namespace PizzaOrderingApp.Test
 {
 	public class TestPizza : IPizza
 	{

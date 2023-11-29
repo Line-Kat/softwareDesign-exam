@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services;
-/*
-namespace PizzaOrderingApp.UnitTesting
+
+namespace PizzaOrderingApp.Test
 {
 	public class Tests
 	{
@@ -41,4 +41,4 @@ namespace PizzaOrderingApp.UnitTesting
 		}
 	}
 }
-	*/
+	
