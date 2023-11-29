@@ -50,7 +50,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 			}
 		}
 
-		public int totalNumberOfPizzas() {
+		//Method that calculates and returns the total number of pizzas ordered
+		public int TotalNumberOfPizzas() {
 
 			int totalNumberOfPizzas = 0;
 
@@ -61,7 +62,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 			return totalNumberOfPizzas;
 		}
 
-		public int totalToPay() {
+		//Method that calculates and returns the total sum of the order
+		public int TotalToPay() {
 
 			int sum = 0;
 
@@ -70,6 +72,10 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 			}
 
 			return sum;
+		}
+
+		public List<CartItem> GetCartItems() {
+			return Items;
 		}
 
 
