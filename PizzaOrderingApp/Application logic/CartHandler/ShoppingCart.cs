@@ -67,7 +67,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 
 			int sum = 0;
 
-			foreach (CartItem? item in Items) {
+			foreach (CartItem item in Items) {
 				sum += (item.Price * item.Quantity);
 			}
 
