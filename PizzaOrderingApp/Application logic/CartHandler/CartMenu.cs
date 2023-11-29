@@ -1,9 +1,6 @@
-﻿using PizzaOrderingApp.Application_logic.CartHandler;
-using PizzaOrderingApp.Application_logic.Decorators;
+﻿using PizzaOrderingApp.Application_logic.Decorators;
 using PizzaOrderingApp.Application_logic.MenuHandler;
 using PizzaOrderingApp.Application_logic.MenuHandler.Decorators;
-using PizzaOrderingApp.Entities;
-using System;
 
 namespace PizzaOrderingApp.Application_logic.CartHandler
 {
@@ -46,7 +43,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 						
 						if (selectedPizza != null)
 						{
-							shoppingCart.AddPizzaToCart(selectedPizza);
+							int numberOfToppings = toppingHandler.GetNumberOfToppings();
+							shoppingCart.AddPizzaToCart(selectedPizza, numberOfToppings);
 						}
 						else
 						{
@@ -72,8 +70,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 							Console.WriteLine("Enter new quantity:");
 							if (int.TryParse(Console.ReadLine(), out int newQuantity))
 							{
-								// Call the EditCart method with pizzaId and newQuantity arguments
-								shoppingCart.EditCart(pizzaId, newQuantity);
+							
+								shoppingCart.EditCart(pizzaId, newQuantity, numberOfToppings);
 							}
 							else
 							{
