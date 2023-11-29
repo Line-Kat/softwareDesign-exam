@@ -58,7 +58,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 			Console.WriteLine("Your shoppingCart: ");
 			foreach (CartItem? item in Items)
 			{
-				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
+				Console.WriteLine($"Nr.{item.PizzaId} {item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
 			}
 		}
 
