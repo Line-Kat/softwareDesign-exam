@@ -10,7 +10,7 @@ namespace PizzaOrderingApp.Entities {
 		public int CustomerId { get; set; }
 		public Customer? Customer { get; set; }
 
-		
+
 		public ICollection<Pizza_Order>? Pizza_Order { get; set; }
 	}
 }

@@ -6,8 +6,8 @@ namespace PizzaOrderingApp
 	{
 		static void Main(string[] args)
 		{
-
-			RunPizzaApp runPizzaApp = new();
+			
+			RunPizzaApp runPizzaApp = new RunPizzaApp();
 			runPizzaApp.Run();
 
 		}

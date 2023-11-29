@@ -9,8 +9,7 @@
 
 		public string Description { get; set; }
 
-		public CartItem(int pizzaId, string pizzaName, int quantity, int price)
-		{
+		public CartItem(int pizzaId, string pizzaName, int quantity, int price) {
 			PizzaId = pizzaId;
 			PizzaName = pizzaName;
 			Quantity = quantity;
