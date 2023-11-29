@@ -9,33 +9,48 @@ using PizzaOrderingApp.Technical_services;
 using PizzaOrderingApp.Application_logic.Decorators;
 
 //source: lecture 5
-namespace PizzaOrderingApp.Test {
+namespace PizzaOrderingApp.UnitTesting
+{
 
-	public class ShoppingCartTest {
+	public class TestPizza : IPizza
+	{
+		public int PizzaId { get; }
+		public string PizzaName { get; }
+		public int Price { get; }
+
+		public string Description { get; }
+
+		public TestPizza(int pizzaId, string pizzaName, int price)
+		{
+			PizzaId = pizzaId;
+			PizzaName = pizzaName;
+			Price = price;
+			Description = "";
+		}
+	}
+
+	[TestFixture]
+	public class CartTests
+	{
 
 		[Test]
-		public void TestAddPizzaToCart_WithValidPizza_AddsPizza() {
+		public void TestAddPizzaToCart_WithValidPizza_AddsPizza()
+		{
 			// Arrange
 			ShoppingCart shoppingCart = new();
 
-
-			Pizza pizza = new() {
-				PizzaName = "Chicken",
-				Price = 100,
-				Description = "Chicken, cheese"
-			};
-
 			// Act
-			shoppingCart.AddPizzaToCart(pizza);
+			cart.AddPizzaToCart(pizza);
 
 			// Assert
-			Assert.That(shoppingCart.Items.Count, Is.EqualTo(1));
-			Assert.That(shoppingCart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
+			Assert.That(cart.Items.Count, Is.EqualTo(1));
+			Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
 		}
 
 
 		[Test]
-		public void TestRemovePizzaFromCart_WithValidId_RemovesPizza() {
+		public void TestRemovePizzaFromCart_WithValidId_RemovesPizza()
+		{
 			// Arrange
 			ShoppingCart shoppingCart = new();
 			Pizza pizza = new();
@@ -49,7 +64,8 @@ namespace PizzaOrderingApp.Test {
 		}
 
 		[Test]
-		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity() {
+		public void TestEditCart_WithValidIdAndQuantity_UpdatesQuantity()
+		{
 			// Arrange
 			ShoppingCart shoppingCart = new();
 			Pizza pizza = new();

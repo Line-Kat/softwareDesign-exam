@@ -7,7 +7,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler {
 	//Class to display all the menus
 	public class DisplayMenus : Menu {
 		private readonly List<Menu> _menus; //store the menus
-		private IPizza SelectedPizza; //FLYTT
+		private IPizza SelectedPizza; 
 
 		public DisplayMenus() {
 			_menus = new List<Menu> {
@@ -15,8 +15,8 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler {
                 // Add more menus here
             };
 		}
-		//FLYTT
-		public IPizza GetSelectedPizza() {
+		public IPizza GetSelectedPizza()
+		{
 			return SelectedPizza;
 		}
 
@@ -28,7 +28,8 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler {
 			}
 
 			int userChoice = GetMenuChoice();
-			if (userChoice > 0 && userChoice <= _menus.Count) {
+			if (userChoice > 0 && userChoice <= _menus.Count)
+			{
 
 				Menu chosenMenu = _menus[userChoice - 1];
 				chosenMenu.PrintMenu();
