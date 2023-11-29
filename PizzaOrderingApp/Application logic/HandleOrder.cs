@@ -16,7 +16,7 @@ namespace PizzaOrderingApp {
 				$"Name: {customer.CustomerName}\n" +
 				"\nYour order:");
 
-			foreach ( var item in cartItems ) {
+			foreach (var item in cartItems) {
 				Console.WriteLine($"{item.Quantity} {item.PizzaName}");
 			}
 
@@ -35,28 +35,5 @@ namespace PizzaOrderingApp {
 
 			return crudOperationsOrder.AddOrder(order);
 		}
-
-		//Method to get the number of pizzas the customer wants to order
-		//METODEN ER ERSTATTET AV METODEN TOTALNUMBEROFPIZZAS I KLASSEN SHOPPINGCART
-		/*public int GetNumberOfItems() {
-
-			bool numInputIsEmpty = true;
-			int userPizzaCount = 0;
-
-			while (numInputIsEmpty) {
-				Console.WriteLine("Type the number of pizzas you want");
-				string? countAsString = Console.ReadLine();
-
-				if (!int.TryParse(countAsString, out userPizzaCount)) {
-					Console.WriteLine("Count needs to be higher than 1");
-				} else if (userPizzaCount <= 0) {
-					Console.WriteLine("Count needs to be higher than 1");
-				} else {
-					numInputIsEmpty = false;
-				}
-			}
-			return userPizzaCount;
-		}
-		*/
 	}
 }

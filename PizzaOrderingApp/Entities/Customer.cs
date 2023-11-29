@@ -9,7 +9,7 @@ namespace PizzaOrderingApp.Entities {
 	public class Customer {
 
 		public int CustomerId { get; set; }
-		public string CustomerName { get; set; } = string.Empty; 
+		public string CustomerName { get; set; } = string.Empty;
 		public int PhoneNr { get; set; }
 
 		public ICollection<Order>? Order { get; set; }

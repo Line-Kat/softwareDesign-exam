@@ -23,7 +23,7 @@ namespace PizzaOrderingApp {
 				Console.WriteLine("Type name: ");
 				userInputName = Console.ReadLine();
 			}
-			 
+
 			while (string.IsNullOrEmpty(userInputPhoneNr) || !int.TryParse(userInputPhoneNr, out int userInputInt) || (userInputPhoneNr.Length != 8)) {
 				Console.WriteLine("Type a phone number with eight digits: ");
 				userInputPhoneNr = Console.ReadLine();
@@ -62,7 +62,7 @@ namespace PizzaOrderingApp {
 					userInput = Console.ReadLine();
 				}
 			}
-			if(userInput.ToUpper() == "N") {
+			if (userInput.ToUpper() == "N") {
 				customer = EditCustomer(customer.CustomerId);
 			}
 
@@ -75,7 +75,7 @@ namespace PizzaOrderingApp {
 			bool keepRunning = true;
 			string userInput = string.Empty;
 
-			while (keepRunning ) {
+			while (keepRunning) {
 				Console.WriteLine(
 				"\nType the number of the alternative you need to edit\n" +
 				"1 name\n" +
@@ -95,13 +95,13 @@ namespace PizzaOrderingApp {
 		//First the current customer is requested from the database, then the user is asked what information needs to be edited
 		//The database is updated and a object of type customer is returned
 		public Customer EditCustomer(int id) {
-			
+
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			switch (EditCustomerMenu()) {
 
 				case 1: {
-						
+
 						Console.WriteLine("\nType name: ");
 						string? name = Console.ReadLine();
 						customer.CustomerName = name;
@@ -131,7 +131,7 @@ namespace PizzaOrderingApp {
 
 		//Method to delete the customer from the database
 		public void DeleteCustomer(int id) {
-			
+
 			Customer customer = crudOperationsCustomer.GetCustomerById(id);
 
 			if (customer != null) {

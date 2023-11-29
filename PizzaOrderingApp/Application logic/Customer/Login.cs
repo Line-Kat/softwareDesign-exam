@@ -19,7 +19,7 @@ namespace PizzaOrderingApp {
 			string returnString = string.Empty;
 
 			if (type.Equals("login")) {
-				while(keepRunning) {
+				while (keepRunning) {
 					Console.WriteLine("Choose an option\n1 Login\n2 Register a new user");
 
 					returnString = Console.ReadLine();
@@ -31,7 +31,7 @@ namespace PizzaOrderingApp {
 			}
 
 			if (type.Equals("phoneNr")) {
-				while(keepRunning) {
+				while (keepRunning) {
 					Console.WriteLine("Please enter your phone number: ");
 
 					returnString = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace PizzaOrderingApp {
 					}
 				}
 			}
-		
+
 			return returnString;
 		}
 
@@ -63,7 +63,7 @@ namespace PizzaOrderingApp {
 
 			string userInput = LoginMenu("login");
 
-			if(userInput.Equals("1")) {
+			if (userInput.Equals("1")) {
 				int inputNumber = Convert.ToInt32(LoginMenu("phoneNr"));
 				customer = crudOperations.GetCustomerByPhoneNr(inputNumber);
 
@@ -74,11 +74,11 @@ namespace PizzaOrderingApp {
 			}
 
 			if (userInput.Equals("2")) {
-				 customer = handleCustomer.AddCustomer();
+				customer = handleCustomer.AddCustomer();
 			}
 
 			return customer;
 		}
-		
+
 	}
 }
