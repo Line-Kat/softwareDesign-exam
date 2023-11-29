@@ -32,9 +32,10 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 				Console.WriteLine("2. Add a new pizza");
 				Console.WriteLine("3. Remove a pizza from the shopping cart");
 				Console.WriteLine("4. Change the quantity of a pizza in the shopping cart");
-				Console.WriteLine("5. Exit");
+				//Console.WriteLine("5. Exit");
+				Console.WriteLine("Send order");
 
-				string userInput = Console.ReadLine();
+				string? userInput = Console.ReadLine();
 				switch (userInput)
 				{
 					case "1":
@@ -87,7 +88,7 @@ namespace PizzaOrderingApp.Application_logic.CartHandler
 					
 						break;
 					case "5":
-						Console.WriteLine("Exiting...");
+						//Console.WriteLine("Exiting...");
 						running = false;
 						break;
 					default:
