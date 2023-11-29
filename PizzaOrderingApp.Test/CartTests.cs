@@ -9,7 +9,8 @@ using PizzaOrderingApp.Technical_services;
 using PizzaOrderingApp.Application_logic.Decorators;
 
 //source: lecture 5
-namespace PizzaOrderingApp.UnitTesting
+namespace PizzaOrderingApp.Test
+
 {
 
 	public class TestPizza : IPizza
