@@ -3,6 +3,7 @@
 
 #Hvordan kjøre vår pizza app
 Først må du migrere EFCore, for å gjøre dette må du kjøre disse kommandoene fra terminalen:
+
 `dotnet tool install --global dotnet-ef`\
 `dotnet ef database update`
 - Hvordan kjøre programmet
