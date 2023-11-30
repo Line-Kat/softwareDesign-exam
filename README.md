@@ -10,6 +10,4 @@ Først må du migrere EFCore, for å gjøre dette må du kjøre disse kommandoen
   * Start programmet i visual studio
   * Run main metoden inni filen Program.cs
  
-For å lese mer om prossesen og appen les rapporten vår her:
-
-(https://github.com/Line-Kat/SoftwareDesign-exam/blob/main/PG3302Rapport.pdf)
+For å lære mer om prossesen og appen les rapporten vår PG3302Rapport.pdf
