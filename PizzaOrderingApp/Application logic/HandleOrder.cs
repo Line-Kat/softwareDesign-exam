@@ -16,7 +16,7 @@ namespace PizzaOrderingApp {
 				"\nYour order:");
 
 			foreach (var item in cartItems) {
-				Console.WriteLine($"{item.Quantity} {item.PizzaName}");
+				Console.WriteLine($"{item.Quantity} {item.Pizza.PizzaName}");
 			}
 
 			Console.WriteLine(

@@ -10,5 +10,6 @@ namespace PizzaOrderingApp.Entities {
 		public int Price { get; set; }
 		public string Description { get; set; } = string.Empty;
 
+		public ICollection<Pizza_Order>? Pizza_Order { get; set; }
 	}
 }
