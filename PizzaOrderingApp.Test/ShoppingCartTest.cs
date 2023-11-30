@@ -37,14 +37,25 @@ namespace PizzaOrderingApp.UnitTesting
 		public void TestAddPizzaToCart_WithValidPizza_AddsPizza()
 		{
 			// Arrange
-			ShoppingCart shoppingCart = new();
+			var shoppingCart = new ShoppingCart();
+			var pizza = new MockPizza { PizzaId = 1, PizzaName = "TestPizza", Price = 100 };
 
 			// Act
-			cart.AddPizzaToCart(pizza);
+			shoppingCart.AddPizzaToCart(pizza);
 
 			// Assert
-			Assert.That(cart.Items.Count, Is.EqualTo(1));
-			Assert.That(cart.Items[0]?.PizzaId, Is.EqualTo(pizza.PizzaId));
+			Assert.That(shoppingCart.Items.Count, Is.EqualTo(1));
+			Assert.That(shoppingCart.Items[0].Pizza.PizzaId, Is.EqualTo(pizza.PizzaId));
+			Assert.That(shoppingCart.Items[0].Pizza.PizzaName, Is.EqualTo(pizza.PizzaName));
+		}
+
+		// A mock-class for IPizza
+		private class MockPizza : IPizza
+		{
+			public int PizzaId { get; set; }
+			public string PizzaName { get; set; }
+			public int Price { get; set; }
+			public string Description { get; set; }
 		}
 
 
