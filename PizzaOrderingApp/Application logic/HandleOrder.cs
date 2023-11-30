@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using PizzaOrderingApp.Application_logic.CartHandler;
+﻿using PizzaOrderingApp.Application_logic.CartHandler;
 using PizzaOrderingApp.Entities;
 using PizzaOrderingApp.Technical_services.CRUD;
 
@@ -17,7 +16,7 @@ namespace PizzaOrderingApp {
 				"\nYour order:");
 
 			foreach (var item in cartItems) {
-				Console.WriteLine($"{item.Quantity} {item.PizzaName}");
+				Console.WriteLine($"{item.Quantity} {item.Pizza.PizzaName}");
 			}
 
 			Console.WriteLine(

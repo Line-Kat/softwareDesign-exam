@@ -2,112 +2,96 @@
 using PizzaOrderingApp.Entities;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
-namespace PizzaOrderingApp.Application_logic.CartHandler {
-	public class ShoppingCart {
-
-		//a list to store the pizzas
-		public List<CartItem?> Items { get; } = new List<CartItem?>();
-
-		public ShoppingCart() {
-			Items = new List<CartItem?>();
-		}
+namespace PizzaOrderingApp.Application_logic.CartHandler
+{
+	public class ShoppingCart
+	{
+		public List<CartItem> Items { get; } = new List<CartItem>();
 
 		//method that adds a pizza to the list. Checks if the pizza exist or not.
 		//Also checks if the pizza with the same id already exists in the cart, and if so - adds it to the quantity
-		public void AddPizzaToCart(IPizza pizza) {
-			if (pizza != null) {
-				bool pizzaExists = false;
+		public void AddPizzaToCart(IPizza pizza, int quantity = 1)
+		{
+			var existingItem = Items.FirstOrDefault(item => item.Pizza.PizzaId == pizza.PizzaId);
 
-				foreach (CartItem? item in Items) {
-					if (item?.PizzaId == pizza.PizzaId) {
-						item.Quantity++;
-						pizzaExists = true;
-						break;
-					}
-				}
-
-				if (!pizzaExists) {
-
-					CartItem? cartItem = new CartItem(pizza.PizzaId, pizza.PizzaName, 1, pizza.Price);
-					Items.Add(cartItem);
-				}
-
-				Console.WriteLine($"{pizza.PizzaName} added to the cart.");
-			} else {
-				Console.WriteLine("Error: Could not add pizza to the cart.");
+			if (existingItem != null)
+			{
+				existingItem.Quantity += quantity;
 			}
+			else
+			{
+				Items.Add(new CartItem(pizza, quantity));
+			}
+
+			Console.WriteLine($"{pizza.PizzaName} added to the cart.");
 		}
 
-
-		//method that shows the pizzas in the shoppingCart(list) using a foreach to go through each item in the shoppingCart. 
-		public void ViewCart() {
+		//method that shows the pizzas in the shoppingCart(list) 
+		public void ViewCart()
+		{
 			Console.WriteLine("Your shoppingCart: ");
-			foreach (CartItem? item in Items) {
-				Console.WriteLine($"{item.PizzaName} Quantity: {item.Quantity}, Price: {item.Price * item.Quantity} kr");
+			foreach (CartItem item in Items)
+			{
+				Console.WriteLine($"{item.Pizza.PizzaName}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice} kr");
 			}
 		}
 
 		//Method that calculates and returns the total number of pizzas ordered
-		public int TotalNumberOfPizzas() {
-
-			int totalNumberOfPizzas = 0;
-
-			foreach (CartItem? item in Items) {
-				totalNumberOfPizzas += item.Quantity;
-			}
-
-			return totalNumberOfPizzas;
+		public int TotalNumberOfPizzas()
+		{
+			return Items.Sum(item => item.Quantity);
 		}
 
 		//Method that calculates and returns the total sum of the order
-		public int TotalToPay() {
-
-			int sum = 0;
-
-			foreach (CartItem item in Items) {
-				sum += (item.Price * item.Quantity);
-			}
-
-			return sum;
+		public int TotalToPay()
+		{
+			return Items.Sum(item => item.TotalPrice);
 		}
 
-		public List<CartItem> GetCartItems() {
+		public List<CartItem> GetCartItems()
+		{
 			return Items;
 		}
 
+		//method that removes a pizza from cart using id
+		public void RemovePizzaFromCart(int pizzaId)
+		{
+			var itemToRemove = Items.FirstOrDefault(item => item.Pizza.PizzaId == pizzaId);
 
-		//method that removes a pizza from cart using id, it searches through the list of cart items to find the matching pizza. 
-		public void RemovePizzaFromCart(int pizzaId) {
-			CartItem? itemToRemove = Items.FirstOrDefault(item => item?.PizzaId == pizzaId);
-
-			if (itemToRemove != null) {
+			if (itemToRemove != null)
+			{
 				Items.Remove(itemToRemove);
-				Console.WriteLine($"Pizza with number {pizzaId} has been removed from the shopping cart.");
-			} else {
+				Console.WriteLine($"Pizza number {pizzaId} has been removed from the shopping cart.");
+			}
+			else
+			{
 				Console.WriteLine($"Could not find a pizza with number {pizzaId} in the shopping cart.");
 			}
 		}
 
-		//method that modifies the quantity of a pizza using id, and searches through the list to find the matching pizza.
-		//if the id matches the quantity is updated
-		public void EditCart(int pizzaId, int newQuantity) {
-			// Directly use the parameters pizzaId and newQuantity without additional input prompts
-			if (newQuantity > 0) {
-				CartItem? itemToEdit = Items.FirstOrDefault(item => item?.PizzaId == pizzaId);
+		//method that modifies the quantity of a pizza using id
+		public void EditCart(int pizzaId, int newQuantity)
+		{
+			if (newQuantity > 0)
+			{
+				var itemToEdit = Items.FirstOrDefault(item => item.Pizza.PizzaId == pizzaId);
 
-				if (itemToEdit != null) {
+				if (itemToEdit != null)
+				{
 					itemToEdit.Quantity = newQuantity;
-					Console.WriteLine($"Quantity for pizza with number {pizzaId} has been changed to {newQuantity}.");
-				} else {
-					Console.WriteLine($"Could not find a pizza with number {pizzaId} to change the quantity.");
+					Console.WriteLine($"Quantity for pizza number {pizzaId} has been changed to {newQuantity}.");
 				}
-			} else {
-				Console.WriteLine("Invalid quantity, please enter a positive number.");
+				else
+				{
+					Console.WriteLine($"Could not find pizza number {pizzaId} to change the quantity.");
+				}
+			}
+			else
+			{
+				Console.WriteLine("Invalid quantity, please enter a number.");
 			}
 		}
-
 	}
 }

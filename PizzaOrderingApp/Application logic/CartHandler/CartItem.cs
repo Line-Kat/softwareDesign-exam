@@ -1,20 +1,19 @@
-﻿namespace PizzaOrderingApp.Application_logic.CartHandler
+﻿using PizzaOrderingApp.Application_logic.Decorators;
+
+namespace PizzaOrderingApp.Application_logic.CartHandler
 {
+
+	//Class defines the structure for a shoppingcart object, including the pizza object from IPizza class
 	public class CartItem
 	{
-		public int PizzaId { get; set; }
+		public IPizza Pizza { get; set; }
 		public int Quantity { get; set; }
-		public string PizzaName { get; set; }
-		public int Price { get; set; }
 
-		public string Description { get; set; }
-
-		public CartItem(int pizzaId, string pizzaName, int quantity, int price) {
-			PizzaId = pizzaId;
-			PizzaName = pizzaName;
+		public int TotalPrice => Pizza.Price * Quantity;
+		public CartItem(IPizza pizza, int quantity)
+		{
+			Pizza = pizza;
 			Quantity = quantity;
-			Price = price;
-
 		}
 
 	}

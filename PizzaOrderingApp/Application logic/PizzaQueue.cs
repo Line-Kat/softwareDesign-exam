@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaOrderingApp {
+﻿namespace PizzaOrderingApp {
 	public class PizzaQueue {
 
 		//Method that returns the calculated time for when the pizzas are ready for pick up
