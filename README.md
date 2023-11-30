@@ -11,4 +11,5 @@ Først må du migrere EFCore, for å gjøre dette må du kjøre disse kommandoen
   * Run main metoden inni filen Program.cs
  
 For å lese mer om prossesen og appen les rapporten vår her:
-(rapport.png)
+
+(rapport.pdf)
