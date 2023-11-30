@@ -7,6 +7,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators {
 		private IPizza finalPizza;
 		private readonly CrudOperationsMenu crudOperationsMenu = new CrudOperationsMenu();
 		private readonly List<string> _availablePizzaToppings;
+		private int ToppingPrice = PizzaToppingDecorator.ToppingPrice;
 
 		// Fetches available toppings from the database
 		public PizzaToppingSelectionHandler() {
@@ -15,7 +16,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators {
 
 		// Handles user interaction for adding toppings
 		public IPizza HandleToppingSelection(IPizza pizza) {
-			Console.WriteLine("\nDo you want to add extra toppings? Max 3 extra toppings, +30 kr per topping. (y/n)");
+			Console.WriteLine($"\nDo you want to add extra toppings? Max 3 extra toppings, + {ToppingPrice}kr per topping. (y/n)");
 			string response = Console.ReadLine().ToLower();
 
 			// Prompt and logic for topping selection
@@ -50,7 +51,7 @@ namespace PizzaOrderingApp.Application_logic.MenuHandler.Decorators {
 					toppingsCount++;
 
 					if (toppingsCount < MaxToppings) {
-						Console.WriteLine("\nDo you want to add another topping (+ 30kr)? (y/n)");
+						Console.WriteLine($"\nDo you want to add another topping (+{ToppingPrice}kr)? (y/n)");
 						string innerResponse = Console.ReadLine().ToLower();
 
 						if (innerResponse != "y") {
