@@ -12,4 +12,4 @@ Først må du migrere EFCore, for å gjøre dette må du kjøre disse kommandoen
  
 For å lese mer om prossesen og appen les rapporten vår her:
 
-(PG3302Rapport.pdf)
+(https://github.com/Line-Kat/SoftwareDesign-exam/blob/main/PG3302Rapport.pdf)
