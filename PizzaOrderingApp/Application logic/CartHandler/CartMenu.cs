@@ -43,6 +43,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 						}
 						break;
 					case "3":
+						shoppingCart.ViewCart();
+
 						Console.WriteLine("Enter the number of the pizza you want to remove from the shopping cart:");
 						if (int.TryParse(Console.ReadLine(), out int pizzaId)) {
 							shoppingCart.RemovePizzaFromCart(pizzaId);
@@ -52,6 +54,8 @@ namespace PizzaOrderingApp.Application_logic.CartHandler {
 
 						break;
 					case "4":
+						shoppingCart.ViewCart();
+
 						Console.WriteLine("Enter the number of the pizza:");
 						if (int.TryParse(Console.ReadLine(), out pizzaId)) {
 							Console.WriteLine("Enter new quantity:");
